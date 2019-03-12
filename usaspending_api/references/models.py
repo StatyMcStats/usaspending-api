@@ -20,8 +20,8 @@ class GTASTotalObligation(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'gtas_total_obligation'
-        unique_together = (('fiscal_year', 'fiscal_quarter'),)
+        db_table = "gtas_total_obligation"
+        unique_together = (("fiscal_year", "fiscal_quarter"),)
 
 
 class RefCityCountyCode(models.Model):
@@ -40,7 +40,7 @@ class RefCityCountyCode(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'ref_city_county_code'
+        db_table = "ref_city_county_code"
 
     @classmethod
     def canonicalize(cls):
@@ -65,10 +65,10 @@ class RefCountryCode(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'ref_country_code'
+        db_table = "ref_country_code"
 
     def __str__(self):
-        return '%s: %s' % (self.country_code, self.country_name)
+        return "%s: %s" % (self.country_code, self.country_name)
 
 
 """{
@@ -89,9 +89,9 @@ class Agency(models.Model):
     create_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     update_date = models.DateTimeField(auto_now=True, null=True)
 
-    toptier_agency = models.ForeignKey('ToptierAgency', models.DO_NOTHING, null=True, db_index=True)
-    subtier_agency = models.ForeignKey('SubtierAgency', models.DO_NOTHING, null=True, db_index=True)
-    office_agency = models.ForeignKey('OfficeAgency', models.DO_NOTHING, null=True, db_index=True)
+    toptier_agency = models.ForeignKey("ToptierAgency", models.DO_NOTHING, null=True, db_index=True)
+    subtier_agency = models.ForeignKey("SubtierAgency", models.DO_NOTHING, null=True, db_index=True)
+    office_agency = models.ForeignKey("OfficeAgency", models.DO_NOTHING, null=True, db_index=True)
 
     # 1182 This flag is true if toptier agency name and subtier agency name are equal.
     # This means the award is at the department level.
@@ -109,9 +109,13 @@ class Agency(models.Model):
             an Agency instance
 
         """
-        return Agency.objects.filter(
-            toptier_agency__cgac_code=toptier_cgac_code,
-            subtier_agency__name=F('toptier_agency__name')).order_by('-update_date').first()
+        return (
+            Agency.objects.filter(
+                toptier_agency__cgac_code=toptier_cgac_code, subtier_agency__name=F("toptier_agency__name")
+            )
+            .order_by("-update_date")
+            .first()
+        )
 
     @staticmethod
     def get_by_subtier(subtier_code):
@@ -127,8 +131,7 @@ class Agency(models.Model):
         If called with None / empty subtier code, returns None
         """
         if subtier_code:
-            return Agency.objects.filter(
-                subtier_agency__subtier_code=subtier_code).order_by('-update_date').first()
+            return Agency.objects.filter(subtier_agency__subtier_code=subtier_code).order_by("-update_date").first()
 
     @staticmethod
     def get_by_toptier_subtier(toptier_cgac_code, subtier_code):
@@ -143,10 +146,13 @@ class Agency(models.Model):
             an Agency instance
 
         """
-        return Agency.objects.filter(
-            toptier_agency__cgac_code=toptier_cgac_code,
-            subtier_agency__subtier_code=subtier_code
-        ).order_by('-update_date').first()
+        return (
+            Agency.objects.filter(
+                toptier_agency__cgac_code=toptier_cgac_code, subtier_agency__subtier_code=subtier_code
+            )
+            .order_by("-update_date")
+            .first()
+        )
 
     @staticmethod
     def get_by_subtier_only(subtier_code):
@@ -164,8 +170,7 @@ class Agency(models.Model):
             an Agency instance
 
         """
-        agencies = Agency.objects.filter(
-            subtier_agency__subtier_code=subtier_code)
+        agencies = Agency.objects.filter(subtier_agency__subtier_code=subtier_code)
         if agencies.count() == 1:
             return agencies.first()
         else:
@@ -173,10 +178,8 @@ class Agency(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'agency'
-        unique_together = ("toptier_agency",
-                           "subtier_agency",
-                           "office_agency")
+        db_table = "agency"
+        unique_together = ("toptier_agency", "subtier_agency", "office_agency")
 
     def __str__(self):
         stringrep = ""
@@ -200,7 +203,7 @@ class ToptierAgency(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'toptier_agency'
+        db_table = "toptier_agency"
 
 
 class SubtierAgency(models.Model):
@@ -213,7 +216,7 @@ class SubtierAgency(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'subtier_agency'
+        db_table = "subtier_agency"
 
 
 class OfficeAgency(models.Model):
@@ -225,7 +228,7 @@ class OfficeAgency(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'office_agency'
+        db_table = "office_agency"
 
 
 class FilterHash(models.Model):
@@ -236,7 +239,7 @@ class FilterHash(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'filter_hash'
+        db_table = "filter_hash"
 
 
 class Location(DataSourceTrackedModel, DeleteIfChildlessMixin):
@@ -258,7 +261,8 @@ class Location(DataSourceTrackedModel, DeleteIfChildlessMixin):
     zip_4a = models.TextField(blank=True, null=True)
     congressional_code = models.TextField(blank=True, null=True, verbose_name="Congressional District Code")
     performance_code = models.TextField(
-        blank=True, null=True, verbose_name="Primary Place Of Performance Location Code")
+        blank=True, null=True, verbose_name="Primary Place Of Performance Location Code"
+    )
     zip_last4 = models.TextField(blank=True, null=True)
     zip5 = models.TextField(blank=True, null=True)
     foreign_postal_code = models.TextField(blank=True, null=True)
@@ -278,8 +282,9 @@ class Location(DataSourceTrackedModel, DeleteIfChildlessMixin):
     place_of_performance_flag = models.BooleanField(default=False, verbose_name="Location used as place of performance")
     recipient_flag = models.BooleanField(default=False, verbose_name="Location used as recipient location")
     is_fpds = models.BooleanField(blank=False, null=False, default=False, verbose_name="Is FPDS")
-    transaction_unique_id = models.TextField(blank=False, null=False, default="NONE",
-                                             verbose_name="Transaction Unique ID")
+    transaction_unique_id = models.TextField(
+        blank=False, null=False, default="NONE", verbose_name="Transaction Unique ID"
+    )
 
     def pre_save(self):
         self.load_city_county_data()
@@ -295,16 +300,16 @@ class Location(DataSourceTrackedModel, DeleteIfChildlessMixin):
 
         if self.state_code and self.state_name:
             return
-        if self.country_name == 'UNITED STATES':
+        if self.country_name == "UNITED STATES":
             if not self.state_code:
                 self.state_code = state_to_code.get(self.state_name)
             elif not self.state_name:
                 state_obj = code_to_state.get(self.state_code)
 
                 if state_obj:
-                    self.state_name = state_obj['name']
+                    self.state_name = state_obj["name"]
 
-    zip_code_pattern = re.compile(r'^(\d{5})\-?(\d{4})?$')
+    zip_code_pattern = re.compile(r"^(\d{5})\-?(\d{4})?$")
 
     def fill_missing_zip5(self):
         """Where zip5 is blank, fill from a valid zip4, if avaliable"""
@@ -339,7 +344,7 @@ class Location(DataSourceTrackedModel, DeleteIfChildlessMixin):
                 "county_code": self.county_code,
                 "state_code": temp_state_code,
                 "city_name": temp_city_name,
-                "county_name": temp_county_name
+                "county_name": temp_county_name,
             }
             # Clear out any blank or None values in our filter, so we can find the best match
             q_kwargs = dict((k, v) for k, v in q_kwargs.items() if v)
@@ -361,23 +366,28 @@ class Location(DataSourceTrackedModel, DeleteIfChildlessMixin):
                 self.city_name = matched_reference.city_name
                 self.county_name = matched_reference.county_name
             else:
-                logging.getLogger('debug').info("Could not find single matching city/county for following arguments:" +
-                                                str(q_kwargs) + "; got " + str(matched_reference.count()))
+                logging.getLogger("debug").info(
+                    "Could not find single matching city/county for following arguments:"
+                    + str(q_kwargs)
+                    + "; got "
+                    + str(matched_reference.count())
+                )
 
 
 class LegalEntity(DataSourceTrackedModel):
     legal_entity_id = models.BigAutoField(primary_key=True, db_index=True)
     recipient_name = models.TextField(blank=True, verbose_name="Recipient Name", null=True)
-    location = models.ForeignKey('Location', models.DO_NOTHING, null=True)
-    parent_recipient_unique_id = models.TextField(blank=True, null=True, verbose_name="Parent DUNS Number",
-                                                  db_index=True)
+    location = models.ForeignKey("Location", models.DO_NOTHING, null=True)
+    parent_recipient_unique_id = models.TextField(
+        blank=True, null=True, verbose_name="Parent DUNS Number", db_index=True
+    )
     parent_recipient_name = models.TextField(blank=True, verbose_name="Parent Recipient Name", null=True)
     vendor_doing_as_business_name = models.TextField(blank=True, null=True)
     vendor_phone_number = models.TextField(blank=True, null=True)
     vendor_fax_number = models.TextField(blank=True, null=True)
     business_types = models.TextField(blank=True, null=True, db_index=True)
     business_types_description = models.TextField(blank=True, null=True)
-    '''
+    """
     Business Type Categories
     Make sure to leave default as 'list', as [] would share across instances
 
@@ -461,10 +471,10 @@ class LegalEntity(DataSourceTrackedModel):
     - authorities_and_commissions
 
     individuals
-    '''
+    """
     business_categories = ArrayField(models.TextField(), default=list)
 
-    recipient_unique_id = models.TextField(blank=True, default='', null=True, verbose_name="DUNS Number", db_index=True)
+    recipient_unique_id = models.TextField(blank=True, default="", null=True, verbose_name="DUNS Number", db_index=True)
     limited_liability_corporation = models.NullBooleanField(blank=False, default=False)
     sole_proprietorship = models.NullBooleanField(blank=False, default=False)
     partnership_or_limited_liability_partnership = models.NullBooleanField(blank=False, default=False)
@@ -496,8 +506,12 @@ class LegalEntity(DataSourceTrackedModel):
     us_government_entity = models.NullBooleanField(blank=False, default=False)
     emerging_small_business = models.NullBooleanField(blank=False, default=False)
     c8a_program_participant = models.NullBooleanField(
-        db_column='8a_program_participant', max_length=1, blank=False, default=False,
-        verbose_name="8a Program Participant")  # Field renamed because it wasn't a valid Python identifier.
+        db_column="8a_program_participant",
+        max_length=1,
+        blank=False,
+        default=False,
+        verbose_name="8a Program Participant",
+    )  # Field renamed because it wasn't a valid Python identifier.
     sba_certified_8a_joint_venture = models.NullBooleanField(blank=False, default=False)
     dot_certified_disadvantage = models.NullBooleanField(blank=False, default=False)
     self_certified_small_disadvantaged_business = models.NullBooleanField(blank=False, default=False)
@@ -506,23 +520,26 @@ class LegalEntity(DataSourceTrackedModel):
     the_ability_one_program = models.NullBooleanField(blank=False, default=False)
     historically_black_college = models.NullBooleanField(blank=False, default=False)
     c1862_land_grant_college = models.NullBooleanField(
-        db_column='1862_land_grant_college',
+        db_column="1862_land_grant_college",
         max_length=1,
         blank=False,
         default=False,
-        verbose_name="1862 Land Grant College")  # Field renamed because it wasn't a valid Python identifier.
+        verbose_name="1862 Land Grant College",
+    )  # Field renamed because it wasn't a valid Python identifier.
     c1890_land_grant_college = models.NullBooleanField(
-        db_column='1890_land_grant_college',
+        db_column="1890_land_grant_college",
         max_length=1,
         blank=False,
         default=False,
-        verbose_name="1890 Land Grant College")  # Field renamed because it wasn't a valid Python identifier.
+        verbose_name="1890 Land Grant College",
+    )  # Field renamed because it wasn't a valid Python identifier.
     c1994_land_grant_college = models.NullBooleanField(
-        db_column='1994_land_grant_college',
+        db_column="1994_land_grant_college",
         max_length=1,
         blank=False,
         default=False,
-        verbose_name="1894 Land Grant College")  # Field renamed because it wasn't a valid Python identifier.
+        verbose_name="1894 Land Grant College",
+    )  # Field renamed because it wasn't a valid Python identifier.
     minority_institution = models.NullBooleanField(blank=False, default=False)
     private_university_or_college = models.NullBooleanField(blank=False, default=False)
     school_of_forestry = models.NullBooleanField(blank=False, default=False)
@@ -531,7 +548,8 @@ class LegalEntity(DataSourceTrackedModel):
     veterinary_college = models.NullBooleanField(blank=False, default=False)
     educational_institution = models.NullBooleanField(blank=False, default=False)
     alaskan_native_servicing_institution = models.NullBooleanField(
-        blank=False, default=False, verbose_name="Alaskan Native Owned Servicing Institution")
+        blank=False, default=False, verbose_name="Alaskan Native Owned Servicing Institution"
+    )
     community_development_corporation = models.NullBooleanField(blank=False, default=False)
     native_hawaiian_servicing_institution = models.NullBooleanField(blank=False, default=False)
     domestic_shelter = models.NullBooleanField(blank=False, default=False)
@@ -559,14 +577,17 @@ class LegalEntity(DataSourceTrackedModel):
     transit_authority = models.NullBooleanField(blank=False, default=False)
     foreign_owned_and_located = models.NullBooleanField(blank=False, default=False)
     american_indian_owned_business = models.NullBooleanField(
-        blank=False, default=False, verbose_name="American Indian Owned Business")
+        blank=False, default=False, verbose_name="American Indian Owned Business"
+    )
     alaskan_native_owned_corporation_or_firm = models.NullBooleanField(
-        blank=False, default=False, verbose_name="Alaskan Native Owned Corporation or Firm")
+        blank=False, default=False, verbose_name="Alaskan Native Owned Corporation or Firm"
+    )
     indian_tribe_federally_recognized = models.NullBooleanField(blank=False, default=False)
     native_hawaiian_owned_business = models.NullBooleanField(blank=False, default=False)
     tribally_owned_business = models.NullBooleanField(blank=False, default=False)
     asian_pacific_american_owned_business = models.NullBooleanField(
-        blank=False, default=False, verbose_name="Asian Pacific American Owned business")
+        blank=False, default=False, verbose_name="Asian Pacific American Owned business"
+    )
     black_american_owned_business = models.NullBooleanField(blank=False, default=False)
     hispanic_american_owned_business = models.NullBooleanField(blank=False, default=False)
     native_american_owned_business = models.NullBooleanField(blank=False, default=False)
@@ -592,19 +613,19 @@ class LegalEntity(DataSourceTrackedModel):
     small_business_description = models.TextField(blank=True, null=True)
     individual = models.TextField(blank=True, null=True)
     is_fpds = models.BooleanField(blank=False, default=False, verbose_name="Is FPDS")
-    transaction_unique_id = models.TextField(
-        blank=False, default="NONE", verbose_name="Transaction Unique ID")
+    transaction_unique_id = models.TextField(blank=False, default="NONE", verbose_name="Transaction Unique ID")
 
     class Meta:
         managed = True
-        db_table = 'legal_entity'
-        index_together = ['recipient_unique_id', 'recipient_name', 'update_date']
+        db_table = "legal_entity"
+        index_together = ["recipient_unique_id", "recipient_name", "update_date"]
 
 
 class LegalEntityOfficers(models.Model):
-    legal_entity = models.OneToOneField(LegalEntity, on_delete=models.CASCADE, primary_key=True,
-                                        related_name='officers')
-    duns = models.TextField(blank=True, default='', null=True, verbose_name="DUNS Number", db_index=True)
+    legal_entity = models.OneToOneField(
+        LegalEntity, on_delete=models.CASCADE, primary_key=True, related_name="officers"
+    )
+    duns = models.TextField(blank=True, default="", null=True, verbose_name="DUNS Number", db_index=True)
     officer_1_name = models.TextField(null=True, blank=True)
     officer_1_amount = models.DecimalField(max_digits=23, decimal_places=2, blank=True, null=True)
     officer_2_name = models.TextField(null=True, blank=True)
@@ -634,13 +655,13 @@ class ObjectClass(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'object_class'
-        unique_together = ['object_class', 'direct_reimbursable']
+        db_table = "object_class"
+        unique_together = ["object_class", "direct_reimbursable"]
 
     @property
     def corrected_major_object_class_name(self):
-        if self.major_object_class == '00':
-            return 'Unknown Object Type'
+        if self.major_object_class == "00":
+            return "Unknown Object Type"
         else:
             return self.major_object_class_name
 
@@ -661,13 +682,17 @@ class RefProgramActivity(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'ref_program_activity'
-        unique_together = (('program_activity_code',
-                            'program_activity_name',
-                            'responsible_agency_id',
-                            'allocation_transfer_agency_id',
-                            'main_account_code',
-                            'budget_year'),)
+        db_table = "ref_program_activity"
+        unique_together = (
+            (
+                "program_activity_code",
+                "program_activity_name",
+                "responsible_agency_id",
+                "allocation_transfer_agency_id",
+                "main_account_code",
+                "budget_year",
+            ),
+        )
 
 
 class Cfda(DataSourceTrackedModel):
@@ -744,7 +769,7 @@ class OverallTotals(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'overall_totals'
+        db_table = "overall_totals"
 
 
 class FrecMap(models.Model):
@@ -758,28 +783,30 @@ class FrecMap(models.Model):
     fr_entity_code = models.TextField(null=False)  # source: FR Entity Type
 
     class Meta:
-        db_table = 'frec_map'
+        db_table = "frec_map"
 
 
 class NAICS(models.Model):
     """Based on United States Census Bureau"""
+
     code = models.TextField(primary_key=True)
     description = models.TextField(null=False)
     year = models.IntegerField(default=0)
 
     class Meta:
         managed = True
-        db_table = 'naics'
+        db_table = "naics"
 
 
 class PSC(models.Model):
     """Based on https://www.acquisition.gov/PSC_Manual"""
+
     code = models.CharField(primary_key=True, max_length=4)
     description = models.TextField(null=False)
 
     class Meta:
         managed = True
-        db_table = 'psc'
+        db_table = "psc"
 
 
 class Rosetta(models.Model):
@@ -787,6 +814,7 @@ class Rosetta(models.Model):
         Based on the "public" tab in Schema's Rosetta Crosswalk Data Dictionary:
             Data Transparency Rosetta Stone_All_Versions.xlsx
     """
+
     document_name = models.TextField(primary_key=True)
     document = JSONField()
 

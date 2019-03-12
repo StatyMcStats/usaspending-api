@@ -41,10 +41,7 @@ def awards_and_transactions(db):
     mommy.make("references.ToptierAgency", **sub_agency)
     mommy.make("references.OfficeAgency", name="office_agency", office_agency_id=1)
 
-    le = {
-        "pk": 1,
-        "business_categories": ["small_business"],
-    }
+    le = {"pk": 1, "business_categories": ["small_business"]}
 
     ag = {
         "pk": 1,
@@ -298,11 +295,7 @@ expected_response_asst = {
     },
     "subaward_count": 10,
     "total_subaward_amount": 12345.0,
-    "period_of_performance": {
-        "start_date": "2004-02-04",
-        "end_date": "2005-02-04",
-        "last_modified_date": "2000-01-02",
-    },
+    "period_of_performance": {"start_date": "2004-02-04", "end_date": "2005-02-04", "last_modified_date": "2000-01-02"},
     "place_of_performance": {
         "address_line1": None,
         "address_line2": None,

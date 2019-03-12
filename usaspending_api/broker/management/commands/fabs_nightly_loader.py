@@ -70,7 +70,7 @@ class Command(BaseCommand):
         db_query = " ".join(
             [
                 "SELECT * FROM published_award_financial_assistance",
-                "WHERE published_award_financial_assistance_id IN ({});"
+                "WHERE published_award_financial_assistance_id IN ({});",
             ]
         )
 
@@ -89,17 +89,17 @@ class Command(BaseCommand):
             yield dictfetchall(db_cursor)  # this returns an OrderedDict
 
     def find_related_awards(self, transactions):
-        related_award_ids = [result[0] for result in transactions.values_list('award_id')]
+        related_award_ids = [result[0] for result in transactions.values_list("award_id")]
         tn_count = (
             TransactionNormalized.objects.filter(award_id__in=related_award_ids)
-            .values('award_id')
-            .annotate(transaction_count=Count('id'))
-            .values_list('award_id', 'transaction_count')
+            .values("award_id")
+            .annotate(transaction_count=Count("id"))
+            .values_list("award_id", "transaction_count")
         )
         tn_count_filtered = (
-            transactions.values('award_id')
-            .annotate(transaction_count=Count('id'))
-            .values_list('award_id', 'transaction_count')
+            transactions.values("award_id")
+            .annotate(transaction_count=Count("id"))
+            .values_list("award_id", "transaction_count")
         )
         tn_count_mapping = {award_id: transaction_count for award_id, transaction_count in tn_count}
         tn_count_filtered_mapping = {award_id: transaction_count for award_id, transaction_count in tn_count_filtered}
@@ -118,7 +118,7 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def delete_stale_fabs(self, ids_to_delete=None):
-        logger.info('Starting deletion of stale FABS data')
+        logger.info("Starting deletion of stale FABS data")
 
         if not ids_to_delete:
             return
@@ -126,12 +126,12 @@ class Command(BaseCommand):
         transactions = TransactionNormalized.objects.filter(assistance_data__afa_generated_unique__in=ids_to_delete)
         update_award_ids, delete_award_ids = self.find_related_awards(transactions)
 
-        delete_transaction_ids = [delete_result[0] for delete_result in transactions.values_list('id')]
-        delete_transaction_str_ids = ','.join([str(deleted_result) for deleted_result in delete_transaction_ids])
-        update_award_str_ids = ','.join([str(update_result) for update_result in update_award_ids])
-        delete_award_str_ids = ','.join([str(deleted_result) for deleted_result in delete_award_ids])
+        delete_transaction_ids = [delete_result[0] for delete_result in transactions.values_list("id")]
+        delete_transaction_str_ids = ",".join([str(deleted_result) for deleted_result in delete_transaction_ids])
+        update_award_str_ids = ",".join([str(update_result) for update_result in update_award_ids])
+        delete_award_str_ids = ",".join([str(deleted_result) for deleted_result in delete_award_ids])
 
-        db_cursor = connections['default'].cursor()
+        db_cursor = connections["default"].cursor()
 
         queries = []
         # Transaction FABS
@@ -155,7 +155,7 @@ class Command(BaseCommand):
             delete_awards_query = 'DELETE FROM "awards" a WHERE a."id" IN ({});'.format(delete_award_str_ids)
             queries.extend([faba.format(delete_award_str_ids), sub, delete_awards_query])
         if queries:
-            db_query = ''.join(queries)
+            db_query = "".join(queries)
             db_cursor.execute(db_query, [])
 
     @transaction.atomic
@@ -208,16 +208,16 @@ class Command(BaseCommand):
 
             # Create new LegalEntityLocation and LegalEntity from the row data
             legal_entity_location = create_location(legal_entity_location_field_map, row, {"recipient_flag": True})
-            recipient_name = row['awardee_or_recipient_legal']
+            recipient_name = row["awardee_or_recipient_legal"]
             legal_entity = LegalEntity.objects.create(
-                recipient_unique_id=row['awardee_or_recipient_uniqu'],
+                recipient_unique_id=row["awardee_or_recipient_uniqu"],
                 recipient_name=recipient_name if recipient_name is not None else "",
-                parent_recipient_unique_id=row['ultimate_parent_unique_ide'],
+                parent_recipient_unique_id=row["ultimate_parent_unique_ide"],
             )
             legal_entity_value_map = {
                 "location": legal_entity_location,
-                "business_categories": get_business_categories(row=row, data_type='fabs'),
-                "business_types_description": row['business_types_desc'],
+                "business_categories": get_business_categories(row=row, data_type="fabs"),
+                "business_types_description": row["business_types_desc"],
             }
             legal_entity = load_data_into_model(legal_entity, row, value_map=legal_entity_value_map, save=True)
 
@@ -233,16 +233,16 @@ class Command(BaseCommand):
 
             # this will raise an exception if the cast to an int fails, that's ok since we don't want to process
             # non-numeric record type values
-            record_type_int = int(row['record_type'])
+            record_type_int = int(row["record_type"])
             if record_type_int == 1:
-                uri = row['uri'] if row['uri'] else '-NONE-'
-                fain = '-NONE-'
+                uri = row["uri"] if row["uri"] else "-NONE-"
+                fain = "-NONE-"
             elif record_type_int in (2, 3):
-                uri = '-NONE-'
-                fain = row['fain'] if row['fain'] else '-NONE-'
+                uri = "-NONE-"
+                fain = row["fain"] if row["fain"] else "-NONE-"
             else:
                 msg = "Invalid record type encountered for the following afa_generated_unique record: {}"
-                raise Exception(msg.format(row['afa_generated_unique']))
+                raise Exception(msg.format(row["afa_generated_unique"]))
 
             astac = row["awarding_sub_tier_agency_c"] if row["awarding_sub_tier_agency_c"] else "-NONE-"
             generated_unique_id = "ASST_AW_{}_{}_{}".format(astac, fain, uri)
@@ -250,9 +250,9 @@ class Command(BaseCommand):
             # Create the summary Award
             (created, award) = Award.get_or_create_summary_award(
                 generated_unique_award_id=generated_unique_id,
-                fain=row['fain'],
-                uri=row['uri'],
-                record_type=row['record_type'],
+                fain=row["fain"],
+                uri=row["uri"],
+                record_type=row["record_type"],
             )
             award.save()
 
@@ -260,21 +260,21 @@ class Command(BaseCommand):
             AWARD_UPDATE_ID_LIST.append(award.id)
 
             try:
-                last_mod_date = datetime.strptime(str(row['modified_at']), "%Y-%m-%d %H:%M:%S.%f").date()
+                last_mod_date = datetime.strptime(str(row["modified_at"]), "%Y-%m-%d %H:%M:%S.%f").date()
             except ValueError:
-                last_mod_date = datetime.strptime(str(row['modified_at']), "%Y-%m-%d %H:%M:%S").date()
+                last_mod_date = datetime.strptime(str(row["modified_at"]), "%Y-%m-%d %H:%M:%S").date()
             parent_txn_value_map = {
                 "award": award,
                 "awarding_agency": awarding_agency,
                 "funding_agency": funding_agency,
                 "recipient": legal_entity,
                 "place_of_performance": pop_location,
-                "period_of_performance_start_date": format_date(row['period_of_performance_star']),
-                "period_of_performance_current_end_date": format_date(row['period_of_performance_curr']),
-                "action_date": format_date(row['action_date']),
+                "period_of_performance_start_date": format_date(row["period_of_performance_star"]),
+                "period_of_performance_current_end_date": format_date(row["period_of_performance_curr"]),
+                "action_date": format_date(row["action_date"]),
                 "last_modified_date": last_mod_date,
-                "type_description": row['assistance_type_desc'],
-                "transaction_unique_id": row['afa_generated_unique'],
+                "type_description": row["assistance_type_desc"],
+                "transaction_unique_id": row["afa_generated_unique"],
                 "generated_unique_award_id": generated_unique_id,
             }
 
@@ -294,7 +294,7 @@ class Command(BaseCommand):
 
             financial_assistance_data = load_data_into_model(TransactionFABS(), row, as_dict=True)  # thrown away
 
-            afa_generated_unique = financial_assistance_data['afa_generated_unique']
+            afa_generated_unique = financial_assistance_data["afa_generated_unique"]
             unique_fabs = TransactionFABS.objects.filter(afa_generated_unique=afa_generated_unique)
 
             if unique_fabs.first():
@@ -324,39 +324,39 @@ class Command(BaseCommand):
     @staticmethod
     def store_deleted_fabs(ids_to_delete):
         seconds = int(time.time())  # adds enough uniqueness to filename
-        file_name = datetime.now(timezone.utc).strftime('%Y-%m-%d') + "_FABSdeletions_" + str(seconds) + ".csv"
-        file_with_headers = ['afa_generated_unique'] + ids_to_delete
+        file_name = datetime.now(timezone.utc).strftime("%Y-%m-%d") + "_FABSdeletions_" + str(seconds) + ".csv"
+        file_with_headers = ["afa_generated_unique"] + ids_to_delete
 
         if settings.IS_LOCAL:
             file_path = settings.CSV_LOCAL_PATH + file_name
             logger.info("storing deleted transaction IDs at: {}".format(file_path))
-            with open(file_path, 'w') as writer:
+            with open(file_path, "w") as writer:
                 for row in file_with_headers:
-                    writer.write(row + '\n')
+                    writer.write(row + "\n")
         else:
-            logger.info('Uploading FABS delete data to S3 bucket')
+            logger.info("Uploading FABS delete data to S3 bucket")
             aws_region = settings.USASPENDING_AWS_REGION
             fpds_bucket_name = settings.FPDS_BUCKET_NAME
-            s3client = boto3.client('s3', region_name=aws_region)
+            s3client = boto3.client("s3", region_name=aws_region)
             contents = bytes()
             for row in file_with_headers:
-                contents += bytes('{}\n'.format(row).encode())
+                contents += bytes("{}\n".format(row).encode())
             s3client.put_object(Bucket=fpds_bucket_name, Key=file_name, Body=contents)
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--date',
+            "--date",
             dest="date",
-            nargs='+',
+            nargs="+",
             type=str,
             help="(OPTIONAL) Date from which to start the nightly loader. Expected format: MM/DD/YYYY",
         )
 
     def handle(self, *args, **options):
         logger.info("Starting FABS data load script...")
-        start_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+        start_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-        fabs_load_db_id = lookups.EXTERNAL_DATA_TYPE_DICT['fabs']
+        fabs_load_db_id = lookups.EXTERNAL_DATA_TYPE_DICT["fabs"]
         data_load_date_obj = ExternalDataLoadDate.objects.filter(external_data_type_id=fabs_load_db_id).first()
 
         if options.get("date"):  # if provided, use cli data
@@ -364,11 +364,11 @@ class Command(BaseCommand):
         elif data_load_date_obj:  # else if last run is in DB, use that
             load_from_date = data_load_date_obj.last_load_date
         else:  # Default is yesterday at midnight
-            load_from_date = (datetime.now(timezone.utc) - timedelta(days=1)).strftime('%Y-%m-%d')
+            load_from_date = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
 
-        logger.info('Processing data for FABS starting from %s' % load_from_date)
+        logger.info("Processing data for FABS starting from %s" % load_from_date)
 
-        with timer('retrieving/diff-ing FABS Data', logger.info):
+        with timer("retrieving/diff-ing FABS Data", logger.info):
             upsert_transactions = self.get_fabs_transaction_ids(date=load_from_date)
 
         with timer("obtaining delete records", logger.info):
@@ -386,27 +386,27 @@ class Command(BaseCommand):
 
         if upsert_transactions:
             # Add FABS records
-            with timer('inserting new FABS data', logger.info):
+            with timer("inserting new FABS data", logger.info):
                 self.insert_all_new_fabs(all_new_to_insert=upsert_transactions)
 
             # Update Awards based on changed FABS records
-            with timer('updating awards to reflect their latest associated transaction info', logger.info):
+            with timer("updating awards to reflect their latest associated transaction info", logger.info):
                 update_awards(tuple(AWARD_UPDATE_ID_LIST))
 
             # Update AwardCategories based on changed FABS records
-            with timer('updating award category variables', logger.info):
+            with timer("updating award category variables", logger.info):
                 update_award_categories(tuple(AWARD_UPDATE_ID_LIST))
 
             # Check the linkages from file C to FABS records and update any that are missing
-            with timer('updating C->D linkages', logger.info):
-                update_c_to_d_linkages('assistance')
+            with timer("updating C->D linkages", logger.info):
+                update_c_to_d_linkages("assistance")
         else:
-            logger.info('Nothing to insert...')
+            logger.info("Nothing to insert...")
 
         # Update the date for the last time the data load was run
-        ExternalDataLoadDate.objects.filter(external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT['fabs']).delete()
+        ExternalDataLoadDate.objects.filter(external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT["fabs"]).delete()
         ExternalDataLoadDate(
-            last_load_date=start_date, external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT['fabs']
+            last_load_date=start_date, external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT["fabs"]
         ).save()
 
-        logger.info('FABS UPDATE FINISHED!')
+        logger.info("FABS UPDATE FINISHED!")

@@ -7,19 +7,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0035_summaryawardrecipientview'),
-    ]
+    dependencies = [("awards", "0035_summaryawardrecipientview")]
 
     operations = [
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='fain',
-            field=models.TextField(blank=True, db_index=True, null=True),
+            model_name="transactionfabs", name="fain", field=models.TextField(blank=True, db_index=True, null=True)
         ),
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='uri',
-            field=models.TextField(blank=True, db_index=True, null=True),
+            model_name="transactionfabs", name="uri", field=models.TextField(blank=True, db_index=True, null=True)
         ),
     ]

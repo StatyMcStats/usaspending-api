@@ -7,14 +7,8 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bulk_download', '0003_auto_20171221_1704'),
-    ]
+    dependencies = [("bulk_download", "0003_auto_20171221_1704")]
 
     operations = [
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='keyword',
-            field=models.TextField(blank=True, null=True),
-        ),
+        migrations.AddField(model_name="bulkdownloadjob", name="keyword", field=models.TextField(blank=True, null=True))
     ]

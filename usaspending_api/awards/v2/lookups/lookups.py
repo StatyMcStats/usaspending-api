@@ -55,8 +55,7 @@ transaction_d1_columns = {
     "Primary Place of Performance State Code": "transaction__place_of_performance__state_code",  # DONE
     "Primary Place of Performance State Name": "transaction__place_of_performance__state_name",  # DONE
     "Primary Place of Performance Zip+4": "transaction__place_of_performance__zip4",  # DONE
-    "Primary Place of Performance Congressional District":
-        "transaction__place_of_performance__congressional_code",  # TODO probably right
+    "Primary Place of Performance Congressional District": "transaction__place_of_performance__congressional_code",  # TODO probably right
     "Primary Place of Performance Country Code": "transaction__place_of_performance__location_country_code",  # DONE
     "Primary Place of Performance Country Name": "transaction__place_of_performance__country_name",  # DONE
     "Primary Place of Performance Location Code": "transaction__place_of_performance__location_code",  # TODO
@@ -90,10 +89,8 @@ transaction_d1_columns = {
     "Domestic or Foreign Entity": "domestic_or_foreign_entity",  # TODO
     "DoD Acquisition Program Code": "program_system_or_equipment_code",  # DONE
     "DoD Acquisition Program Description": "dod_acquisition_program_description",  # TODO
-    "Information Technology Commercial Item Category Code":
-        "information_technology_commercial_item_category",  # DONE
-    "Information Technology Commercial Item Category":
-        "information_technology_commercial_item_category_description",  # DONE
+    "Information Technology Commercial Item Category Code": "information_technology_commercial_item_category",  # DONE
+    "Information Technology Commercial Item Category": "information_technology_commercial_item_category_description",  # DONE
     "EPA-Designated Product Code": "epa_designated_product",  # DONE
     "EPA-Designated Product": "epa_designated_product_description",  # DONE
     "Country of Product or Service Origin Code": "country_of_product_or_service_origin",  # TODO not quite right
@@ -119,8 +116,7 @@ transaction_d1_columns = {
     "Number of Offers Received": "number_of_offers_received",  # DONE
     "Commercial Item Acquisition Procedures Code": "commercial_item_acquisition_procedures",  # DONE
     "Commercial Item Acquisition Procedures": "commercial_item_acquisition_procedures_description",  # DONE
-    "Small Business Competitiveness Demonstration Program":
-        "small_business_competitiveness_demonstration_program",  # DONE
+    "Small Business Competitiveness Demonstration Program": "small_business_competitiveness_demonstration_program",  # DONE
     "Commercial Item Test Program Code": "commercial_item_test_program",  # TODO
     "Commercial Item Test Program": "commercial_item_test_program_description",  # TODO
     "A-76 FAIR Act Action Code": "a76_fair_act_action_code",  # TODO
@@ -129,8 +125,7 @@ transaction_d1_columns = {
     "FedBizOpps": "fed_biz_opps_description",  # DONE
     "Local Area Set Aside Code": "local_area_set_aside_code",  # TODO
     "Local Area Set Aside": "local_area_set_aside_description",  # TODO
-    "Price Evaluation Adjustment Preference Percent Difference":
-        "price_evaluation_adjustment_preference_percent_difference",  # DONE
+    "Price Evaluation Adjustment Preference Percent Difference": "price_evaluation_adjustment_preference_percent_difference",  # DONE
     "Clinger-Cohen Act Planning Compliance Code": "clinger_cohen_act_planning_code",  # TODO
     "Clinger-Cohen Act Planning Compliance": "clinger_cohen_act_planning_description",  # TODO
     "Materials Supplies Articles Equipment Code": "materials_supplies_article",  # TODO
@@ -170,50 +165,35 @@ transaction_d1_columns = {
     "Contract Financing": "contract_financing_description",  # DONE
     "Purchase Card as Payment Method Code": "purchase_card_as_payment_method_code",  # TODO: Code or description?
     "Purchase Card as Payment Method": "purchase_card_as_payment_method_description",  # TODO: Code or description?
-    "Contingency Humanitarian or Peacekeeping Operation Code":
-        "contingency_humanitarian_or_peacekeeping_operation",  # DONE
-    "Contingency Humanitarian or Peacekeeping Operation":
-        "contingency_humanitarian_or_peacekeeping_operation_description",  # DONE
-    "Alaskan Native Owned Corporation or Firm":
-        "alaskan_native_owned_corporation_or_firm",  # TODO: Special Legal Entity business type
-    "American Indian Owned Business":
-        "american_indian_owned_business",  # TODO: Special Legal Entity business type
-    "Indian Tribe Federally Recognized":
-        "indian_tribe_federally_recognized",  # TODO: Special Legal Entity business type
+    "Contingency Humanitarian or Peacekeeping Operation Code": "contingency_humanitarian_or_peacekeeping_operation",  # DONE
+    "Contingency Humanitarian or Peacekeeping Operation": "contingency_humanitarian_or_peacekeeping_operation_description",  # DONE
+    "Alaskan Native Owned Corporation or Firm": "alaskan_native_owned_corporation_or_firm",  # TODO: Special Legal Entity business type
+    "American Indian Owned Business": "american_indian_owned_business",  # TODO: Special Legal Entity business type
+    "Indian Tribe Federally Recognized": "indian_tribe_federally_recognized",  # TODO: Special Legal Entity business type
     "Native Hawaiian Owned Business": "native_hawaiian_owned_business",  # TODO: Special Legal Entity business type
     "Tribally Owned Business": "tribally_owned_business",  # TODO: Special Legal Entity business type
-    "Veteran Owned Business":
-        "veteran_owned_business",  # TODO: Special Legal Entity business type,
-                                    # MAYBE service_disabled_veteran_owned_business
-    "Service Disabled Veteran Owned Business":
-        "service_disabled_veteran_owned_business",  # TODO: Special Legal Entity business type
+    "Veteran Owned Business": "veteran_owned_business",  # TODO: Special Legal Entity business type,
+    # MAYBE service_disabled_veteran_owned_business
+    "Service Disabled Veteran Owned Business": "service_disabled_veteran_owned_business",  # TODO: Special Legal Entity business type
     "Woman Owned Business": "woman_owned_business",  # TODO: Special Legal Entity business type
     "Women Owned Small Business": "women_owned_small_business",  # TODO: Special Legal Entity business type
-    "Economically Disadvantaged Women Owned Small Business":
-        "economically_disadvantaged_women_owned_small_business",  # TODO: Special Legal Entity business type
-    "Joint Venture Women Owned Small Business":
-        "joint_venture_women_owned_small_business",  # TODO: Special Legal Entity business type
-    "Joint Venture Economically Disadvantaged Women Owned Small Business":
-        "joint_venture_economic_disadvantaged_women_owned_small_bus",  # TODO: Special Legal Entity business type
+    "Economically Disadvantaged Women Owned Small Business": "economically_disadvantaged_women_owned_small_business",  # TODO: Special Legal Entity business type
+    "Joint Venture Women Owned Small Business": "joint_venture_women_owned_small_business",  # TODO: Special Legal Entity business type
+    "Joint Venture Economically Disadvantaged Women Owned Small Business": "joint_venture_economic_disadvantaged_women_owned_small_bus",  # TODO: Special Legal Entity business type
     "Minority Owned Business": "minority_owned_business",  # TODO: Special Legal Entity business type
-    "Subcontinent Asian Asian - Indian American Owned Business":
-        "subcontinent_asian_asian_indian_american_owned_business",  # TODO: Special Legal Entity business type
-    "Asian Pacific American Owned Business":
-        "asian_pacific_american_owned_business",  # TODO: Special Legal Entity business type
+    "Subcontinent Asian Asian - Indian American Owned Business": "subcontinent_asian_asian_indian_american_owned_business",  # TODO: Special Legal Entity business type
+    "Asian Pacific American Owned Business": "asian_pacific_american_owned_business",  # TODO: Special Legal Entity business type
     "Black American Owned Business": "black_american_owned_business",  # TODO: Special Legal Entity business type
     "Hispanic American Owned Business": "hispanic_american_owned_business",  # TODO: Special Legal Entity business type
     "Native American Owned Business": "native_american_owned_business",  # TODO: Special Legal Entity business type
     "Other Minority Owned Business": "other_minority_owned_business",  # TODO: Special Legal Entity business type
     "Contracting Officer's Determination of Business Size": "contracting_officers_determination_of_business_size",
-    "Contracting Officer's Determination of Business Size Code":
-        "contracting_officers_determination_of_business_size_code",
+    "Contracting Officer's Determination of Business Size Code": "contracting_officers_determination_of_business_size_code",
     "Emerging Small Business": "emerging_small_business",  # TODO: Special Legal Entity business type
-    "Community Developed Corporation Owned Firm":
-        "community_developed_corporation_owned_firm",  # TODO: Special Legal Entity business type
+    "Community Developed Corporation Owned Firm": "community_developed_corporation_owned_firm",  # TODO: Special Legal Entity business type
     "Labor Surplus Area Firm": "labor_surplus_area_firm",  # TODO: Special Legal Entity business type
     "U.S. Federal Government": "transaction__recipient__us_federal_government",  # DONE
-    "Federally Funded Research and Development Corp":
-        "transaction__recipient__federally_funded_research_and_development_corp",
+    "Federally Funded Research and Development Corp": "transaction__recipient__federally_funded_research_and_development_corp",
     "Federal Agency": "transaction__recipient__federal_agency",  # DONE
     "U.S. State Government": "transaction__recipient__us_state_government",  # DONE
     "U.S. Local Government": "transaction__recipient__us_local_government",  # DONE
@@ -228,8 +208,7 @@ transaction_d1_columns = {
     "Foreign Government": "transaction__recipient__foreign_government",  # DONE
     "Corporate Entity Not Tax Exempt": "transaction__recipient__corporate_entity_not_tax_exempt",  # DONE
     "Corporate Entity Tax Exempt": "transaction__recipient__corporate_entity_tax_exempt",  # DONE
-    "Partnership or Limited Liability Partnership":
-        "transaction__recipient__partnership_or_limited_liability_partnership",  # DONE
+    "Partnership or Limited Liability Partnership": "transaction__recipient__partnership_or_limited_liability_partnership",  # DONE
     "Sole Proprietorship": "transaction__recipient__sole_proprietorship",  # DONE
     "Small Agricultural Cooperative": "transaction__recipient__small_agricultural_cooperative",  # DONE
     "International Organization": "transaction__recipient__international_organization",  # DONE
@@ -260,8 +239,7 @@ transaction_d1_columns = {
     "Other Not For Profit Organization": "transaction__recipient__other_not_for_profit_organization",  # DONE
     "The AbilityOne Program": "transaction__recipient__the_ability_one_program",  # DONE
     "Private University or College ": "transaction__recipient__private_university_or_college",  # DONE
-    "State Controlled Institution of Higher Learning":
-        "transaction__recipient__state_controlled_institution_of_higher_learning",  # DONE
+    "State Controlled Institution of Higher Learning": "transaction__recipient__state_controlled_institution_of_higher_learning",  # DONE
     "1862 Land Grant College": "transaction__recipient__c1862_land_grant_college",  # DONE
     "1890 Land Grant College": "transaction__recipient__c1890_land_grant_college",  # DONE
     "1994 Land Grant College": "transaction__recipient__c1994_land_grant_college",  # DONE
@@ -273,14 +251,12 @@ transaction_d1_columns = {
     "School of Forestry": "transaction__recipient__school_of_forestry",  # DONE
     "Veterinary College": "transaction__recipient__veterinary_college",  # DONE
     "DoT Certified Disadvantaged Business Enterprise": "transaction__recipient__dot_certified_disadvantage",  # DONE
-    "Self-Certified Small Disadvantaged Business":
-        "transaction__recipient__self_certified_small_disadvantaged_business",  # DONE
+    "Self-Certified Small Disadvantaged Business": "transaction__recipient__self_certified_small_disadvantaged_business",  # DONE
     "Small Disadvantaged Business": "transaction__recipient__small_disadvantaged_business",  # DONE
     "8a Program Participant": "transaction__recipient__c8a_program_participant",  # DONE
-    "Historically Underutilized Business Zone HUBZone Firm":
-        "transaction__recipient__historically_underutilized_business_zone _hubzone_firm",  # TODO
+    "Historically Underutilized Business Zone HUBZone Firm": "transaction__recipient__historically_underutilized_business_zone _hubzone_firm",  # TODO
     "SBA Certified 8a Joint Venture": "transaction__recipient__sba_certified_8a_joint_venture",  # DONE
-    "Last Modified Date": "last_modified_date"  # DONE
+    "Last Modified Date": "last_modified_date",  # DONE
 }
 
 transaction_d2_columns = {
@@ -350,7 +326,7 @@ transaction_d2_columns = {
     "Record Type": "record_type",
     "Submitted Type": "submitted_type",
     "Fiscal Year and Quarter Correction": "fiscal_year_and_quarter_correction",
-    "Last Modified Date": "last_modified_date"
+    "Last Modified Date": "last_modified_date",
 }
 
 transaction_columns = [
@@ -673,7 +649,7 @@ transaction_columns = [
     "Record Type",
     "Submitted Type",
     "Fiscal Year and Quarter Correction",
-    "Last Modified Date"
+    "Last Modified Date",
 ]
 
 award_unique_columns = {
@@ -956,137 +932,135 @@ award_unique_columns = {
     "Materials Supplies Articles Equipment Code",
     "Materials Supplies Articles Equipment",
     "Woman Owned Business",
-    "Women Owned Small Business"
+    "Women Owned Small Business",
 }
 
 award_contracts_mapping = {
-    'Award ID': 'piid',
-    'Recipient Name': 'recipient__recipient_name',
-    'Start Date': 'period_of_performance_start_date',
-    'End Date': 'period_of_performance_current_end_date',
-    'Award Amount': 'total_obligation',
-    'Funding Agency': 'funding_agency__toptier_agency__name',
-    'Funding Sub Agency': 'funding_agency__subtier_agency__name',
-    'Contract Award Type': 'type_description',
-    'Contract Description': 'description',
-    'Signed Date': 'date_signed',
-    'Potential Award Amount': 'base_and_all_options_value',
-    'Awarding Agency': 'awarding_agency__toptier_agency__name',
-    'Awarding Sub Agency': 'awarding_agency__subtier_agency__name',
-    'Awarding Office': 'awarding_agency__office_agency__name',
-    'Funding Office': 'funding_agency__office_agency__name',
-    'Recipient Address Line 1': 'recipient__location__address_line1',
-    'Recipient Address Line 2': 'recipient__location__address_line2',
-    'Recipient Address Line 3': 'recipient__location__address_line3',
-    'Recipient Country': 'recipient__location__country_name',
-    'Recipient State': 'recipient__location__state_code',
-    'Recipient Province': 'recipient__location__foreign_province',
-    'Recipient County': 'recipient__location__county_name',
-    'Recipient City': 'recipient__location__city_name',
-    'Recipient Zip Code': 'recipient__location__zip5',
-    'Place of Performance City': 'place_of_performance__city_name',
-    'Place of Performance Zip Code': 'place_of_performance__zip5',
-    'Place of Performance Country': 'place_of_performance__country_name',
-    'Place of Performance State': 'place_of_performance__state_name',
-    'Place of Performance Province': 'place_of_performance__foreign_province',
-    'Recipient DUNS Number': 'recipient__recipient_unique_id',
-    'Recipient Ultimate DUNS Number': 'recipient__parent_recipient_unique_id',
-    'Contract Pricing Type': 'latest_transaction__contract_data__type_of_contract_pricing',
-    'Recipient Congressional District': 'recipient__location__congressional_code',
-    'Recipient Phone Number': 'recipient__vendor_phone_number',
-    'Recipient Fax Number': 'recipient__vendor_fax_number',
-    'Place of Performance Congressional District': 'place_of_performance__congressional_code',
-    'Place of Performance County': 'place_of_performance__county_name',
-    'Parent Award ID': 'latest_transaction__contract_data__parent_award_id',
-    'IDV Type': 'latest_transaction__contract_data__idv_type',
-    'IDC Type': 'latest_transaction__contract_data__type_of_idc',
-    'IDV Agency Identifier': 'latest_transaction__contract_data__referenced_idv_agency_iden',
-    'Multiple or Single Award IDV': 'latest_transaction__contract_data__multiple_or_single_award_i',
-    'Solicitation ID': 'latest_transaction__contract_data__solicitation_identifier',
-    'Solicitation Procedures': 'latest_transaction__contract_data__solicitation_procedures',
-    'Number of Offers Received': 'latest_transaction__contract_data__number_of_offers_received',
-    'Extent Competed': 'latest_transaction__contract_data__extent_compete_description',
-    'Set-Aside Type': 'latest_transaction__contract_data__type_set_aside_description',
-    'Commercial Item Acquisition Procedures': 'latest_transaction__contract_data__commercial_item_acqui_desc',
-    'Commercial Item Test Program': 'latest_transaction__contract_data__commercial_item_test_progr',
-    'Evaluated Preference': 'latest_transaction__contract_data__evaluated_preference_desc',
-    'FedBizOpps': 'latest_transaction__contract_data__fed_biz_opps_description',
-    'Small Business Competitiveness Demonstration Program':
-        'latest_transaction__contract_data__small_business_competitive',
-    'PSC Code': 'latest_transaction__contract_data__product_or_service_code',
-    'NAICS Code': 'latest_transaction__contract_data__naics',
-    'NAICS Description': 'latest_transaction__contract_data__naics_description',
-    'DoD Claimant Program Code': 'latest_transaction__contract_data__dod_claimant_program_code',
-    'Program, System, or Equipment Code': 'latest_transaction__contract_data__program_system_or_equipmen',
-    'Information Technology Commercial Item Category': 'latest_transaction__contract_data__information_technolog_desc',
-    'Sea Transportation': 'latest_transaction__contract_data__sea_transportation_desc',
-    'Clinger-Cohen Act Compliant': 'latest_transaction__contract_data__clinger_cohen_act_planning',
-    'Subject To Construction Wage Rate Requirements': 'latest_transaction__contract_data__construction_wage_rat_desc',
-    'Subject To Labor Standards': 'latest_transaction__contract_data__labor_standards_descrip',
-    'Subject To Materials Supplies Articles Equipment': 'latest_transaction__contract_data__materials_supplies_descrip',
-    'Consolidated Contract': 'latest_transaction__contract_data__consolidated_contract',
-    'Cost or Pricing Data': 'latest_transaction__contract_data__cost_or_pricing_data_desc',
-    'Fair Opportunity Limited Sources': 'latest_transaction__contract_data__fair_opportunity_limi_desc',
-    'Foreign Funding': 'latest_transaction__contract_data__foreign_funding_desc',
-    'Interagency Contracting Authority': 'latest_transaction__contract_data__interagency_contract_desc',
-    'Major program': 'latest_transaction__contract_data__major_program',
-    'Multi Year Contract': 'latest_transaction__contract_data__multi_year_contract',
-    'Price Evaluation Adjustment Preference Percent Difference':
-        'latest_transaction__contract_data__price_evaluation_adjustmen',
-    'Program Acronym': 'latest_transaction__contract_data__program_acronym',
-    'Purchase Card as Payment Method': 'latest_transaction__contract_data__purchase_card_as_payment_m',
-    'Subcontracting Plan': 'latest_transaction__contract_data__subcontracting_plan_desc'
+    "Award ID": "piid",
+    "Recipient Name": "recipient__recipient_name",
+    "Start Date": "period_of_performance_start_date",
+    "End Date": "period_of_performance_current_end_date",
+    "Award Amount": "total_obligation",
+    "Funding Agency": "funding_agency__toptier_agency__name",
+    "Funding Sub Agency": "funding_agency__subtier_agency__name",
+    "Contract Award Type": "type_description",
+    "Contract Description": "description",
+    "Signed Date": "date_signed",
+    "Potential Award Amount": "base_and_all_options_value",
+    "Awarding Agency": "awarding_agency__toptier_agency__name",
+    "Awarding Sub Agency": "awarding_agency__subtier_agency__name",
+    "Awarding Office": "awarding_agency__office_agency__name",
+    "Funding Office": "funding_agency__office_agency__name",
+    "Recipient Address Line 1": "recipient__location__address_line1",
+    "Recipient Address Line 2": "recipient__location__address_line2",
+    "Recipient Address Line 3": "recipient__location__address_line3",
+    "Recipient Country": "recipient__location__country_name",
+    "Recipient State": "recipient__location__state_code",
+    "Recipient Province": "recipient__location__foreign_province",
+    "Recipient County": "recipient__location__county_name",
+    "Recipient City": "recipient__location__city_name",
+    "Recipient Zip Code": "recipient__location__zip5",
+    "Place of Performance City": "place_of_performance__city_name",
+    "Place of Performance Zip Code": "place_of_performance__zip5",
+    "Place of Performance Country": "place_of_performance__country_name",
+    "Place of Performance State": "place_of_performance__state_name",
+    "Place of Performance Province": "place_of_performance__foreign_province",
+    "Recipient DUNS Number": "recipient__recipient_unique_id",
+    "Recipient Ultimate DUNS Number": "recipient__parent_recipient_unique_id",
+    "Contract Pricing Type": "latest_transaction__contract_data__type_of_contract_pricing",
+    "Recipient Congressional District": "recipient__location__congressional_code",
+    "Recipient Phone Number": "recipient__vendor_phone_number",
+    "Recipient Fax Number": "recipient__vendor_fax_number",
+    "Place of Performance Congressional District": "place_of_performance__congressional_code",
+    "Place of Performance County": "place_of_performance__county_name",
+    "Parent Award ID": "latest_transaction__contract_data__parent_award_id",
+    "IDV Type": "latest_transaction__contract_data__idv_type",
+    "IDC Type": "latest_transaction__contract_data__type_of_idc",
+    "IDV Agency Identifier": "latest_transaction__contract_data__referenced_idv_agency_iden",
+    "Multiple or Single Award IDV": "latest_transaction__contract_data__multiple_or_single_award_i",
+    "Solicitation ID": "latest_transaction__contract_data__solicitation_identifier",
+    "Solicitation Procedures": "latest_transaction__contract_data__solicitation_procedures",
+    "Number of Offers Received": "latest_transaction__contract_data__number_of_offers_received",
+    "Extent Competed": "latest_transaction__contract_data__extent_compete_description",
+    "Set-Aside Type": "latest_transaction__contract_data__type_set_aside_description",
+    "Commercial Item Acquisition Procedures": "latest_transaction__contract_data__commercial_item_acqui_desc",
+    "Commercial Item Test Program": "latest_transaction__contract_data__commercial_item_test_progr",
+    "Evaluated Preference": "latest_transaction__contract_data__evaluated_preference_desc",
+    "FedBizOpps": "latest_transaction__contract_data__fed_biz_opps_description",
+    "Small Business Competitiveness Demonstration Program": "latest_transaction__contract_data__small_business_competitive",
+    "PSC Code": "latest_transaction__contract_data__product_or_service_code",
+    "NAICS Code": "latest_transaction__contract_data__naics",
+    "NAICS Description": "latest_transaction__contract_data__naics_description",
+    "DoD Claimant Program Code": "latest_transaction__contract_data__dod_claimant_program_code",
+    "Program, System, or Equipment Code": "latest_transaction__contract_data__program_system_or_equipmen",
+    "Information Technology Commercial Item Category": "latest_transaction__contract_data__information_technolog_desc",
+    "Sea Transportation": "latest_transaction__contract_data__sea_transportation_desc",
+    "Clinger-Cohen Act Compliant": "latest_transaction__contract_data__clinger_cohen_act_planning",
+    "Subject To Construction Wage Rate Requirements": "latest_transaction__contract_data__construction_wage_rat_desc",
+    "Subject To Labor Standards": "latest_transaction__contract_data__labor_standards_descrip",
+    "Subject To Materials Supplies Articles Equipment": "latest_transaction__contract_data__materials_supplies_descrip",
+    "Consolidated Contract": "latest_transaction__contract_data__consolidated_contract",
+    "Cost or Pricing Data": "latest_transaction__contract_data__cost_or_pricing_data_desc",
+    "Fair Opportunity Limited Sources": "latest_transaction__contract_data__fair_opportunity_limi_desc",
+    "Foreign Funding": "latest_transaction__contract_data__foreign_funding_desc",
+    "Interagency Contracting Authority": "latest_transaction__contract_data__interagency_contract_desc",
+    "Major program": "latest_transaction__contract_data__major_program",
+    "Multi Year Contract": "latest_transaction__contract_data__multi_year_contract",
+    "Price Evaluation Adjustment Preference Percent Difference": "latest_transaction__contract_data__price_evaluation_adjustmen",
+    "Program Acronym": "latest_transaction__contract_data__program_acronym",
+    "Purchase Card as Payment Method": "latest_transaction__contract_data__purchase_card_as_payment_m",
+    "Subcontracting Plan": "latest_transaction__contract_data__subcontracting_plan_desc",
 }
 
 grant_award_mapping = {
-    'Award ID': 'fain',
-    'Recipient Name': 'recipient__recipient_name',
-    'Start Date': 'period_of_performance_start_date',
-    'End Date': 'period_of_performance_current_end_date',
-    'Award Amount': 'total_obligation',
-    'Awarding Agency': 'awarding_agency__toptier_agency__name',
-    'Awarding Sub Agency': 'awarding_agency__subtier_agency__name',
-    'Award Type': 'type_description',
-    'Funding Agency': 'funding_agency__toptier_agency__name',
-    'Funding Sub Agency': 'funding_agency__subtier_agency__name'
+    "Award ID": "fain",
+    "Recipient Name": "recipient__recipient_name",
+    "Start Date": "period_of_performance_start_date",
+    "End Date": "period_of_performance_current_end_date",
+    "Award Amount": "total_obligation",
+    "Awarding Agency": "awarding_agency__toptier_agency__name",
+    "Awarding Sub Agency": "awarding_agency__subtier_agency__name",
+    "Award Type": "type_description",
+    "Funding Agency": "funding_agency__toptier_agency__name",
+    "Funding Sub Agency": "funding_agency__subtier_agency__name",
 }
 
 loan_award_mapping = {
-    'Award ID': 'fain',
-    'Recipient Name': 'recipient__recipient_name',
-    'Issued Date': 'latest_transaction__action_date',
-    'Loan Value': 'latest_transaction__assistance_data__face_value_loan_guarantee',
-    'Subsidy Cost': 'latest_transaction__assistance_data__original_loan_subsidy_cost',
-    'Awarding Agency': 'awarding_agency__toptier_agency__name',
-    'Awarding Sub Agency': 'awarding_agency__subtier_agency__name',
-    'Funding Agency': 'funding_agency__toptier_agency__name',
-    'Funding Sub Agency': 'funding_agency__subtier_agency__name'
+    "Award ID": "fain",
+    "Recipient Name": "recipient__recipient_name",
+    "Issued Date": "latest_transaction__action_date",
+    "Loan Value": "latest_transaction__assistance_data__face_value_loan_guarantee",
+    "Subsidy Cost": "latest_transaction__assistance_data__original_loan_subsidy_cost",
+    "Awarding Agency": "awarding_agency__toptier_agency__name",
+    "Awarding Sub Agency": "awarding_agency__subtier_agency__name",
+    "Funding Agency": "funding_agency__toptier_agency__name",
+    "Funding Sub Agency": "funding_agency__subtier_agency__name",
 }
 
 direct_payment_award_mapping = {
-    'Award ID': 'fain',
-    'Recipient Name': 'recipient__recipient_name',
-    'Start Date': 'period_of_performance_start_date',
-    'End Date': 'period_of_performance_current_end_date',
-    'Award Amount': 'total_obligation',
-    'Awarding Agency': 'awarding_agency__toptier_agency__name',
-    'Awarding Sub Agency': 'awarding_agency__subtier_agency__name',
-    'Award Type': 'type_description',
-    'Funding Agency': 'funding_agency__toptier_agency__name',
-    'Funding Sub Agency': 'funding_agency__subtier_agency__name'
+    "Award ID": "fain",
+    "Recipient Name": "recipient__recipient_name",
+    "Start Date": "period_of_performance_start_date",
+    "End Date": "period_of_performance_current_end_date",
+    "Award Amount": "total_obligation",
+    "Awarding Agency": "awarding_agency__toptier_agency__name",
+    "Awarding Sub Agency": "awarding_agency__subtier_agency__name",
+    "Award Type": "type_description",
+    "Funding Agency": "funding_agency__toptier_agency__name",
+    "Funding Sub Agency": "funding_agency__subtier_agency__name",
 }
 
 other_award_mapping = {
-    'Award ID': 'fain',
-    'Recipient Name': 'recipient__recipient_name',
-    'Start Date': 'period_of_performance_start_date',
-    'End Date': 'period_of_performance_current_end_date',
-    'Award Amount': 'total_obligation',
-    'Awarding Agency': 'awarding_agency__toptier_agency__name',
-    'Awarding Sub Agency': 'awarding_agency__subtier_agency__name',
-    'Award Type': 'type_description',
-    'Funding Agency': 'funding_agency__toptier_agency__name',
-    'Funding Sub Agency': 'funding_agency__subtier_agency__name'
+    "Award ID": "fain",
+    "Recipient Name": "recipient__recipient_name",
+    "Start Date": "period_of_performance_start_date",
+    "End Date": "period_of_performance_current_end_date",
+    "Award Amount": "total_obligation",
+    "Awarding Agency": "awarding_agency__toptier_agency__name",
+    "Awarding Sub Agency": "awarding_agency__subtier_agency__name",
+    "Award Type": "type_description",
+    "Funding Agency": "funding_agency__toptier_agency__name",
+    "Funding Sub Agency": "funding_agency__subtier_agency__name",
 }
 
 contract_subaward_mapping = {
@@ -1098,7 +1072,7 @@ contract_subaward_mapping = {
     "Awarding Agency": "awarding_toptier_agency_name",
     "Awarding Sub Agency": "awarding_subtier_agency_name",
     "Prime Award ID": "piid",
-    "Prime Recipient Name": "prime_recipient_name"
+    "Prime Recipient Name": "prime_recipient_name",
 }
 
 grant_subaward_mapping = {
@@ -1110,38 +1084,45 @@ grant_subaward_mapping = {
     "Awarding Agency": "awarding_toptier_agency_name",
     "Awarding Sub Agency": "awarding_subtier_agency_name",
     "Prime Award ID": "fain",
-    "Prime Recipient Name": "prime_recipient_name"
+    "Prime Recipient Name": "prime_recipient_name",
 }
 
-award_assistance_mapping = {**grant_award_mapping, **loan_award_mapping, **direct_payment_award_mapping,
-                            **other_award_mapping}
-non_loan_assistance_award_mapping = assistance_award_mapping = {**grant_award_mapping, **direct_payment_award_mapping,
-                                                                **other_award_mapping}
+award_assistance_mapping = {
+    **grant_award_mapping,
+    **loan_award_mapping,
+    **direct_payment_award_mapping,
+    **other_award_mapping,
+}
+non_loan_assistance_award_mapping = assistance_award_mapping = {
+    **grant_award_mapping,
+    **direct_payment_award_mapping,
+    **other_award_mapping,
+}
 
 # TODO: include IDV mappings in the award_type_mapping and update award_filter.py
 award_type_mapping = {
-    'IDV_A': 'GWAC Government Wide Acquisition Contract',
-    'IDV_B': 'IDC Multi-Agency Contract, Other Indefinite Delivery Contract',
-    'IDV_B_A': 'IDC Indefinite Delivery Contract / Requirements',
-    'IDV_B_B': 'IDC Indefinite Delivery Contract / Indefinite Quantity',
-    'IDV_B_C': 'IDC Indefinite Delivery Contract / Definite Quantity',
-    'IDV_C': 'FSS Federal Supply Schedule',
-    'IDV_D': 'BOA Basic Ordering Agreement',
-    'IDV_E': 'BPA Blanket Purchase Agreement',
-    '02': 'Block Grant',
-    '03': 'Formula Grant',
-    '04': 'Project Grant',
-    '05': 'Cooperative Agreement',
-    '06': 'Direct Payment for Specified Use',
-    '07': 'Direct Loan',
-    '08': 'Guaranteed/Insured Loan',
-    '09': 'Insurance',
-    '10': 'Direct Payment with Unrestricted Use',
-    '11': 'Other Financial Assistance',
-    'A': 'BPA Call',
-    'B': 'Purchase Order',
-    'C': 'Delivery Order',
-    'D': 'Definitive Contract',
+    "IDV_A": "GWAC Government Wide Acquisition Contract",
+    "IDV_B": "IDC Multi-Agency Contract, Other Indefinite Delivery Contract",
+    "IDV_B_A": "IDC Indefinite Delivery Contract / Requirements",
+    "IDV_B_B": "IDC Indefinite Delivery Contract / Indefinite Quantity",
+    "IDV_B_C": "IDC Indefinite Delivery Contract / Definite Quantity",
+    "IDV_C": "FSS Federal Supply Schedule",
+    "IDV_D": "BOA Basic Ordering Agreement",
+    "IDV_E": "BPA Blanket Purchase Agreement",
+    "02": "Block Grant",
+    "03": "Formula Grant",
+    "04": "Project Grant",
+    "05": "Cooperative Agreement",
+    "06": "Direct Payment for Specified Use",
+    "07": "Direct Loan",
+    "08": "Guaranteed/Insured Loan",
+    "09": "Insurance",
+    "10": "Direct Payment with Unrestricted Use",
+    "11": "Other Financial Assistance",
+    "A": "BPA Call",
+    "B": "Purchase Order",
+    "C": "Delivery Order",
+    "D": "Definitive Contract",
     # While these types exist, they should not be included when returning all award types
     # 'E': 'Unknown Type',
     # 'F': 'Cooperative Agreement',
@@ -1149,47 +1130,32 @@ award_type_mapping = {
     # 'S': 'Funded Space Act Agreement',
     # 'T': 'Training Grant'
 }
-contract_type_mapping = {
-    'A': 'BPA Call',
-    'B': 'Purchase Order',
-    'C': 'Delivery Order',
-    'D': 'Definitive Contract'
-}
+contract_type_mapping = {"A": "BPA Call", "B": "Purchase Order", "C": "Delivery Order", "D": "Definitive Contract"}
 idv_type_mapping = {
-    'IDV_A': 'GWAC Government Wide Acquisition Contract',
-    'IDV_B': 'IDC Multi-Agency Contract, Other Indefinite Delivery Contract',
-    'IDV_B_A': 'IDC Indefinite Delivery Contract / Requirements',
-    'IDV_B_B': 'IDC Indefinite Delivery Contract / Indefinite Quantity',
-    'IDV_B_C': 'IDC Indefinite Delivery Contract / Definite Quantity',
-    'IDV_C': 'FSS Federal Supply Schedule',
-    'IDV_D': 'BOA Basic Ordering Agreement',
-    'IDV_E': 'BPA Blanket Purchase Agreement'
+    "IDV_A": "GWAC Government Wide Acquisition Contract",
+    "IDV_B": "IDC Multi-Agency Contract, Other Indefinite Delivery Contract",
+    "IDV_B_A": "IDC Indefinite Delivery Contract / Requirements",
+    "IDV_B_B": "IDC Indefinite Delivery Contract / Indefinite Quantity",
+    "IDV_B_C": "IDC Indefinite Delivery Contract / Definite Quantity",
+    "IDV_C": "FSS Federal Supply Schedule",
+    "IDV_D": "BOA Basic Ordering Agreement",
+    "IDV_E": "BPA Blanket Purchase Agreement",
 }
-grant_type_mapping = {
-    '02': 'Block Grant',
-    '03': 'Formula Grant',
-    '04': 'Project Grant',
-    '05': 'Cooperative Agreement'
+grant_type_mapping = {"02": "Block Grant", "03": "Formula Grant", "04": "Project Grant", "05": "Cooperative Agreement"}
+direct_payment_type_mapping = {"06": "Direct Payment for Specified Use", "10": "Direct Payment with Unrestricted Use"}
+loan_type_mapping = {"07": "Direct Loan", "08": "Guaranteed/Insured Loan"}
+other_type_mapping = {"09": "Insurance", "11": "Other Financial Assistance"}
+assistance_type_mapping = {
+    **grant_type_mapping,
+    **direct_payment_type_mapping,
+    **loan_type_mapping,
+    **other_type_mapping,
 }
-direct_payment_type_mapping = {
-    '06': 'Direct Payment for Specified Use',
-    '10': 'Direct Payment with Unrestricted Use'
-}
-loan_type_mapping = {
-    '07': 'Direct Loan',
-    '08': 'Guaranteed/Insured Loan'
-}
-other_type_mapping = {
-    '09': 'Insurance',
-    '11': 'Other Financial Assistance'
-}
-assistance_type_mapping = {**grant_type_mapping, **direct_payment_type_mapping, **loan_type_mapping,
-                           **other_type_mapping}
 non_loan_assistance_type_mapping = {**grant_type_mapping, **direct_payment_type_mapping, **other_type_mapping}
 all_award_types_mappings = {
-    'contracts': list(contract_type_mapping.keys()),
-    'grants': list(grant_type_mapping.keys()),
-    'direct_payments': list(direct_payment_type_mapping.keys()),
-    'loans': list(loan_type_mapping.keys()),
-    'other_financial_assistance': list(other_type_mapping.keys())
+    "contracts": list(contract_type_mapping.keys()),
+    "grants": list(grant_type_mapping.keys()),
+    "direct_payments": list(direct_payment_type_mapping.keys()),
+    "loans": list(loan_type_mapping.keys()),
+    "other_financial_assistance": list(other_type_mapping.keys()),
 }

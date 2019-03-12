@@ -12,7 +12,7 @@ from usaspending_api.awards.models import Award
 from usaspending_api.common.exceptions import InvalidParameterException
 
 
-logger = logging.getLogger('console')
+logger = logging.getLogger("console")
 
 TYPES_TO_QUOTE_IN_SQL = (str, datetime.date)
 
@@ -21,15 +21,15 @@ def read_sql_file(file_path):
     # Read in SQL file and extract commands into a list
     _, file_extension = os.path.splitext(file_path)
 
-    if file_extension != '.sql':
+    if file_extension != ".sql":
         raise InvalidParameterException("Invalid file provided. A file with extension '.sql' is required.")
 
     # Open and read the file as a single buffer
-    with open(file_path, 'r') as fd:
+    with open(file_path, "r") as fd:
         sql_file = fd.read()
 
     # all SQL commands (split on ';') and trimmed for whitespaces
-    return [command.strip() for command in sql_file.split(';') if command]
+    return [command.strip() for command in sql_file.split(";") if command]
 
 
 def generate_raw_quoted_query(queryset):
@@ -47,10 +47,10 @@ def generate_raw_quoted_query(queryset):
     for param in params:
         if isinstance(param, TYPES_TO_QUOTE_IN_SQL):
             # single quotes are escaped with two '' for strings in sql
-            param = param.replace('\'', '\'\'') if isinstance(param, str) else param
-            str_fix_param = '\'{}\''.format(param)
+            param = param.replace("'", "''") if isinstance(param, str) else param
+            str_fix_param = "'{}'".format(param)
         elif isinstance(param, list):
-            str_fix_param = 'ARRAY{}'.format(param)
+            str_fix_param = "ARRAY{}".format(param)
         else:
             str_fix_param = param
         str_fix_params.append(str_fix_param)
@@ -86,22 +86,22 @@ def _build_order_by_column(column, order, null):
     bits = []
 
     if type(column) is not str:
-        raise ValueError('Provided sort_column is not a string')
+        raise ValueError("Provided sort_column is not a string")
 
     # Split to handle column qualifiers (awards.id => "awards"."id").
-    bits.append(SQL('.').join([Identifier(c) for c in column.split('.')]))
+    bits.append(SQL(".").join([Identifier(c) for c in column.split(".")]))
 
     if order is not None:
-        if order not in ('asc', 'desc'):
+        if order not in ("asc", "desc"):
             raise ValueError('sort_orders must be either "asc" or "desc"')
         bits.append(SQL(order))
 
     if null is not None:
-        if null not in ('first', 'last'):
+        if null not in ("first", "last"):
             raise ValueError('nulls must be either "first" or "last"')
-        bits.append(SQL('nulls %s' % null))
+        bits.append(SQL("nulls %s" % null))
 
-    return SQL(' ').join(bits)
+    return SQL(" ").join(bits)
 
 
 def build_composable_order_by(sort_columns, sort_orders=None, nulls=None):
@@ -133,7 +133,7 @@ def build_composable_order_by(sort_columns, sort_orders=None, nulls=None):
     """
     # Shortcut everything if there's nothing to do.
     if not sort_columns:
-        return SQL('')
+        return SQL("")
 
     # To simplify processing, make all of our parameters iterables of the same length.
     if type(sort_columns) is str:
@@ -149,19 +149,17 @@ def build_composable_order_by(sort_columns, sort_orders=None, nulls=None):
 
     if len(sort_orders) != column_count:
         raise ValueError(
-            'Number of sort_orders (%s) does not match number of sort_columns (%s)' % (len(sort_orders), column_count)
+            "Number of sort_orders (%s) does not match number of sort_columns (%s)" % (len(sort_orders), column_count)
         )
 
     if len(nulls) != column_count:
-        raise ValueError(
-            'Number of nulls (%s) does not match number of sort_columns (%s)' % (len(nulls), column_count)
-        )
+        raise ValueError("Number of nulls (%s) does not match number of sort_columns (%s)" % (len(nulls), column_count))
 
     order_bys = []
     for column, order, null in zip(sort_columns, sort_orders, nulls):
         order_bys.append(_build_order_by_column(column, order, null))
 
-    return SQL('order by ') + SQL(', ').join(order_bys)
+    return SQL("order by ") + SQL(", ").join(order_bys)
 
 
 def execute_sql_to_ordered_dictionary(sql, model=Award):

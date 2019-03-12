@@ -7,29 +7,27 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0023_update_tx_norm_add_subsidy_cost'),
-    ]
+    dependencies = [("awards", "0023_update_tx_norm_add_subsidy_cost")]
 
     operations = [
         migrations.AlterField(
-            model_name='award',
-            name='transaction_unique_id',
-            field=models.TextField(default='NONE', verbose_name='Transaction Unique ID'),
+            model_name="award",
+            name="transaction_unique_id",
+            field=models.TextField(default="NONE", verbose_name="Transaction Unique ID"),
         ),
         migrations.AlterField(
-            model_name='award',
-            name='generated_unique_award_id',
-            field=models.TextField(default='NONE', verbose_name='Generated Unique Award ID'),
+            model_name="award",
+            name="generated_unique_award_id",
+            field=models.TextField(default="NONE", verbose_name="Generated Unique Award ID"),
         ),
         migrations.AlterField(
-            model_name='transactionnormalized',
-            name='transaction_unique_id',
-            field=models.TextField(default='NONE', verbose_name='Transaction Unique ID'),
+            model_name="transactionnormalized",
+            name="transaction_unique_id",
+            field=models.TextField(default="NONE", verbose_name="Transaction Unique ID"),
         ),
         migrations.AlterField(
-            model_name='transactionnormalized',
-            name='generated_unique_award_id',
-            field=models.TextField(default='NONE', verbose_name='Generated Unique Award ID'),
+            model_name="transactionnormalized",
+            name="generated_unique_award_id",
+            field=models.TextField(default="NONE", verbose_name="Generated Unique Award ID"),
         ),
     ]

@@ -7,19 +7,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('download', '0001_initial'),
-    ]
+    dependencies = [("download", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='downloadjob',
-            name='json_request',
-            field=models.TextField(blank=True, null=True),
+            model_name="downloadjob", name="json_request", field=models.TextField(blank=True, null=True)
         ),
         migrations.AddField(
-            model_name='downloadjob',
-            name='monthly_download',
-            field=models.BooleanField(default=False),
+            model_name="downloadjob", name="monthly_download", field=models.BooleanField(default=False)
         ),
     ]

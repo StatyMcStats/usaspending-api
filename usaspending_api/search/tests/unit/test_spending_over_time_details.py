@@ -28,7 +28,7 @@ def populate_models(mock_matviews_qs):
 
 
 def get_spending_over_time_url():
-    return '/api/v2/search/spending_over_time/'
+    return "/api/v2/search/spending_over_time/"
 
 
 def confirm_proper_ordering(group, results):
@@ -73,7 +73,7 @@ def test_spending_over_time_fy_ordering(populate_models, client, mock_matviews_q
         ],
     }
 
-    resp = client.post(get_spending_over_time_url(), content_type='application/json', data=json.dumps(test_payload))
+    resp = client.post(get_spending_over_time_url(), content_type="application/json", data=json.dumps(test_payload))
 
     assert resp.status_code == status.HTTP_200_OK
     assert expected_response == resp.data, "Unexpected or missing content!"
@@ -137,7 +137,7 @@ def test_spending_over_time_month_ordering(populate_models, client, mock_matview
         ],
     }
 
-    resp = client.post(get_spending_over_time_url(), content_type='application/json', data=json.dumps(test_payload))
+    resp = client.post(get_spending_over_time_url(), content_type="application/json", data=json.dumps(test_payload))
 
     assert resp.status_code == status.HTTP_200_OK
     assert expected_response == resp.data, "Unexpected or missing content!"
@@ -180,7 +180,7 @@ def test_spending_over_time_funny_dates_ordering(populate_models, client, mock_m
         "group": "month",
     }
 
-    resp = client.post(get_spending_over_time_url(), content_type='application/json', data=json.dumps(test_payload))
+    resp = client.post(get_spending_over_time_url(), content_type="application/json", data=json.dumps(test_payload))
 
     assert resp.status_code == status.HTTP_200_OK
     assert expected_response == resp.data, "Unexpected or missing content!"

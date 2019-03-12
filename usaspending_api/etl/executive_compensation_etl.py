@@ -42,28 +42,26 @@ def load_executive_compensation(db_cursor, date, start_date):
     exec_comp_query_dict = dictfetchall(db_cursor)
 
     total_rows = len(exec_comp_query_dict)
-    logger.info('Updating Executive Compensation Data, {} rows coming from the Broker...'.format(total_rows))
+    logger.info("Updating Executive Compensation Data, {} rows coming from the Broker...".format(total_rows))
 
     start_time = datetime.now()
 
     for index, row in enumerate(exec_comp_query_dict, 1):
 
         if not (index % 100):
-            logger.info('Loading row {} of {} ({})'.format(str(index),
-                                                           str(total_rows),
-                                                           datetime.now() - start_time))
+            logger.info("Loading row {} of {} ({})".format(str(index), str(total_rows), datetime.now() - start_time))
 
         leo_update_dict = {
-            "officer_1_name": row['high_comp_officer1_full_na'],
-            "officer_1_amount": row['high_comp_officer1_amount'],
-            "officer_2_name": row['high_comp_officer2_full_na'],
-            "officer_2_amount": row['high_comp_officer2_amount'],
-            "officer_3_name": row['high_comp_officer3_full_na'],
-            "officer_3_amount": row['high_comp_officer3_amount'],
-            "officer_4_name": row['high_comp_officer4_full_na'],
-            "officer_4_amount": row['high_comp_officer4_amount'],
-            "officer_5_name": row['high_comp_officer5_full_na'],
-            "officer_5_amount": row['high_comp_officer5_amount'],
+            "officer_1_name": row["high_comp_officer1_full_na"],
+            "officer_1_amount": row["high_comp_officer1_amount"],
+            "officer_2_name": row["high_comp_officer2_full_na"],
+            "officer_2_amount": row["high_comp_officer2_amount"],
+            "officer_3_name": row["high_comp_officer3_full_na"],
+            "officer_3_amount": row["high_comp_officer3_amount"],
+            "officer_4_name": row["high_comp_officer4_full_na"],
+            "officer_4_amount": row["high_comp_officer4_amount"],
+            "officer_5_name": row["high_comp_officer5_full_na"],
+            "officer_5_amount": row["high_comp_officer5_amount"],
         }
 
         any_data = False
@@ -75,12 +73,12 @@ def load_executive_compensation(db_cursor, date, start_date):
         if not any_data:
             continue
 
-        duns_number = row['awardee_or_recipient_uniqu']
+        duns_number = row["awardee_or_recipient_uniqu"]
 
         # Deal with multiples that we have in our LE table
         legal_entities = LegalEntity.objects.filter(recipient_unique_id=duns_number)
         if not legal_entities.exists():
-            logger.info('No record in data store for DUNS {}. Skipping...'.format(duns_number))
+            logger.info("No record in data store for DUNS {}. Skipping...".format(duns_number))
 
         for le in legal_entities:
             leo, _ = LegalEntityOfficers.objects.get_or_create(legal_entity=le)
@@ -91,6 +89,7 @@ def load_executive_compensation(db_cursor, date, start_date):
             leo.save()
 
     # Update the date for the last time the data load was run
-    ExternalDataLoadDate.objects.filter(external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT['exec_comp']).delete()
-    ExternalDataLoadDate(last_load_date=start_date,
-                         external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT['exec_comp']).save()
+    ExternalDataLoadDate.objects.filter(external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT["exec_comp"]).delete()
+    ExternalDataLoadDate(
+        last_load_date=start_date, external_data_type_id=lookups.EXTERNAL_DATA_TYPE_DICT["exec_comp"]
+    ).save()

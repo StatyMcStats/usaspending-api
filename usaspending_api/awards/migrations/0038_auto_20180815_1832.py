@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0037_merge_subaward_and_subaward_matview'),
-    ]
+    dependencies = [("awards", "0037_merge_subaward_and_subaward_matview")]
 
     operations = [
         migrations.AlterField(
-            model_name='award',
-            name='uri',
-            field=models.TextField(blank=True, db_index=True, help_text='The uri of the award', null=True),
-        ),
+            model_name="award",
+            name="uri",
+            field=models.TextField(blank=True, db_index=True, help_text="The uri of the award", null=True),
+        )
     ]

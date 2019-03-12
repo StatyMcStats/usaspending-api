@@ -10,31 +10,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('download', '0001_initial'),
-    ]
+    dependencies = [("download", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='BulkDownloadJob',
+            name="BulkDownloadJob",
             fields=[
-                ('bulk_download_job_id', models.AutoField(primary_key=True, serialize=False)),
-                ('file_name', models.TextField()),
-                ('file_size', models.BigIntegerField(blank=True, null=True)),
-                ('number_of_rows', models.BigIntegerField(blank=True, null=True)),
-                ('number_of_columns', models.IntegerField(blank=True, null=True)),
-                ('error_message', models.TextField(blank=True, null=True)),
-                ('create_date', models.DateTimeField(auto_now_add=True, null=True)),
-                ('update_date', models.DateTimeField(auto_now=True, null=True)),
+                ("bulk_download_job_id", models.AutoField(primary_key=True, serialize=False)),
+                ("file_name", models.TextField()),
+                ("file_size", models.BigIntegerField(blank=True, null=True)),
+                ("number_of_rows", models.BigIntegerField(blank=True, null=True)),
+                ("number_of_columns", models.IntegerField(blank=True, null=True)),
+                ("error_message", models.TextField(blank=True, null=True)),
+                ("create_date", models.DateTimeField(auto_now_add=True, null=True)),
+                ("update_date", models.DateTimeField(auto_now=True, null=True)),
             ],
-            options={
-                'db_table': 'bulk_download_job',
-                'managed': True,
-            },
+            options={"db_table": "bulk_download_job", "managed": True},
         ),
         migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='job_status',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='download.JobStatus'),
+            model_name="bulkdownloadjob",
+            name="job_status",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to="download.JobStatus"),
         ),
     ]

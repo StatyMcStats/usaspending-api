@@ -7,17 +7,9 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0009_auto_20180124_2138'),
-    ]
+    dependencies = [("references", "0009_auto_20180124_2138")]
 
     operations = [
-        migrations.AlterUniqueTogether(
-            name='legalentity',
-            unique_together=set([]),
-        ),
-        migrations.AlterUniqueTogether(
-            name='location',
-            unique_together=set([]),
-        ),
+        migrations.AlterUniqueTogether(name="legalentity", unique_together=set([])),
+        migrations.AlterUniqueTogether(name="location", unique_together=set([])),
     ]

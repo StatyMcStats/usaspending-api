@@ -11,8 +11,15 @@ from usaspending_api.common.api_request_utils import GeoCompleteHandler
 from usaspending_api.common.mixins import FilterQuerysetMixin
 from usaspending_api.common.views import DetailViewSet, CachedDetailViewSet, AutocompleteView
 from usaspending_api.references.models import Location, Agency, LegalEntity, Cfda, Definition, FilterHash
-from usaspending_api.references.v1.serializers import LocationSerializer, AgencySerializer, LegalEntitySerializer, \
-    CfdaSerializer, DefinitionSerializer, FilterSerializer, HashSerializer
+from usaspending_api.references.v1.serializers import (
+    LocationSerializer,
+    AgencySerializer,
+    LegalEntitySerializer,
+    CfdaSerializer,
+    DefinitionSerializer,
+    FilterSerializer,
+    HashSerializer,
+)
 
 
 class FilterEndpoint(APIView):
@@ -28,7 +35,7 @@ class FilterEndpoint(APIView):
         # create hash
         m = hashlib.md5()
         m.update(json_req)
-        hash = m.hexdigest().encode('utf8')
+        hash = m.hexdigest().encode("utf8")
         # check for hash in db, store if not in db
         try:
             fh = FilterHash.objects.get(hash=hash)
@@ -44,7 +51,7 @@ class FilterEndpoint(APIView):
             except Exception:
                 return HttpResponseBadRequest("The DB object could not be saved. Exception Thrown.")
         # return hash
-        return Response({'hash': hash})
+        return Response({"hash": hash})
 
 
 class HashEndpoint(APIView):
@@ -55,23 +62,25 @@ class HashEndpoint(APIView):
         Return the hash for a json
         """
         # get hash
-        body_unicode = request.body.decode('utf-8')
+        body_unicode = request.body.decode("utf-8")
         body = json.loads(body_unicode)
         hash = body["hash"]
         # check for hash in db, if not in db
         try:
             fh = FilterHash.objects.get(hash=hash)
             # return filter json
-            return Response({'filter': fh.filter})
+            return Response({"filter": fh.filter})
         except FilterHash.DoesNotExist:
             return HttpResponseBadRequest(
-                "The FilterHash Object with that has does not exist. DoesNotExist Error Thrown.")
+                "The FilterHash Object with that has does not exist. DoesNotExist Error Thrown."
+            )
 
 
 class LocationEndpoint(FilterQuerysetMixin, CachedDetailViewSet):
     """
     Return an agency
     """
+
     serializer_class = LocationSerializer
 
     def get_queryset(self):
@@ -93,7 +102,7 @@ class LocationGeoCompleteEndpoint(APIView):
     @cache_response()
     def post(self, request, format=None):
         try:
-            body_unicode = request.body.decode('utf-8')
+            body_unicode = request.body.decode("utf-8")
             body = json.loads(body_unicode)
             gc = GeoCompleteHandler(body)
             response_data = gc.build_response()
@@ -107,6 +116,7 @@ class AgencyAutocomplete(FilterQuerysetMixin, AutocompleteView):
     """
     Autocomplete support for agency objects.
     """
+
     serializer_class = AgencySerializer
 
     def get_queryset(self):
@@ -122,6 +132,7 @@ class AgencyEndpoint(FilterQuerysetMixin, CachedDetailViewSet):
     """
     Return an agency
     """
+
     serializer_class = AgencySerializer
 
     def get_queryset(self):
@@ -137,6 +148,7 @@ class CfdaListEndpoint(FilterQuerysetMixin, CachedDetailViewSet):
     """
     Return information about CFDA Programs
     """
+
     serializer_class = CfdaSerializer
     lookup_field = "program_number"
 
@@ -153,6 +165,7 @@ class CfdaRetrieveEndpoint(FilterQuerysetMixin, DetailViewSet):
     """
     Return information about CFDA Programs
     """
+
     serializer_class = CfdaSerializer
     lookup_field = "program_number"
 
@@ -169,6 +182,7 @@ class RecipientListViewSet(FilterQuerysetMixin, CachedDetailViewSet):
     """
     Returns information about award recipients and vendors
     """
+
     serializer_class = LegalEntitySerializer
 
     def get_queryset(self):
@@ -184,6 +198,7 @@ class RecipientRetrieveViewSet(FilterQuerysetMixin, DetailViewSet):
     """
     Returns information about award recipients and vendors
     """
+
     serializer_class = LegalEntitySerializer
 
     def get_queryset(self):
@@ -199,6 +214,7 @@ class RecipientAutocomplete(FilterQuerysetMixin, AutocompleteView):
     """
     Autocomplete support for legal entity (recipient) objects.
     """
+
     serializer_class = LegalEntitySerializer
 
     def get_queryset(self):
@@ -214,9 +230,10 @@ class GlossaryViewSet(FilterQuerysetMixin, CachedDetailViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
     """
+
     queryset = Definition.objects.all()
     serializer_class = DefinitionSerializer
-    lookup_field = 'slug'
+    lookup_field = "slug"
 
     def get_queryset(self):
         """Return the view's queryset."""
@@ -229,6 +246,7 @@ class GlossaryAutocomplete(FilterQuerysetMixin, AutocompleteView):
     """
     Autocomplete support for legal entity (recipient) objects.
     """
+
     serializer_class = DefinitionSerializer
 
     def get_queryset(self):

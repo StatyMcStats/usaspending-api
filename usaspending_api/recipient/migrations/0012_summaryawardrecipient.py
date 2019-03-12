@@ -7,22 +7,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0011_auto_20180902_1748'),
-    ]
+    dependencies = [("recipient", "0011_auto_20180902_1748")]
 
     operations = [
         migrations.CreateModel(
-            name='SummaryAwardRecipient',
+            name="SummaryAwardRecipient",
             fields=[
-                ('award_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('action_date', models.DateField(blank=True, db_index=True)),
-                ('recipient_hash', models.UUIDField(null=True, db_index=True)),
-                ('parent_recipient_unique_id', models.TextField(null=True, db_index=True)),
+                ("award_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("action_date", models.DateField(blank=True, db_index=True)),
+                ("recipient_hash", models.UUIDField(null=True, db_index=True)),
+                ("parent_recipient_unique_id", models.TextField(null=True, db_index=True)),
             ],
-            options={
-                'db_table': 'summary_award_recipient',
-                'managed': True,
-            },
-        ),
+            options={"db_table": "summary_award_recipient", "managed": True},
+        )
     ]

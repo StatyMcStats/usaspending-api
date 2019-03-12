@@ -7,14 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0020_transactionnormalized_is_fpds'),
-    ]
+    dependencies = [("awards", "0020_transactionnormalized_is_fpds")]
 
     operations = [
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='afa_generated_unique',
-            field=models.TextField(unique=True),
-        ),
+            model_name="transactionfabs", name="afa_generated_unique", field=models.TextField(unique=True)
+        )
     ]

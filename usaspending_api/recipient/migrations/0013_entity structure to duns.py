@@ -7,14 +7,8 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0012_summaryawardrecipient'),
-    ]
+    dependencies = [("recipient", "0012_summaryawardrecipient")]
 
     operations = [
-        migrations.AddField(
-            model_name='duns',
-            name='entity_structure',
-            field=models.TextField(blank=True, null=True),
-        ),
+        migrations.AddField(model_name="duns", name="entity_structure", field=models.TextField(blank=True, null=True))
     ]

@@ -7,25 +7,19 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0017_auto_20180614_1929'),
-    ]
+    dependencies = [("references", "0017_auto_20180614_1929")]
 
     operations = [
         migrations.CreateModel(
-            name='RecipientLookup',
+            name="RecipientLookup",
             fields=[
-                ('recipient_hash', models.UUIDField(primary_key=True, serialize=False)),
-                ('legal_business_name', models.TextField(null=True)),
-                ('duns', models.TextField(null=True)),
+                ("recipient_hash", models.UUIDField(primary_key=True, serialize=False)),
+                ("legal_business_name", models.TextField(null=True)),
+                ("duns", models.TextField(null=True)),
             ],
-            options={
-                'db_table': 'recipient_lookup_view',
-                'managed': False,
-            },
+            options={"db_table": "recipient_lookup_view", "managed": False},
         ),
         migrations.AlterIndexTogether(
-            name='legalentity',
-            index_together=set([('recipient_unique_id', 'recipient_name', 'update_date')]),
+            name="legalentity", index_together=set([("recipient_unique_id", "recipient_name", "update_date")])
         ),
     ]

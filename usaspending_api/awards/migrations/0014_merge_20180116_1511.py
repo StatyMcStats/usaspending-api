@@ -7,10 +7,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0013_add_new_location_fpds_fabs'),
-        ('awards', '0013_add_unmanaged_tables'),
-    ]
+    dependencies = [("awards", "0013_add_new_location_fpds_fabs"), ("awards", "0013_add_unmanaged_tables")]
 
-    operations = [
-    ]
+    operations = []

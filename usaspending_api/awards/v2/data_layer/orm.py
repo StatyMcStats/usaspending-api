@@ -12,7 +12,11 @@ from usaspending_api.awards.v2.data_layer.orm_mappers import (
     FABS_ASSISTANCE_FIELDS,
 )
 from usaspending_api.awards.models import (
-    Award, FinancialAccountsByAwards, TransactionFABS, TransactionFPDS, ParentAward
+    Award,
+    FinancialAccountsByAwards,
+    TransactionFABS,
+    TransactionFPDS,
+    ParentAward,
 )
 from usaspending_api.awards.v2.data_layer.orm_utils import delete_keys_from_dict, split_mapper_into_qs
 from usaspending_api.common.helpers.date_helper import get_date_from_datetime
@@ -149,7 +153,8 @@ def create_recipient_object(db_row_dict):
     return OrderedDict(
         [
             (
-                "recipient_hash", obtain_recipient_uri(
+                "recipient_hash",
+                obtain_recipient_uri(
                     db_row_dict["_recipient_name"],
                     db_row_dict["_recipient_unique_id"],
                     db_row_dict["_parent_recipient_unique_id"],
@@ -326,9 +331,8 @@ def fetch_cfda_details_using_cfda_number(cfda):
 
 
 def fetch_transaction_obligated_amount_by_internal_award_id(internal_award_id):
-    _sum = (
-        FinancialAccountsByAwards.objects.filter(award_id=internal_award_id)
-        .aggregate(Sum("transaction_obligated_amount"))
+    _sum = FinancialAccountsByAwards.objects.filter(award_id=internal_award_id).aggregate(
+        Sum("transaction_obligated_amount")
     )
     if _sum:
         return _sum.get("transaction_obligated_amount__sum")

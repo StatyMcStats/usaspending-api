@@ -8,59 +8,49 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0012_upper_index_fain_uri_awards'),
-    ]
+    dependencies = [("awards", "0012_upper_index_fain_uri_awards")]
 
     operations = [
         migrations.AddField(
-            model_name='transactionfabs',
-            name='place_of_perfor_state_code',
+            model_name="transactionfabs",
+            name="place_of_perfor_state_code",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='transactionfabs',
-            name='place_of_perform_zip_last4',
+            model_name="transactionfabs",
+            name="place_of_perform_zip_last4",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='transactionfabs',
-            name='place_of_performance_zip5',
+            model_name="transactionfabs",
+            name="place_of_performance_zip5",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='transactionfpds',
-            name='legal_entity_county_code',
+            model_name="transactionfpds", name="legal_entity_county_code", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="transactionfpds", name="legal_entity_county_name", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="transactionfpds", name="legal_entity_zip5", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="transactionfpds", name="legal_entity_zip_last4", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="transactionfpds",
+            name="place_of_perform_county_co",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='transactionfpds',
-            name='legal_entity_county_name',
+            model_name="transactionfpds",
+            name="place_of_perform_zip_last4",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='transactionfpds',
-            name='legal_entity_zip5',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='transactionfpds',
-            name='legal_entity_zip_last4',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='transactionfpds',
-            name='place_of_perform_county_co',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='transactionfpds',
-            name='place_of_perform_zip_last4',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='transactionfpds',
-            name='place_of_performance_zip5',
+            model_name="transactionfpds",
+            name="place_of_performance_zip5",
             field=models.TextField(blank=True, null=True),
         ),
     ]

@@ -7,14 +7,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0044_award_fiscal_year'),
-    ]
+    dependencies = [("awards", "0044_award_fiscal_year")]
 
     operations = [
         migrations.AddField(
-            model_name='award',
-            name='non_federal_funding_amount',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text="A summation of this award's transactions' non-federal funding amount", max_digits=20, null=True),
-        ),
+            model_name="award",
+            name="non_federal_funding_amount",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="A summation of this award's transactions' non-federal funding amount",
+                max_digits=20,
+                null=True,
+            ),
+        )
     ]

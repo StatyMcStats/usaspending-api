@@ -7,19 +7,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0011_auto_20180131_1711'),
-    ]
+    dependencies = [("references", "0011_auto_20180131_1711")]
 
     operations = [
         migrations.AlterField(
-            model_name='legalentity',
-            name='transaction_unique_id',
-            field=models.TextField(default='NONE', verbose_name='Transaction Unique ID'),
+            model_name="legalentity",
+            name="transaction_unique_id",
+            field=models.TextField(default="NONE", verbose_name="Transaction Unique ID"),
         ),
         migrations.AlterField(
-            model_name='location',
-            name='transaction_unique_id',
-            field=models.TextField(default='NONE', verbose_name='Transaction Unique ID'),
+            model_name="location",
+            name="transaction_unique_id",
+            field=models.TextField(default="NONE", verbose_name="Transaction Unique ID"),
         ),
     ]

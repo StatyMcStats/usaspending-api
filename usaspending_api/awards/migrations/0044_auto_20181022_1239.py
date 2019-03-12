@@ -7,19 +7,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0043_summarytransactionfedacctview'),
-    ]
+    dependencies = [("awards", "0043_summarytransactionfedacctview")]
 
     operations = [
         migrations.AlterField(
-            model_name='award',
-            name='id',
-            field=models.BigAutoField(primary_key=True, serialize=False),
+            model_name="award", name="id", field=models.BigAutoField(primary_key=True, serialize=False)
         ),
         migrations.AlterField(
-            model_name='transactionnormalized',
-            name='id',
-            field=models.BigAutoField(primary_key=True, serialize=False),
+            model_name="transactionnormalized", name="id", field=models.BigAutoField(primary_key=True, serialize=False)
         ),
     ]

@@ -7,12 +7,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('common', '0001_initial'),
-    ]
+    dependencies = [("common", "0001_initial")]
 
-    operations = [
-        migrations.DeleteModel(
-            name='RequestCatalog',
-        ),
-    ]
+    operations = [migrations.DeleteModel(name="RequestCatalog")]

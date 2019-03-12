@@ -8,20 +8,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0022_naics_year'),
-    ]
+    dependencies = [("references", "0022_naics_year")]
 
     operations = [
         migrations.CreateModel(
-            name='Rosetta',
+            name="Rosetta",
             fields=[
-                ('document_name', models.TextField(primary_key=True, serialize=False)),
-                ('document', django.contrib.postgres.fields.jsonb.JSONField()),
+                ("document_name", models.TextField(primary_key=True, serialize=False)),
+                ("document", django.contrib.postgres.fields.jsonb.JSONField()),
             ],
-            options={
-                'db_table': 'rosetta',
-                'managed': True,
-            },
-        ),
+            options={"db_table": "rosetta", "managed": True},
+        )
     ]

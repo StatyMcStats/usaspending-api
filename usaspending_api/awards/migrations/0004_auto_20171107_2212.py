@@ -7,34 +7,26 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0003_auto_20171103_1953'),
-    ]
+    dependencies = [("awards", "0003_auto_20171103_1953")]
 
     operations = [
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='fain',
+            model_name="transactionfabs", name="fain", field=models.TextField(blank=True, db_index=True, null=True)
+        ),
+        migrations.AlterField(
+            model_name="transactionfabs",
+            name="published_award_financial_assistance_id",
             field=models.TextField(blank=True, db_index=True, null=True),
         ),
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='published_award_financial_assistance_id',
+            model_name="transactionfabs", name="uri", field=models.TextField(blank=True, db_index=True, null=True)
+        ),
+        migrations.AlterField(
+            model_name="transactionfpds",
+            name="detached_award_procurement_id",
             field=models.TextField(blank=True, db_index=True, null=True),
         ),
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='uri',
-            field=models.TextField(blank=True, db_index=True, null=True),
-        ),
-        migrations.AlterField(
-            model_name='transactionfpds',
-            name='detached_award_procurement_id',
-            field=models.TextField(blank=True, db_index=True, null=True),
-        ),
-        migrations.AlterField(
-            model_name='transactionfpds',
-            name='piid',
-            field=models.TextField(blank=True, db_index=True, null=True),
+            model_name="transactionfpds", name="piid", field=models.TextField(blank=True, db_index=True, null=True)
         ),
     ]

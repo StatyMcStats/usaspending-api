@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0015_auto_20180123_1657'),
-    ]
+    dependencies = [("awards", "0015_auto_20180123_1657")]
 
     operations = [
         migrations.AddField(
-            model_name='transactionnormalized',
-            name='generated_unique_award_id',
-            field=models.TextField(default='none', verbose_name='Generated Unique Award ID'),
-        ),
+            model_name="transactionnormalized",
+            name="generated_unique_award_id",
+            field=models.TextField(default="none", verbose_name="Generated Unique Award ID"),
+        )
     ]

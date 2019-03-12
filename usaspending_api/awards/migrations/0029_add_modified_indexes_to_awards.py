@@ -7,14 +7,16 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0028_auto_20180402_1751'),
-    ]
+    dependencies = [("awards", "0028_auto_20180402_1751")]
 
     operations = [
-        migrations.RunSQL(sql="CREATE INDEX modified_generated_unique_award_id_awards_idx ON awards "
-                              "(REPLACE(generated_unique_award_id, '-', ''))",
-                          reverse_sql="DROP INDEX modified_generated_unique_award_id_awards_idx"),
-        migrations.RunSQL(sql="CREATE INDEX modified_fain_awards_idx ON awards (REPLACE(fain, '-', ''))",
-                          reverse_sql="DROP INDEX modified_fain_awards_idx")
+        migrations.RunSQL(
+            sql="CREATE INDEX modified_generated_unique_award_id_awards_idx ON awards "
+            "(REPLACE(generated_unique_award_id, '-', ''))",
+            reverse_sql="DROP INDEX modified_generated_unique_award_id_awards_idx",
+        ),
+        migrations.RunSQL(
+            sql="CREATE INDEX modified_fain_awards_idx ON awards (REPLACE(fain, '-', ''))",
+            reverse_sql="DROP INDEX modified_fain_awards_idx",
+        ),
     ]

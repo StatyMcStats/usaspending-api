@@ -7,54 +7,66 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0031_subawardview_summarystateview'),
-    ]
+    dependencies = [("awards", "0031_subawardview_summarystateview")]
 
     operations = [
         migrations.AlterField(
-            model_name='award',
-            name='base_and_all_options_value',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text='The sum of the base_and_all_options_value from associated transactions', max_digits=20, null=True, verbose_name='Base and All Options Value'),
+            model_name="award",
+            name="base_and_all_options_value",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="The sum of the base_and_all_options_value from associated transactions",
+                max_digits=20,
+                null=True,
+                verbose_name="Base and All Options Value",
+            ),
         ),
         migrations.AlterField(
-            model_name='award',
-            name='date_signed',
-            field=models.DateField(help_text='The date the award was signed', null=True, verbose_name='Award Date'),
+            model_name="award",
+            name="date_signed",
+            field=models.DateField(help_text="The date the award was signed", null=True, verbose_name="Award Date"),
         ),
         migrations.AlterField(
-            model_name='award',
-            name='potential_total_value_of_award',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text='The sum of the potential_value_of_award from associated transactions', max_digits=20, null=True, verbose_name='Potential Total Value of Award'),
+            model_name="award",
+            name="potential_total_value_of_award",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="The sum of the potential_value_of_award from associated transactions",
+                max_digits=20,
+                null=True,
+                verbose_name="Potential Total Value of Award",
+            ),
         ),
         migrations.AlterField(
-            model_name='award',
-            name='uri',
-            field=models.TextField(blank=True, help_text='The uri of the award', null=True),
+            model_name="award",
+            name="uri",
+            field=models.TextField(blank=True, help_text="The uri of the award", null=True),
         ),
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='cfda_number',
-            field=models.TextField(blank=True, null=True),
+            model_name="transactionfabs", name="cfda_number", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AlterField(model_name="transactionfabs", name="fain", field=models.TextField(blank=True, null=True)),
+        migrations.AlterField(model_name="transactionfabs", name="uri", field=models.TextField(blank=True, null=True)),
+        migrations.AlterField(
+            model_name="transactionnormalized",
+            name="federal_action_obligation",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="The obligation of the federal government for this transaction",
+                max_digits=20,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='transactionfabs',
-            name='fain',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AlterField(
-            model_name='transactionfabs',
-            name='uri',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AlterField(
-            model_name='transactionnormalized',
-            name='federal_action_obligation',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text='The obligation of the federal government for this transaction', max_digits=20, null=True),
-        ),
-        migrations.AlterField(
-            model_name='transactionnormalized',
-            name='type',
-            field=models.TextField(help_text='The type for this transaction. For example, A, B, C, D', null=True, verbose_name='Action Type'),
+            model_name="transactionnormalized",
+            name="type",
+            field=models.TextField(
+                help_text="The type for this transaction. For example, A, B, C, D",
+                null=True,
+                verbose_name="Action Type",
+            ),
         ),
     ]

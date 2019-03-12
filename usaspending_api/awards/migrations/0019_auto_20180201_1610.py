@@ -7,14 +7,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0018_merge_20180129_1959'),
-    ]
+    dependencies = [("awards", "0018_merge_20180129_1959")]
 
     operations = [
         migrations.AlterField(
-            model_name='award',
-            name='fain',
-            field=models.TextField(blank=True, db_index=True, help_text="An identification code assigned to each financial assistance award tracking purposes. The FAIN is tied to that award (and all future modifications to that award) throughout the award's life. Each FAIN is assigned by an agency. Within an agency, FAIN are unique: each new award must be issued a new FAIN. FAIN stands for Federal Award Identification Number, though the digits are letters, not numbers.", null=True),
-        ),
+            model_name="award",
+            name="fain",
+            field=models.TextField(
+                blank=True,
+                db_index=True,
+                help_text="An identification code assigned to each financial assistance award tracking purposes. The FAIN is tied to that award (and all future modifications to that award) throughout the award's life. Each FAIN is assigned by an agency. Within an agency, FAIN are unique: each new award must be issued a new FAIN. FAIN stands for Federal Award Identification Number, though the digits are letters, not numbers.",
+                null=True,
+            ),
+        )
     ]

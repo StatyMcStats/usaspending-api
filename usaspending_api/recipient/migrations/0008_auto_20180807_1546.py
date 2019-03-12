@@ -9,69 +9,37 @@ import partial_index
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0007_auto_20180802_1757'),
-    ]
+    dependencies = [("recipient", "0007_auto_20180802_1757")]
 
     operations = [
+        migrations.AddField(model_name="recipientlookup", name="address_line_1", field=models.TextField(null=True)),
+        migrations.AddField(model_name="recipientlookup", name="address_line_2", field=models.TextField(null=True)),
         migrations.AddField(
-            model_name='recipientlookup',
-            name='address_line_1',
-            field=models.TextField(null=True),
+            model_name="recipientlookup",
+            name="business_types_codes",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.TextField(), default=list, null=True, size=None
+            ),
         ),
+        migrations.AddField(model_name="recipientlookup", name="city", field=models.TextField(null=True)),
         migrations.AddField(
-            model_name='recipientlookup',
-            name='address_line_2',
-            field=models.TextField(null=True),
+            model_name="recipientlookup", name="congressional_district", field=models.TextField(null=True)
         ),
+        migrations.AddField(model_name="recipientlookup", name="country_code", field=models.TextField(null=True)),
+        migrations.AddField(model_name="recipientlookup", name="parent_duns", field=models.TextField(null=True)),
         migrations.AddField(
-            model_name='recipientlookup',
-            name='business_types_codes',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.TextField(), default=list, null=True, size=None),
+            model_name="recipientlookup", name="parent_legal_business_name", field=models.TextField(null=True)
         ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='city',
-            field=models.TextField(null=True),
-        ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='congressional_district',
-            field=models.TextField(null=True),
-        ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='country_code',
-            field=models.TextField(null=True),
-        ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='parent_duns',
-            field=models.TextField(null=True),
-        ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='parent_legal_business_name',
-            field=models.TextField(null=True),
-        ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='state',
-            field=models.TextField(null=True),
-        ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='zip4',
-            field=models.TextField(null=True),
-        ),
-        migrations.AddField(
-            model_name='recipientlookup',
-            name='zip5',
-            field=models.TextField(null=True),
-        ),
+        migrations.AddField(model_name="recipientlookup", name="state", field=models.TextField(null=True)),
+        migrations.AddField(model_name="recipientlookup", name="zip4", field=models.TextField(null=True)),
+        migrations.AddField(model_name="recipientlookup", name="zip5", field=models.TextField(null=True)),
         migrations.AddIndex(
-            model_name='recipientlookup',
-            index=partial_index.PartialIndex(fields=['parent_duns'], name='recipient_l_parent__e14231_partial',
-                                             unique=False, where=partial_index.PQ(parent_duns__isnull=False)),
+            model_name="recipientlookup",
+            index=partial_index.PartialIndex(
+                fields=["parent_duns"],
+                name="recipient_l_parent__e14231_partial",
+                unique=False,
+                where=partial_index.PQ(parent_duns__isnull=False),
+            ),
         ),
     ]

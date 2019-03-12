@@ -8,14 +8,14 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0025_create_update_date_index'),
-    ]
+    dependencies = [("awards", "0025_create_update_date_index")]
 
     operations = [
         migrations.AlterField(
-            model_name='subaward',
-            name='award',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='subawards', to='awards.Award'),
-        ),
+            model_name="subaward",
+            name="award",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.CASCADE, related_name="subawards", to="awards.Award"
+            ),
+        )
     ]

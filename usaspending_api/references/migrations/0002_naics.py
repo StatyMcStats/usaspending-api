@@ -7,20 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0001_initial'),
-    ]
+    dependencies = [("references", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='NAICS',
-            fields=[
-                ('code', models.TextField(primary_key=True, serialize=False)),
-                ('description', models.TextField()),
-            ],
-            options={
-                'db_table': 'naics',
-                'managed': True,
-            },
-        ),
+            name="NAICS",
+            fields=[("code", models.TextField(primary_key=True, serialize=False)), ("description", models.TextField())],
+            options={"db_table": "naics", "managed": True},
+        )
     ]

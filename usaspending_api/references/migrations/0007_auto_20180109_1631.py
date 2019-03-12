@@ -7,13 +7,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0006_auto_20171211_1913'),
-    ]
+    dependencies = [("references", "0006_auto_20171211_1913")]
 
     operations = [
         migrations.RunSQL(
-            "UPDATE object_class SET major_object_class_name = 'Unknown' WHERE major_object_class = '00' ",
-            None
+            "UPDATE object_class SET major_object_class_name = 'Unknown' WHERE major_object_class = '00' ", None
         )
     ]

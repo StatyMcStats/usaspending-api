@@ -7,14 +7,8 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0041_subaward_sans_le'),
-    ]
+    dependencies = [("awards", "0041_subaward_sans_le")]
 
     operations = [
-        migrations.AddField(
-            model_name='subaward',
-            name='updated_at',
-            field=models.DateTimeField(blank=True, null=True),
-        ),
+        migrations.AddField(model_name="subaward", name="updated_at", field=models.DateTimeField(blank=True, null=True))
     ]

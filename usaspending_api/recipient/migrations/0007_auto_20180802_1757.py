@@ -8,59 +8,51 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0006_auto_20180727_1940'),
-    ]
+    dependencies = [("recipient", "0006_auto_20180727_1940")]
 
     operations = [
         migrations.AddField(
-            model_name='recipientprofile',
-            name='last_12_contracts',
+            model_name="recipientprofile",
+            name="last_12_contracts",
             field=models.DecimalField(decimal_places=2, default=0.0, max_digits=23),
         ),
         migrations.AddField(
-            model_name='recipientprofile',
-            name='last_12_direct_payments',
+            model_name="recipientprofile",
+            name="last_12_direct_payments",
             field=models.DecimalField(decimal_places=2, default=0.0, max_digits=23),
         ),
         migrations.AddField(
-            model_name='recipientprofile',
-            name='last_12_grants',
+            model_name="recipientprofile",
+            name="last_12_grants",
             field=models.DecimalField(decimal_places=2, default=0.0, max_digits=23),
         ),
         migrations.AddField(
-            model_name='recipientprofile',
-            name='last_12_loans',
+            model_name="recipientprofile",
+            name="last_12_loans",
             field=models.DecimalField(decimal_places=2, default=0.0, max_digits=23),
         ),
         migrations.AddField(
-            model_name='recipientprofile',
-            name='last_12_months_count',
-            field=models.IntegerField(default=0),
+            model_name="recipientprofile", name="last_12_months_count", field=models.IntegerField(default=0)
         ),
         migrations.AddField(
-            model_name='recipientprofile',
-            name='last_12_other',
+            model_name="recipientprofile",
+            name="last_12_other",
             field=models.DecimalField(decimal_places=2, default=0.0, max_digits=23),
         ),
         migrations.AlterField(
-            model_name='duns',
-            name='business_types_codes',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.TextField(), default=list, null=True, size=None),
+            model_name="duns",
+            name="business_types_codes",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.TextField(), default=list, null=True, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='recipientprofile',
-            name='recipient_hash',
-            field=models.UUIDField(db_index=True, null=True),
+            model_name="recipientprofile", name="recipient_hash", field=models.UUIDField(db_index=True, null=True)
         ),
         migrations.AlterField(
-            model_name='recipientprofile',
-            name='recipient_name',
-            field=models.TextField(db_index=True, null=True),
+            model_name="recipientprofile", name="recipient_name", field=models.TextField(db_index=True, null=True)
         ),
         migrations.AlterField(
-            model_name='recipientprofile',
-            name='recipient_unique_id',
-            field=models.TextField(db_index=True, null=True),
+            model_name="recipientprofile", name="recipient_unique_id", field=models.TextField(db_index=True, null=True)
         ),
     ]

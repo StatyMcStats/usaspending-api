@@ -5,12 +5,12 @@
 # code.
 from collections import namedtuple
 
-LookupType = namedtuple('LookupType', ['id', 'name', 'desc'])
+LookupType = namedtuple("LookupType", ["id", "name", "desc"])
 
 EXTERNAL_DATA_TYPE = [
-    LookupType(1, 'fpds', 'fpds external data type'),
-    LookupType(2, 'fabs', 'fabs external data type'),
-    LookupType(3, 'exec_comp', 'exec external data type')
+    LookupType(1, "fpds", "fpds external data type"),
+    LookupType(2, "fabs", "fabs external data type"),
+    LookupType(3, "exec_comp", "exec external data type"),
 ]
 EXTERNAL_DATA_TYPE_DICT = {item.name: item.id for item in EXTERNAL_DATA_TYPE}
 EXTERNAL_DATA_TYPE_DICT_ID = {item.id: item.name for item in EXTERNAL_DATA_TYPE}

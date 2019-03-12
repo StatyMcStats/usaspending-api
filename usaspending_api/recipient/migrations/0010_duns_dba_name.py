@@ -7,14 +7,8 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0009_auto_20180807_2005'),
-    ]
+    dependencies = [("recipient", "0009_auto_20180807_2005")]
 
     operations = [
-        migrations.AddField(
-            model_name='duns',
-            name='dba_name',
-            field=models.TextField(blank=True, null=True),
-        ),
+        migrations.AddField(model_name="duns", name="dba_name", field=models.TextField(blank=True, null=True))
     ]

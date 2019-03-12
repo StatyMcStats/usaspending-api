@@ -8,25 +8,26 @@ import partial_index
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0005_auto_20180723_1753'),
-    ]
+    dependencies = [("recipient", "0005_auto_20180723_1753")]
 
     operations = [
         migrations.CreateModel(
-            name='RecipientLookup',
+            name="RecipientLookup",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('recipient_hash', models.UUIDField(null=True, unique=True)),
-                ('legal_business_name', models.TextField(db_index=True, null=True)),
-                ('duns', models.TextField(null=True)),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("recipient_hash", models.UUIDField(null=True, unique=True)),
+                ("legal_business_name", models.TextField(db_index=True, null=True)),
+                ("duns", models.TextField(null=True)),
             ],
-            options={
-                'db_table': 'recipient_lookup',
-            },
+            options={"db_table": "recipient_lookup"},
         ),
         migrations.AddIndex(
-            model_name='recipientlookup',
-            index=partial_index.PartialIndex(fields=['duns'], name='recipient_l_duns_bb057a_partial', unique=True, where=partial_index.PQ(duns__isnull=False)),
+            model_name="recipientlookup",
+            index=partial_index.PartialIndex(
+                fields=["duns"],
+                name="recipient_l_duns_bb057a_partial",
+                unique=True,
+                where=partial_index.PQ(duns__isnull=False),
+            ),
         ),
     ]

@@ -7,10 +7,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0007_auto_20171115_2106'),
-        ('awards', '0003_update_award_subaward_table'),
-    ]
+    dependencies = [("awards", "0007_auto_20171115_2106"), ("awards", "0003_update_award_subaward_table")]
 
-    operations = [
-    ]
+    operations = []

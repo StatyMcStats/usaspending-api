@@ -8,17 +8,17 @@ import partial_index
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0010_duns_dba_name'),
-    ]
+    dependencies = [("recipient", "0010_duns_dba_name")]
 
     operations = [
-        migrations.RemoveIndex(
-            model_name='recipientlookup',
-            name='recipient_l_parent__e14231_partial',
-        ),
+        migrations.RemoveIndex(model_name="recipientlookup", name="recipient_l_parent__e14231_partial"),
         migrations.AddIndex(
-            model_name='recipientlookup',
-            index=partial_index.PartialIndex(fields=['parent_duns'], name='recipient_l_parent__efd6d5_partial', unique=False, where=partial_index.PQ(parent_duns__isnull=False)),
+            model_name="recipientlookup",
+            index=partial_index.PartialIndex(
+                fields=["parent_duns"],
+                name="recipient_l_parent__efd6d5_partial",
+                unique=False,
+                where=partial_index.PQ(parent_duns__isnull=False),
+            ),
         ),
     ]

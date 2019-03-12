@@ -7,17 +7,13 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0011_upper_index_awards'),
-    ]
+    dependencies = [("awards", "0011_upper_index_awards")]
 
     operations = [
         migrations.RunSQL(
-            ["CREATE INDEX awards_fain_uppr_idx ON awards (UPPER(fain));"],
-            ["DROP INDEX awards_fain_uppr_idx;"]
+            ["CREATE INDEX awards_fain_uppr_idx ON awards (UPPER(fain));"], ["DROP INDEX awards_fain_uppr_idx;"]
         ),
         migrations.RunSQL(
-            ["CREATE INDEX awards_uri_uppr_idx ON awards (UPPER(uri));"],
-            ["DROP INDEX awards_uri_uppr_idx;"]
+            ["CREATE INDEX awards_uri_uppr_idx ON awards (UPPER(uri));"], ["DROP INDEX awards_uri_uppr_idx;"]
         ),
     ]

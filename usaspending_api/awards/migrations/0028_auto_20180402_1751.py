@@ -7,24 +7,36 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0027_add_loan_value_to_awards_and_transactions'),
-    ]
+    dependencies = [("awards", "0027_add_loan_value_to_awards_and_transactions")]
 
     operations = [
         migrations.AddField(
-            model_name='award',
-            name='total_funding_amount',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text="A summation of this award's transactions' funding amount", max_digits=20, null=True),
+            model_name="award",
+            name="total_funding_amount",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="A summation of this award's transactions' funding amount",
+                max_digits=20,
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='transactionnormalized',
-            name='funding_amount',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text='Assistance data variable.  non_federal_funding_amount + federal_action_obligation', max_digits=20, null=True),
+            model_name="transactionnormalized",
+            name="funding_amount",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="Assistance data variable.  non_federal_funding_amount + federal_action_obligation",
+                max_digits=20,
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='transactionnormalized',
-            name='non_federal_funding_amount',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text='Assistance Data variable.', max_digits=20, null=True),
+            model_name="transactionnormalized",
+            name="non_federal_funding_amount",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, help_text="Assistance Data variable.", max_digits=20, null=True
+            ),
         ),
     ]

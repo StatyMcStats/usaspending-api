@@ -10,11 +10,6 @@ from usaspending_api.common.helpers.generic_helper import REV_CORRECTED_CGAC_PG_
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('accounts', '0001_initial'),
-    ]
+    dependencies = [("accounts", "0001_initial")]
 
-    operations = [
-        migrations.RunSQL(sql=CORRECTED_CGAC_PG_FUNCTION_DEF,
-                          reverse_sql=REV_CORRECTED_CGAC_PG_FUNCTION_DEF),
-    ]
+    operations = [migrations.RunSQL(sql=CORRECTED_CGAC_PG_FUNCTION_DEF, reverse_sql=REV_CORRECTED_CGAC_PG_FUNCTION_DEF)]

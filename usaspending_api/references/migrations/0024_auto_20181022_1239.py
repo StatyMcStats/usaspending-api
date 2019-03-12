@@ -7,19 +7,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0023_rosetta'),
-    ]
+    dependencies = [("references", "0023_rosetta")]
 
     operations = [
         migrations.AlterField(
-            model_name='legalentity',
-            name='legal_entity_id',
+            model_name="legalentity",
+            name="legal_entity_id",
             field=models.BigAutoField(db_index=True, primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='location',
-            name='location_id',
-            field=models.BigAutoField(primary_key=True, serialize=False),
+            model_name="location", name="location_id", field=models.BigAutoField(primary_key=True, serialize=False)
         ),
     ]

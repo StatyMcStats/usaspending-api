@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0013_create_recipient_name_index'),
-    ]
+    dependencies = [("references", "0013_create_recipient_name_index")]
 
     operations = [
         migrations.AlterField(
-            model_name='legalentity',
-            name='parent_recipient_unique_id',
-            field=models.TextField(blank=True, db_index=True, null=True, verbose_name='Parent DUNS Number'),
-        ),
+            model_name="legalentity",
+            name="parent_recipient_unique_id",
+            field=models.TextField(blank=True, db_index=True, null=True, verbose_name="Parent DUNS Number"),
+        )
     ]

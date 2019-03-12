@@ -7,20 +7,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bulk_download', '0004_bulkdownloadjob_keyword'),
-    ]
+    dependencies = [("bulk_download", "0004_bulkdownloadjob_keyword")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='bulkdownloadjob',
-            name='agency',
-        ),
-        migrations.RemoveField(
-            model_name='bulkdownloadjob',
-            name='job_status',
-        ),
-        migrations.DeleteModel(
-            name='BulkDownloadJob',
-        ),
+        migrations.RemoveField(model_name="bulkdownloadjob", name="agency"),
+        migrations.RemoveField(model_name="bulkdownloadjob", name="job_status"),
+        migrations.DeleteModel(name="BulkDownloadJob"),
     ]

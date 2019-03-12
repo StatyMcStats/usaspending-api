@@ -7,11 +7,11 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0012_auto_20180222_1504'),
-    ]
+    dependencies = [("references", "0012_auto_20180222_1504")]
 
     operations = [
-        migrations.RunSQL(sql="CREATE INDEX legal_entity_recipient_name_idx ON legal_entity (recipient_name)",
-                          reverse_sql="DROP INDEX legal_entity_recipient_name_idx")
+        migrations.RunSQL(
+            sql="CREATE INDEX legal_entity_recipient_name_idx ON legal_entity (recipient_name)",
+            reverse_sql="DROP INDEX legal_entity_recipient_name_idx",
+        )
     ]

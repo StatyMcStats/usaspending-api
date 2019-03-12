@@ -68,7 +68,7 @@ import time
 import signal
 import subprocess
 
-if sys.platform != 'win32':
+if sys.platform != "win32":
     # If the Docker host is running on Windows, we don't need this
     # module, so it's OK to not import it.
     import pwd
@@ -80,45 +80,38 @@ if False:
 MY_DIR = os.path.abspath(os.path.dirname(__file__))
 HOST_UID = os.stat(MY_DIR).st_uid
 
-HOST_USER = os.environ.get('DDM_HOST_USER', 'docker_user')
-CONTAINER_NAME = os.environ.get('DDM_CONTAINER_NAME')
-IS_RUNNING_IN_DOCKER = 'DDM_IS_RUNNING_IN_DOCKER' in os.environ
+HOST_USER = os.environ.get("DDM_HOST_USER", "docker_user")
+CONTAINER_NAME = os.environ.get("DDM_CONTAINER_NAME")
+IS_RUNNING_IN_DOCKER = "DDM_IS_RUNNING_IN_DOCKER" in os.environ
 
 
 def info(msg):  # type: (str) -> None
-    '''
+    """
     Prints a message.
-    '''
+    """
 
-    sys.stderr.write('{}\n'.format(msg))
+    sys.stderr.write("{}\n".format(msg))
     sys.stderr.flush()
 
 
 def warn(msg):  # type: (str) -> None
-    '''
+    """
     Prints a warning message in red.
-    '''
+    """
 
-    info(
-        "\x1b[31;1m"  # Red
-        "WARNING: " + msg +
-        "\x1b[0m"     # Reset colors
-    )
+    info("\x1b[31;1m" "WARNING: " + msg + "\x1b[0m")  # Red  # Reset colors
 
 
 def setup_docker_sigterm_handler():  # type: () -> None
-    '''
+    """
     'manage.py runserver' is not set up to deal with a SIGTERM signal,
     and instead expects a Ctrl-C to come to its child process. So we'll
     add a SIGTERM handler here that finds all our children and gracefully
     shuts them down, which provides a quick graceful exit from Docker.
-    '''
+    """
 
     def get_children():  # type: () -> Iterator[int]
-        output = subprocess.check_output(
-            "ps --ppid=%d -o pid | awk 'NR>1' | xargs echo" % os.getpid(),
-            shell=True
-        )
+        output = subprocess.check_output("ps --ppid=%d -o pid | awk 'NR>1' | xargs echo" % os.getpid(), shell=True)
         return map(int, output.split())
 
     def handler(signum, frame):  # type: (int, Any) -> None
@@ -136,7 +129,7 @@ def setup_docker_sigterm_handler():  # type: () -> None
 
 def wait_for_db(max_attempts=15, seconds_between_attempts=1):
     # type: (int, int) -> None
-    '''
+    """
     Some manage.py commands interact with the database, and we want
     them to be directly callable from `docker-compose run`. However,
     because docker may start the database container at the same time
@@ -146,7 +139,7 @@ def wait_for_db(max_attempts=15, seconds_between_attempts=1):
 
     To alleviate this, we'll just wait for the database before calling
     the manage.py command.
-    '''
+    """
 
     from django.db import DEFAULT_DB_ALIAS, connections
     from django.db.utils import OperationalError
@@ -169,7 +162,7 @@ def wait_for_db(max_attempts=15, seconds_between_attempts=1):
 
 
 def execute_from_command_line(argv):  # type: (list[str]) -> None
-    '''
+    """
     This is like django.core.management.execute_from_command_line,
     but if the django package is unavailable, the script executes itself
     inside a docker container, where the django package is assumed
@@ -178,18 +171,17 @@ def execute_from_command_line(argv):  # type: (list[str]) -> None
     Ultimately, this allows developers to use manage.py from their host
     system without needing to prefix all of their commands with
     'docker-compose run <container name>'.
-    '''
+    """
 
-    is_runserver = len(argv) > 1 and argv[1] == 'runserver'
+    is_runserver = len(argv) > 1 and argv[1] == "runserver"
 
     if IS_RUNNING_IN_DOCKER:
         if is_runserver:
             setup_docker_sigterm_handler()
         wait_for_db()
 
-        if 'PYTHONUNBUFFERED' not in os.environ:
-            warn("PYTHONUNBUFFERED is not defined. Some output may "
-                 "not be visible.")
+        if "PYTHONUNBUFFERED" not in os.environ:
+            warn("PYTHONUNBUFFERED is not defined. Some output may " "not be visible.")
 
     try:
         from django.core.management import execute_from_command_line
@@ -202,15 +194,12 @@ def execute_from_command_line(argv):  # type: (list[str]) -> None
             # itself on 127.0.0.1, which docker can't expose to the
             # host through its networking stack. It's easiest to just
             # tell the developer to use 'docker-compose up' instead.
-            warn("You should probably be using 'docker-compose up' "
-                 "to run the server.")
+            warn("You should probably be using 'docker-compose up' " "to run the server.")
         try:
-            cmd_name = 'docker-compose'
-            cmd_args = [
-                cmd_name, 'run', CONTAINER_NAME, 'python'
-            ] + argv
+            cmd_name = "docker-compose"
+            cmd_args = [cmd_name, "run", CONTAINER_NAME, "python"] + argv
 
-            if sys.platform == 'win32':
+            if sys.platform == "win32":
                 # Windows doesn't support the exec() syscall,
                 # so run docker-compose in a subshell.
                 # This will allow stdio to work as expected.
@@ -227,9 +216,9 @@ def execute_from_command_line(argv):  # type: (list[str]) -> None
 
 
 def does_username_exist(username):  # type: (str) -> bool
-    '''
+    """
     Returns True if the given OS username exists, False otherwise.
-    '''
+    """
 
     try:
         pwd.getpwnam(username)
@@ -239,9 +228,9 @@ def does_username_exist(username):  # type: (str) -> bool
 
 
 def does_uid_exist(uid):  # type: (int) -> bool
-    '''
+    """
     Returns True if the given OS user id exists, False otherwise.
-    '''
+    """
 
     try:
         pwd.getpwuid(uid)
@@ -251,27 +240,22 @@ def does_uid_exist(uid):  # type: (int) -> bool
 
 
 def entrypoint(argv):  # type: (list[str]) -> None
-    '''
+    """
     This is a Docker entrypoint that configures the container to run
     as the same uid of the user on the host container, rather than
     the Docker default of root. Aside from following security best
     practices, this makes it so that any files created by the Docker
     container are also owned by the same user on the host system.
-    '''
+    """
 
     if HOST_UID != os.geteuid():
         if not does_uid_exist(HOST_UID):
             username = HOST_USER
             while does_username_exist(username):
-                username += '0'
-            home_dir = '/home/%s' % username
-            subprocess.check_call([
-                'useradd',
-                '-d', home_dir,
-                '-m', username,
-                '-u', str(HOST_UID)
-            ])
-        os.environ['HOME'] = '/home/%s' % pwd.getpwuid(HOST_UID).pw_name
+                username += "0"
+            home_dir = "/home/%s" % username
+            subprocess.check_call(["useradd", "-d", home_dir, "-m", username, "-u", str(HOST_UID)])
+        os.environ["HOME"] = "/home/%s" % pwd.getpwuid(HOST_UID).pw_name
         os.setuid(HOST_UID)
     os.execvp(argv[1], argv[1:])
 

@@ -7,29 +7,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0007_auto_20180109_1631'),
-    ]
+    dependencies = [("references", "0007_auto_20180109_1631")]
 
     operations = [
         migrations.AddField(
-            model_name='legalentity',
-            name='is_fpds',
-            field=models.BooleanField(default=False, verbose_name='Is FPDS'),
+            model_name="legalentity", name="is_fpds", field=models.BooleanField(default=False, verbose_name="Is FPDS")
         ),
         migrations.AddField(
-            model_name='legalentity',
-            name='transaction_unique_id',
-            field=models.TextField(default='none', verbose_name='Transaction Unique ID'),
+            model_name="legalentity",
+            name="transaction_unique_id",
+            field=models.TextField(default="none", verbose_name="Transaction Unique ID"),
         ),
         migrations.AddField(
-            model_name='location',
-            name='is_fpds',
-            field=models.BooleanField(default=False, verbose_name='Is FPDS'),
+            model_name="location", name="is_fpds", field=models.BooleanField(default=False, verbose_name="Is FPDS")
         ),
         migrations.AddField(
-            model_name='location',
-            name='transaction_unique_id',
-            field=models.TextField(default='none', verbose_name='Transaction Unique ID'),
+            model_name="location",
+            name="transaction_unique_id",
+            field=models.TextField(default="none", verbose_name="Transaction Unique ID"),
         ),
     ]

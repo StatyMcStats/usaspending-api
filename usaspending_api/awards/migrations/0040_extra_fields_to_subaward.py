@@ -7,19 +7,11 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0039_add_pop_fields_to_subaward_20180817_1617'),
-    ]
+    dependencies = [("awards", "0039_add_pop_fields_to_subaward_20180817_1617")]
 
     operations = [
+        migrations.AddField(model_name="subaward", name="dba_name", field=models.TextField(blank=True, null=True)),
         migrations.AddField(
-            model_name='subaward',
-            name='dba_name',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='parent_recipient_name',
-            field=models.TextField(blank=True, null=True),
+            model_name="subaward", name="parent_recipient_name", field=models.TextField(blank=True, null=True)
         ),
     ]

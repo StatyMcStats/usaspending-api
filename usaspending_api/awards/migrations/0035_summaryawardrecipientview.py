@@ -7,26 +7,21 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0034_summarytransactionrecipientview'),
-    ]
+    dependencies = [("awards", "0034_summarytransactionrecipientview")]
 
     operations = [
         migrations.CreateModel(
-            name='SummaryAwardRecipientView',
+            name="SummaryAwardRecipientView",
             fields=[
-                ('duh', models.UUIDField(primary_key=True, serialize=False)),
-                ('date_signed', models.DateField()),
-                ('action_date', models.DateField(blank=True)),
-                ('fiscal_year', models.IntegerField()),
-                ('type', models.TextField(blank=True, null=True)),
-                ('recipient_hash', models.UUIDField(null=True)),
-                ('parent_recipient_unique_id', models.TextField(blank=True, null=True)),
-                ('counts', models.IntegerField()),
+                ("duh", models.UUIDField(primary_key=True, serialize=False)),
+                ("date_signed", models.DateField()),
+                ("action_date", models.DateField(blank=True)),
+                ("fiscal_year", models.IntegerField()),
+                ("type", models.TextField(blank=True, null=True)),
+                ("recipient_hash", models.UUIDField(null=True)),
+                ("parent_recipient_unique_id", models.TextField(blank=True, null=True)),
+                ("counts", models.IntegerField()),
             ],
-            options={
-                'db_table': 'summary_award_recipient_view',
-                'managed': False,
-            },
-        ),
+            options={"db_table": "summary_award_recipient_view", "managed": False},
+        )
     ]

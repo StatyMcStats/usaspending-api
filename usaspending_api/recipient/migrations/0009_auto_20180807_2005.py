@@ -9,18 +9,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0008_auto_20180807_1546'),
-    ]
+    dependencies = [("recipient", "0008_auto_20180807_1546")]
 
     operations = [
         migrations.AddField(
-            model_name='recipientprofile',
-            name='award_types',
+            model_name="recipientprofile",
+            name="award_types",
             field=django.contrib.postgres.fields.ArrayField(base_field=models.TextField(), default=list, size=None),
         ),
         migrations.AddIndex(
-            model_name='recipientprofile',
-            index=django.contrib.postgres.indexes.GinIndex(fields=['award_types'], name='recipient_p_award_t_211373_gin'),
+            model_name="recipientprofile",
+            index=django.contrib.postgres.indexes.GinIndex(
+                fields=["award_types"], name="recipient_p_award_t_211373_gin"
+            ),
         ),
     ]

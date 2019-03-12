@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0008_auto_20180123_1657'),
-    ]
+    dependencies = [("references", "0008_auto_20180123_1657")]
 
     operations = [
         migrations.AlterField(
-            model_name='location',
-            name='location_country_code',
-            field=models.TextField(blank=True, null=True, verbose_name='Location Country Code'),
-        ),
+            model_name="location",
+            name="location_country_code",
+            field=models.TextField(blank=True, null=True, verbose_name="Location Country Code"),
+        )
     ]

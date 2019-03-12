@@ -7,10 +7,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0017_merge_20180125_2132'),
-        ('awards', '0015_summarytransactiongeoview'),
-    ]
+    dependencies = [("awards", "0017_merge_20180125_2132"), ("awards", "0015_summarytransactiongeoview")]
 
-    operations = [
-    ]
+    operations = []

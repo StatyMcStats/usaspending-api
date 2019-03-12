@@ -7,19 +7,11 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0016_create_gtas_total_obligation_table'),
-    ]
+    dependencies = [("references", "0016_create_gtas_total_obligation_table")]
 
     operations = [
         migrations.AlterField(
-            model_name='legalentity',
-            name='domestic_or_foreign_entity',
-            field=models.TextField(blank=True, null=True),
+            model_name="legalentity", name="domestic_or_foreign_entity", field=models.TextField(blank=True, null=True)
         ),
-        migrations.AlterField(
-            model_name='location',
-            name='county_name',
-            field=models.TextField(blank=True, null=True),
-        ),
+        migrations.AlterField(model_name="location", name="county_name", field=models.TextField(blank=True, null=True)),
     ]

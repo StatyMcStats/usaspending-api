@@ -7,20 +7,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0002_naics'),
-    ]
+    dependencies = [("references", "0002_naics")]
 
     operations = [
         migrations.CreateModel(
-            name='PSC',
+            name="PSC",
             fields=[
-                ('code', models.CharField(max_length=4, primary_key=True, serialize=False)),
-                ('description', models.TextField()),
+                ("code", models.CharField(max_length=4, primary_key=True, serialize=False)),
+                ("description", models.TextField()),
             ],
-            options={
-                'managed': True,
-                'db_table': 'psc',
-            },
-        ),
+            options={"managed": True, "db_table": "psc"},
+        )
     ]

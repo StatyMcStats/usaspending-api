@@ -7,9 +7,7 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0024_auto_20180222_1504'),
-    ]
+    dependencies = [("awards", "0024_auto_20180222_1504")]
 
     operations = [
         # This is already handled by index defined on awards table in usaspending_api/awards/models.py

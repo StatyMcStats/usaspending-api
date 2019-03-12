@@ -7,13 +7,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0003_psc'),
-    ]
+    dependencies = [("references", "0003_psc")]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='legalentity',
-            unique_together=set([('recipient_unique_id', 'recipient_name', 'location')]),
-        ),
+            name="legalentity", unique_together=set([("recipient_unique_id", "recipient_name", "location")])
+        )
     ]

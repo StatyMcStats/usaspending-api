@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0048_auto_20181126_1528'),
-    ]
+    dependencies = [("awards", "0048_auto_20181126_1528")]
 
     operations = [
         migrations.AlterField(
-            model_name='award',
-            name='description',
-            field=models.TextField(help_text='A description of the award', null=True, verbose_name='Award Description'),
-        ),
+            model_name="award",
+            name="description",
+            field=models.TextField(help_text="A description of the award", null=True, verbose_name="Award Description"),
+        )
     ]

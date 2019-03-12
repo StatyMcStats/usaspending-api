@@ -6,7 +6,7 @@ from rest_framework import status
 from usaspending_api.awards.v2.views.idvs.awards import SORTABLE_COLUMNS
 
 
-ENDPOINT = '/api/v2/awards/idvs/awards/'
+ENDPOINT = "/api/v2/awards/idvs/awards/"
 
 AWARD_COUNT = 15
 IDVS = (1, 2, 3, 4, 5, 7, 8)
@@ -14,7 +14,6 @@ PARENTS = {3: 1, 4: 1, 5: 1, 6: 1, 7: 2, 8: 2, 9: 2, 10: 2, 11: 7, 12: 7, 13: 8,
 
 
 class IDVAwardsTestCase(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         """
@@ -34,50 +33,44 @@ class IDVAwardsTestCase(TestCase):
 
         # We'll need some "latest transactions".
         for transaction_id in range(1, AWARD_COUNT + 1):
+            mommy.make("awards.TransactionNormalized", id=transaction_id)
             mommy.make(
-                'awards.TransactionNormalized',
-                id=transaction_id
-            )
-            mommy.make(
-                'awards.TransactionFPDS',
+                "awards.TransactionFPDS",
                 transaction_id=transaction_id,
-                funding_agency_name='funding_agency_name_%s' % transaction_id,
-                ordering_period_end_date='2018-01-%02d' % transaction_id
+                funding_agency_name="funding_agency_name_%s" % transaction_id,
+                ordering_period_end_date="2018-01-%02d" % transaction_id,
             )
 
         # We'll need some awards (and agencies).
         for award_id in range(1, AWARD_COUNT + 1):
             parent_n = PARENTS.get(award_id)
+            mommy.make("references.Agency", id=award_id * 12)
             mommy.make(
-                'references.Agency',
-                id=award_id * 12
-            )
-            mommy.make(
-                'awards.Award',
+                "awards.Award",
                 id=award_id,
-                generated_unique_award_id='GENERATED_UNIQUE_AWARD_ID_%s' % award_id,
-                type=('IDV_%s' if award_id in IDVS else 'CONTRACT_%s') % award_id,
+                generated_unique_award_id="GENERATED_UNIQUE_AWARD_ID_%s" % award_id,
+                type=("IDV_%s" if award_id in IDVS else "CONTRACT_%s") % award_id,
                 total_obligation=award_id,
-                piid='piid_%s' % award_id,
-                fpds_agency_id='fpds_agency_id_%s' % award_id,
-                parent_award_piid='piid_%s' % parent_n if parent_n else None,
-                fpds_parent_agency_id='fpds_agency_id_%s' % parent_n if parent_n else None,
+                piid="piid_%s" % award_id,
+                fpds_agency_id="fpds_agency_id_%s" % award_id,
+                parent_award_piid="piid_%s" % parent_n if parent_n else None,
+                fpds_parent_agency_id="fpds_agency_id_%s" % parent_n if parent_n else None,
                 latest_transaction_id=award_id,
-                type_description='type_description_%s' % award_id,
-                description='description_%s' % award_id,
-                period_of_performance_current_end_date='2018-03-%02d' % award_id,
-                period_of_performance_start_date='2018-02-%02d' % award_id,
+                type_description="type_description_%s" % award_id,
+                description="description_%s" % award_id,
+                period_of_performance_current_end_date="2018-03-%02d" % award_id,
+                period_of_performance_start_date="2018-02-%02d" % award_id,
                 funding_agency_id=award_id * 12,
             )
 
         # We'll need some parent_awards.
         for award_id in IDVS:
             mommy.make(
-                'awards.ParentAward',
+                "awards.ParentAward",
                 award_id=award_id,
-                generated_unique_award_id='GENERATED_UNIQUE_AWARD_ID_%s' % award_id,
+                generated_unique_award_id="GENERATED_UNIQUE_AWARD_ID_%s" % award_id,
                 rollup_total_obligation=award_id * 1000,
-                parent_award_id=PARENTS.get(award_id)
+                parent_award_id=PARENTS.get(award_id),
             )
 
     @staticmethod
@@ -94,29 +87,31 @@ class IDVAwardsTestCase(TestCase):
         """
         results = []
         for award_id in award_ids:
-            results.append({
-                'award_id': award_id,
-                'award_type': 'type_description_%s' % award_id,
-                'description': 'description_%s' % award_id,
-                'funding_agency': 'funding_agency_name_%s' % award_id,
-                'funding_agency_id': award_id * 12,
-                'generated_unique_award_id': 'GENERATED_UNIQUE_AWARD_ID_%s' % award_id,
-                'last_date_to_order': '2018-01-%02d' % award_id,
-                'obligated_amount': float(award_id * (1000 if award_id in IDVS else 1)),
-                'period_of_performance_current_end_date': '2018-03-%02d' % award_id,
-                'period_of_performance_start_date': '2018-02-%02d' % award_id,
-                'piid': 'piid_%s' % award_id
-            })
+            results.append(
+                {
+                    "award_id": award_id,
+                    "award_type": "type_description_%s" % award_id,
+                    "description": "description_%s" % award_id,
+                    "funding_agency": "funding_agency_name_%s" % award_id,
+                    "funding_agency_id": award_id * 12,
+                    "generated_unique_award_id": "GENERATED_UNIQUE_AWARD_ID_%s" % award_id,
+                    "last_date_to_order": "2018-01-%02d" % award_id,
+                    "obligated_amount": float(award_id * (1000 if award_id in IDVS else 1)),
+                    "period_of_performance_current_end_date": "2018-03-%02d" % award_id,
+                    "period_of_performance_start_date": "2018-02-%02d" % award_id,
+                    "piid": "piid_%s" % award_id,
+                }
+            )
 
         page_metadata = {
-            'previous': previous,
-            'next': next,
-            'page': page,
-            'hasPrevious': has_previous,
-            'hasNext': has_next
+            "previous": previous,
+            "next": next,
+            "page": page,
+            "hasPrevious": has_previous,
+            "hasNext": has_next,
         }
 
-        return {'results': results, 'page_metadata': page_metadata}
+        return {"results": results, "page_metadata": page_metadata}
 
     def _test_post(self, request, expected_response_parameters_tuple=None, expected_status_code=status.HTTP_200_OK):
         """
@@ -135,108 +130,58 @@ class IDVAwardsTestCase(TestCase):
         assert response.status_code == expected_status_code
         if expected_response_parameters_tuple is not None:
             expected_response = self._generate_expected_response(*expected_response_parameters_tuple)
-            assert json.loads(response.content.decode('utf-8')) == expected_response
+            assert json.loads(response.content.decode("utf-8")) == expected_response
 
     def test_defaults(self):
 
-        self._test_post(
-            {'award_id': 1},
-            (None, None, 1, False, False, 5, 4, 3)
-        )
+        self._test_post({"award_id": 1}, (None, None, 1, False, False, 5, 4, 3))
 
-        self._test_post(
-            {'award_id': 'GENERATED_UNIQUE_AWARD_ID_1'},
-            (None, None, 1, False, False, 5, 4, 3)
-        )
+        self._test_post({"award_id": "GENERATED_UNIQUE_AWARD_ID_1"}, (None, None, 1, False, False, 5, 4, 3))
 
     def test_with_nonexistent_id(self):
 
-        self._test_post(
-            {'award_id': 0},
-            (None, None, 1, False, False)
-        )
+        self._test_post({"award_id": 0}, (None, None, 1, False, False))
 
-        self._test_post(
-            {'award_id': 'GENERATED_UNIQUE_AWARD_ID_0'},
-            (None, None, 1, False, False)
-        )
+        self._test_post({"award_id": "GENERATED_UNIQUE_AWARD_ID_0"}, (None, None, 1, False, False))
 
     def test_with_bogus_id(self):
 
-        self._test_post(
-            {'award_id': None},
-            (None, None, 1, False, False)
-        )
+        self._test_post({"award_id": None}, (None, None, 1, False, False))
 
     def test_idv_flag(self):
 
-        self._test_post(
-            {'award_id': 1, 'idv': True},
-            (None, None, 1, False, False, 5, 4, 3)
-        )
+        self._test_post({"award_id": 1, "idv": True}, (None, None, 1, False, False, 5, 4, 3))
 
-        self._test_post(
-            {'award_id': 1, 'idv': False},
-            (None, None, 1, False, False, 6)
-        )
+        self._test_post({"award_id": 1, "idv": False}, (None, None, 1, False, False, 6))
 
-        self._test_post(
-            {'award_id': 1, 'idv': 'BOGUS IDV'},
-            expected_status_code=status.HTTP_400_BAD_REQUEST
-        )
+        self._test_post({"award_id": 1, "idv": "BOGUS IDV"}, expected_status_code=status.HTTP_400_BAD_REQUEST)
 
     def test_limit_values(self):
 
-        self._test_post(
-            {'award_id': 1, 'limit': 1},
-            (None, 2, 1, False, True, 5)
-        )
+        self._test_post({"award_id": 1, "limit": 1}, (None, 2, 1, False, True, 5))
 
-        self._test_post(
-            {'award_id': 1, 'limit': 5},
-            (None, None, 1, False, False, 5, 4, 3)
-        )
+        self._test_post({"award_id": 1, "limit": 5}, (None, None, 1, False, False, 5, 4, 3))
 
-        self._test_post(
-            {'award_id': 1, 'limit': 0},
-            expected_status_code=status.HTTP_422_UNPROCESSABLE_ENTITY
-        )
+        self._test_post({"award_id": 1, "limit": 0}, expected_status_code=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-        self._test_post(
-            {'award_id': 1, 'limit': 2000000000},
-            expected_status_code=status.HTTP_422_UNPROCESSABLE_ENTITY
-        )
+        self._test_post({"award_id": 1, "limit": 2000000000}, expected_status_code=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-        self._test_post(
-            {'award_id': 1, 'limit': {'BOGUS': 'LIMIT'}},
-            expected_status_code=status.HTTP_400_BAD_REQUEST
-        )
+        self._test_post({"award_id": 1, "limit": {"BOGUS": "LIMIT"}}, expected_status_code=status.HTTP_400_BAD_REQUEST)
 
     def test_page_values(self):
 
+        self._test_post({"award_id": 1, "limit": 1, "page": 2}, (1, 3, 2, True, True, 4))
+
+        self._test_post({"award_id": 1, "limit": 1, "page": 3}, (2, None, 3, True, False, 3))
+
+        self._test_post({"award_id": 1, "limit": 1, "page": 4}, (3, None, 4, True, False))
+
         self._test_post(
-            {'award_id': 1, 'limit': 1, 'page': 2},
-            (1, 3, 2, True, True, 4)
+            {"award_id": 1, "limit": 1, "page": 0}, expected_status_code=status.HTTP_422_UNPROCESSABLE_ENTITY
         )
 
         self._test_post(
-            {'award_id': 1, 'limit': 1, 'page': 3},
-            (2, None, 3, True, False, 3)
-        )
-
-        self._test_post(
-            {'award_id': 1, 'limit': 1, 'page': 4},
-            (3, None, 4, True, False)
-        )
-
-        self._test_post(
-            {'award_id': 1, 'limit': 1, 'page': 0},
-            expected_status_code=status.HTTP_422_UNPROCESSABLE_ENTITY
-        )
-
-        self._test_post(
-            {'award_id': 1, 'limit': 1, 'page': 'BOGUS PAGE'},
-            expected_status_code=status.HTTP_400_BAD_REQUEST
+            {"award_id": 1, "limit": 1, "page": "BOGUS PAGE"}, expected_status_code=status.HTTP_400_BAD_REQUEST
         )
 
     def test_sort_columns(self):
@@ -244,81 +189,49 @@ class IDVAwardsTestCase(TestCase):
         for sortable_column in SORTABLE_COLUMNS:
 
             self._test_post(
-                {'award_id': 1, 'order': 'desc', 'sort': sortable_column},
-                (None, None, 1, False, False, 5, 4, 3)
+                {"award_id": 1, "order": "desc", "sort": sortable_column}, (None, None, 1, False, False, 5, 4, 3)
             )
 
             self._test_post(
-                {'award_id': 1, 'order': 'asc', 'sort': sortable_column},
-                (None, None, 1, False, False, 3, 4, 5)
+                {"award_id": 1, "order": "asc", "sort": sortable_column}, (None, None, 1, False, False, 3, 4, 5)
             )
 
-        self._test_post(
-            {'award_id': 1, 'sort': 'BOGUS FIELD'},
-            expected_status_code=status.HTTP_400_BAD_REQUEST
-        )
+        self._test_post({"award_id": 1, "sort": "BOGUS FIELD"}, expected_status_code=status.HTTP_400_BAD_REQUEST)
 
     def test_sort_order_values(self):
 
-        self._test_post(
-            {'award_id': 1, 'order': 'desc'},
-            (None, None, 1, False, False, 5, 4, 3)
-        )
+        self._test_post({"award_id": 1, "order": "desc"}, (None, None, 1, False, False, 5, 4, 3))
 
-        self._test_post(
-            {'award_id': 1, 'order': 'asc'},
-            (None, None, 1, False, False, 3, 4, 5)
-        )
+        self._test_post({"award_id": 1, "order": "asc"}, (None, None, 1, False, False, 3, 4, 5))
 
-        self._test_post(
-            {'award_id': 1, 'order': 'BOGUS ORDER'},
-            expected_status_code=status.HTTP_400_BAD_REQUEST
-        )
+        self._test_post({"award_id": 1, "order": "BOGUS ORDER"}, expected_status_code=status.HTTP_400_BAD_REQUEST)
 
     def test_complete_queries(self):
 
         self._test_post(
-            {'award_id': 1, 'idv': True, 'limit': 3, 'page': 1, 'sort': 'description', 'order': 'asc'},
-            (None, None, 1, False, False, 3, 4, 5)
+            {"award_id": 1, "idv": True, "limit": 3, "page": 1, "sort": "description", "order": "asc"},
+            (None, None, 1, False, False, 3, 4, 5),
         )
 
         self._test_post(
-            {'award_id': 1, 'idv': False, 'limit': 3, 'page': 1, 'sort': 'description', 'order': 'asc'},
-            (None, None, 1, False, False, 6)
+            {"award_id": 1, "idv": False, "limit": 3, "page": 1, "sort": "description", "order": "asc"},
+            (None, None, 1, False, False, 6),
         )
 
     def test_no_grandchildren_returned(self):
 
-        self._test_post(
-            {'award_id': 2, 'idv': True},
-            (None, None, 1, False, False, 8, 7)
-        )
+        self._test_post({"award_id": 2, "idv": True}, (None, None, 1, False, False, 8, 7))
 
-        self._test_post(
-            {'award_id': 2, 'idv': False},
-            (None, None, 1, False, False, 10, 9)
-        )
+        self._test_post({"award_id": 2, "idv": False}, (None, None, 1, False, False, 10, 9))
 
     def test_no_parents_returned(self):
 
-        self._test_post(
-            {'award_id': 7, 'idv': True},
-            (None, None, 1, False, False)
-        )
+        self._test_post({"award_id": 7, "idv": True}, (None, None, 1, False, False))
 
-        self._test_post(
-            {'award_id': 7, 'idv': False},
-            (None, None, 1, False, False, 12, 11)
-        )
+        self._test_post({"award_id": 7, "idv": False}, (None, None, 1, False, False, 12, 11))
 
     def test_nothing_returned_for_bogus_contract_relationship(self):
 
-        self._test_post(
-            {'award_id': 9, 'idv': True},
-            (None, None, 1, False, False)
-        )
+        self._test_post({"award_id": 9, "idv": True}, (None, None, 1, False, False))
 
-        self._test_post(
-            {'award_id': 9, 'idv': False},
-            (None, None, 1, False, False)
-        )
+        self._test_post({"award_id": 9, "idv": False}, (None, None, 1, False, False))

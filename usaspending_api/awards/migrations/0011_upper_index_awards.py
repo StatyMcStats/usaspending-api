@@ -7,13 +7,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0010_recipientlookupview_summarytransactionview'),
-    ]
+    dependencies = [("awards", "0010_recipientlookupview_summarytransactionview")]
 
     operations = [
         migrations.RunSQL(
-            ["CREATE INDEX awards_piid_uppr_idx ON awards (UPPER(piid));"],
-            ["DROP INDEX awards_piid_uppr_idx;"]
-        ),
+            ["CREATE INDEX awards_piid_uppr_idx ON awards (UPPER(piid));"], ["DROP INDEX awards_piid_uppr_idx;"]
+        )
     ]

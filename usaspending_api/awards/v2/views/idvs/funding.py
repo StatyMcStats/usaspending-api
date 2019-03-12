@@ -15,24 +15,25 @@ from usaspending_api.common.validator.tinyshield import TinyShield
 
 
 SORTABLE_COLUMNS = {
-    'account_title': ['taa.account_title'],
-    'object_class': ['oc.object_class_name', 'oc.object_class'],
-    'piid': ['ca.piid'],
-    'program_activity': ['rpa.program_activity_code', 'rpa.program_activity_name'],
-    'reporting_agency_name': ['taa.reporting_agency_name'],
-    'reporting_fiscal_date': ['sa.reporting_fiscal_year', 'sa.reporting_fiscal_quarter'],
-    'transaction_obligated_amount': ['faba.transaction_obligated_amount']
+    "account_title": ["taa.account_title"],
+    "object_class": ["oc.object_class_name", "oc.object_class"],
+    "piid": ["ca.piid"],
+    "program_activity": ["rpa.program_activity_code", "rpa.program_activity_name"],
+    "reporting_agency_name": ["taa.reporting_agency_name"],
+    "reporting_fiscal_date": ["sa.reporting_fiscal_year", "sa.reporting_fiscal_quarter"],
+    "transaction_obligated_amount": ["faba.transaction_obligated_amount"],
 }
 
 # Add a unique id to every sort key so results are deterministic.
 for k, v in SORTABLE_COLUMNS.items():
-    v.append('faba.financial_accounts_by_awards_id')
+    v.append("faba.financial_accounts_by_awards_id")
 
-DEFAULT_SORT_COLUMN = 'reporting_fiscal_date'
+DEFAULT_SORT_COLUMN = "reporting_fiscal_date"
 
 # Get funding information for child and grandchild contracts of an IDV but
 # not the IDVs themselves.
-GET_FUNDING_SQL = SQL("""
+GET_FUNDING_SQL = SQL(
+    """
     with cte as (
         select    award_id
         from      parent_award
@@ -82,15 +83,18 @@ GET_FUNDING_SQL = SQL("""
         (ca.piid = {piid} or {piid} is null)
     {order_by}
     limit {limit} offset {offset}
-""")
+"""
+)
 
 
 def _prepare_tiny_shield_models():
     models = customize_pagination_with_sort_columns(list(SORTABLE_COLUMNS.keys()), DEFAULT_SORT_COLUMN)
-    models.extend([
-        get_internal_or_generated_award_id_model(),
-        {'key': 'piid', 'name': 'piid', 'optional': True, 'type': 'text', 'text_type': 'search'}
-    ])
+    models.extend(
+        [
+            get_internal_or_generated_award_id_model(),
+            {"key": "piid", "name": "piid", "optional": True, "type": "text", "text_type": "search"},
+        ]
+    )
     return models
 
 
@@ -109,16 +113,16 @@ class IDVFundingViewSet(APIDocumentationView):
         # By this point, our award_id has been validated and cleaned up by
         # TinyShield.  We will either have an internal award id that is an
         # integer or a generated award id that is a string.
-        award_id = request_data['award_id']
-        award_id_column = 'award_id' if type(award_id) is int else 'generated_unique_award_id'
+        award_id = request_data["award_id"]
+        award_id_column = "award_id" if type(award_id) is int else "generated_unique_award_id"
 
         sql = GET_FUNDING_SQL.format(
             award_id_column=Identifier(award_id_column),
             award_id=Literal(award_id),
-            piid=Literal(request_data.get('piid')),
-            order_by=build_composable_order_by(SORTABLE_COLUMNS[request_data['sort']], request_data['order']),
-            limit=Literal(request_data['limit'] + 1),
-            offset=Literal((request_data['page'] - 1) * request_data['limit']),
+            piid=Literal(request_data.get("piid")),
+            order_by=build_composable_order_by(SORTABLE_COLUMNS[request_data["sort"]], request_data["order"]),
+            limit=Literal(request_data["limit"] + 1),
+            offset=Literal((request_data["page"] - 1) * request_data["limit"]),
         )
 
         return execute_sql_to_ordered_dictionary(sql)
@@ -127,11 +131,8 @@ class IDVFundingViewSet(APIDocumentationView):
     def post(self, request: Request) -> Response:
         request_data = self._parse_and_validate_request(request.data)
         results = self._business_logic(request_data)
-        page_metadata = get_simple_pagination_metadata(len(results), request_data['limit'], request_data['page'])
+        page_metadata = get_simple_pagination_metadata(len(results), request_data["limit"], request_data["page"])
 
-        response = OrderedDict((
-            ('results', results[:request_data['limit']]),
-            ('page_metadata', page_metadata)
-        ))
+        response = OrderedDict((("results", results[: request_data["limit"]]), ("page_metadata", page_metadata)))
 
         return Response(response)

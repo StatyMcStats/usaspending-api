@@ -7,14 +7,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0004_auto_20171107_2212'),
-    ]
+    dependencies = [("awards", "0004_auto_20171107_2212")]
 
     operations = [
         migrations.AlterField(
-            model_name='award',
-            name='category',
-            field=models.TextField(db_index=True, help_text="A field that generalizes the award's type.", null=True, verbose_name='Category'),
-        ),
+            model_name="award",
+            name="category",
+            field=models.TextField(
+                db_index=True,
+                help_text="A field that generalizes the award's type.",
+                null=True,
+                verbose_name="Category",
+            ),
+        )
     ]

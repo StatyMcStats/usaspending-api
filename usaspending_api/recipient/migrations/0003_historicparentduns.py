@@ -7,23 +7,19 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('recipient', '0002_duns'),
-    ]
+    dependencies = [("recipient", "0002_duns")]
 
     operations = [
         migrations.CreateModel(
-            name='HistoricParentDUNS',
+            name="HistoricParentDUNS",
             fields=[
-                ('awardee_or_recipient_uniqu', models.TextField(primary_key=True, serialize=False)),
-                ('legal_business_name', models.TextField()),
-                ('ultimate_parent_unique_ide', models.TextField()),
-                ('ultimate_parent_legal_enti', models.TextField()),
-                ('broker_historic_duns_id', models.TextField()),
-                ('year', models.IntegerField()),
+                ("awardee_or_recipient_uniqu", models.TextField(primary_key=True, serialize=False)),
+                ("legal_business_name", models.TextField()),
+                ("ultimate_parent_unique_ide", models.TextField()),
+                ("ultimate_parent_legal_enti", models.TextField()),
+                ("broker_historic_duns_id", models.TextField()),
+                ("year", models.IntegerField()),
             ],
-            options={
-                'db_table': 'historic_parent_duns',
-            },
-        ),
+            options={"db_table": "historic_parent_duns"},
+        )
     ]

@@ -7,14 +7,6 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0021_legalentityofficers_duns'),
-    ]
+    dependencies = [("references", "0021_legalentityofficers_duns")]
 
-    operations = [
-        migrations.AddField(
-            model_name='naics',
-            name='year',
-            field=models.IntegerField(default=0),
-        ),
-    ]
+    operations = [migrations.AddField(model_name="naics", name="year", field=models.IntegerField(default=0))]

@@ -13,9 +13,9 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **options):
 
-        logger = logging.getLogger('console')
+        logger = logging.getLogger("console")
 
         for status in lookups.JOB_STATUS:
-            logger.info('Updating status: {}'.format(status))
+            logger.info("Updating status: {}".format(status))
             job_status = JobStatus(job_status_id=status.id, name=status.name, description=status.desc)
             job_status.save()

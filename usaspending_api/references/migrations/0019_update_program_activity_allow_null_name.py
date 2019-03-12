@@ -7,14 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0018_auto_20180706_0316'),
-    ]
+    dependencies = [("references", "0018_auto_20180706_0316")]
 
     operations = [
         migrations.AlterField(
-            model_name='refprogramactivity',
-            name='program_activity_name',
-            field=models.TextField(blank=True, null=True),
-        ),
+            model_name="refprogramactivity", name="program_activity_name", field=models.TextField(blank=True, null=True)
+        )
     ]

@@ -9,26 +9,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='StateData',
+            name="StateData",
             fields=[
-                ('id', models.TextField(primary_key=True, serialize=False)),
-                ('fips', models.TextField(db_index=True)),
-                ('code', models.TextField()),
-                ('name', models.TextField()),
-                ('type', models.TextField()),
-                ('year', models.IntegerField(db_index=True)),
-                ('population', models.BigIntegerField(blank=True, null=True)),
-                ('pop_source', models.TextField(blank=True, null=True)),
-                ('median_household_income', models.DecimalField(blank=True, decimal_places=2, max_digits=21, null=True)),
-                ('mhi_source', models.TextField(blank=True, null=True)),
+                ("id", models.TextField(primary_key=True, serialize=False)),
+                ("fips", models.TextField(db_index=True)),
+                ("code", models.TextField()),
+                ("name", models.TextField()),
+                ("type", models.TextField()),
+                ("year", models.IntegerField(db_index=True)),
+                ("population", models.BigIntegerField(blank=True, null=True)),
+                ("pop_source", models.TextField(blank=True, null=True)),
+                (
+                    "median_household_income",
+                    models.DecimalField(blank=True, decimal_places=2, max_digits=21, null=True),
+                ),
+                ("mhi_source", models.TextField(blank=True, null=True)),
             ],
-            options={
-                'db_table': 'state_data',
-            },
-        ),
+            options={"db_table": "state_data"},
+        )
     ]

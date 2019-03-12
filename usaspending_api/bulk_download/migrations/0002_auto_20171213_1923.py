@@ -8,80 +8,45 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0005_auto_20171201_1603'),
-        ('bulk_download', '0001_initial'),
-    ]
+    dependencies = [("references", "0005_auto_20171201_1603"), ("bulk_download", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='agency',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='references.ToptierAgency'),
+            model_name="bulkdownloadjob",
+            name="agency",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.DO_NOTHING, to="references.ToptierAgency"
+            ),
+        ),
+        migrations.AddField(model_name="bulkdownloadjob", name="contracts", field=models.BooleanField(default=False)),
+        migrations.AddField(
+            model_name="bulkdownloadjob", name="date_type", field=models.TextField(default="action_date")
         ),
         migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='contracts',
-            field=models.BooleanField(default=False),
+            model_name="bulkdownloadjob", name="direct_payments", field=models.BooleanField(default=False)
+        ),
+        migrations.AddField(model_name="bulkdownloadjob", name="end_date", field=models.DateField(null=True)),
+        migrations.AddField(model_name="bulkdownloadjob", name="grants", field=models.BooleanField(default=False)),
+        migrations.AddField(
+            model_name="bulkdownloadjob", name="json_request", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(model_name="bulkdownloadjob", name="loans", field=models.BooleanField(default=False)),
+        migrations.AddField(
+            model_name="bulkdownloadjob", name="monthly_download", field=models.BooleanField(default=False)
         ),
         migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='date_type',
-            field=models.TextField(default='action_date'),
+            model_name="bulkdownloadjob", name="other_financial_assistance", field=models.BooleanField(default=False)
         ),
         migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='direct_payments',
-            field=models.BooleanField(default=False),
+            model_name="bulkdownloadjob", name="prime_awards", field=models.BooleanField(default=False)
         ),
+        migrations.AddField(model_name="bulkdownloadjob", name="start_date", field=models.DateField(null=True)),
         migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='end_date',
-            field=models.DateField(null=True),
+            model_name="bulkdownloadjob",
+            name="sub_agency",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.DO_NOTHING, to="references.SubtierAgency"
+            ),
         ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='grants',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='json_request',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='loans',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='monthly_download',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='other_financial_assistance',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='prime_awards',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='start_date',
-            field=models.DateField(null=True),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='sub_agency',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='references.SubtierAgency'),
-        ),
-        migrations.AddField(
-            model_name='bulkdownloadjob',
-            name='sub_awards',
-            field=models.BooleanField(default=False),
-        ),
+        migrations.AddField(model_name="bulkdownloadjob", name="sub_awards", field=models.BooleanField(default=False)),
     ]

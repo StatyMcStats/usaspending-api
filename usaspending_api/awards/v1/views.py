@@ -7,13 +7,14 @@ from usaspending_api.common.mixins import FilterQuerysetMixin, AggregateQueryset
 from usaspending_api.common.serializers import AggregateSerializer
 from usaspending_api.common.views import DetailViewSet, CachedDetailViewSet, AutocompleteView
 
-AggregateItem = namedtuple('AggregateItem', ['field', 'func'])
+AggregateItem = namedtuple("AggregateItem", ["field", "func"])
 
 
 class AwardAggregateViewSet(FilterQuerysetMixin, AggregateQuerysetMixin, CachedDetailViewSet):
     """
     Return aggregated award information.
     """
+
     serializer_class = AggregateSerializer
 
     def get_queryset(self):
@@ -29,10 +30,8 @@ class AwardListViewSet(FilterQuerysetMixin, CachedDetailViewSet):
     ## Spending data by Award (i.e. a grant, contract, loan, etc)
     This endpoint allows you to search and filter by almost any attribute of an award object.
     """
-    filter_map = {
-        'awarding_fpds': 'awarding_agency__fpds_code',
-        'funding_fpds': 'funding_agency__fpds_code',
-    }
+
+    filter_map = {"awarding_fpds": "awarding_agency__fpds_code", "funding_fpds": "funding_agency__fpds_code"}
     serializer_class = AwardSerializer
 
     def get_queryset(self):
@@ -51,10 +50,8 @@ class AwardRetrieveViewSet(FilterQuerysetMixin, DetailViewSet):
     ## Spending data by Award (i.e. a grant, contract, loan, etc)
     This endpoint allows you to search and filter by almost any attribute of an award object.
     """
-    filter_map = {
-        'awarding_fpds': 'awarding_agency__fpds_code',
-        'funding_fpds': 'funding_agency__fpds_code',
-    }
+
+    filter_map = {"awarding_fpds": "awarding_agency__fpds_code", "funding_fpds": "funding_agency__fpds_code"}
     serializer_class = AwardSerializer
 
     def get_queryset(self):
@@ -72,6 +69,7 @@ class SubawardAggregateViewSet(FilterQuerysetMixin, AggregateQuerysetMixin, Cach
     """
     Return aggregated award information.
     """
+
     serializer_class = AggregateSerializer
 
     def get_queryset(self):
@@ -86,6 +84,7 @@ class SubawardAutocomplete(FilterQuerysetMixin, AutocompleteView):
     """
     Autocomplete support for subaward objects.
     """
+
     # Maybe refactor this out into a nifty autocomplete abstract class we can just inherit?
     serializer_class = SubawardSerializer
 
@@ -105,6 +104,7 @@ class SubawardListViewSet(FilterQuerysetMixin, CachedDetailViewSet):
     ## Spending data by Subaward
     This endpoint allows you to search and filter by almost any attribute of a subaward object.
     """
+
     serializer_class = SubawardSerializer
 
     def get_queryset(self):
@@ -123,6 +123,7 @@ class SubawardRetrieveViewSet(FilterQuerysetMixin, DetailViewSet):
     ## Spending data by Subaward
     This endpoint allows you to search and filter by almost any attribute of a subaward object.
     """
+
     serializer_class = SubawardSerializer
 
     def get_queryset(self):
@@ -140,6 +141,7 @@ class TransactionAggregateViewSet(FilterQuerysetMixin, AggregateQuerysetMixin, C
     """
     Return aggregated transaction information.
     """
+
     serializer_class = AggregateSerializer
 
     def get_queryset(self):
@@ -154,6 +156,7 @@ class TransactionListViewset(FilterQuerysetMixin, CachedDetailViewSet):
     """
     Handles requests for award transaction data.
     """
+
     serializer_class = TransactionNormalizedSerializer
 
     def get_queryset(self):
@@ -171,6 +174,7 @@ class TransactionRetrieveViewset(FilterQuerysetMixin, DetailViewSet):
     """
     Handles requests for award transaction data.
     """
+
     serializer_class = TransactionNormalizedSerializer
 
     def get_queryset(self):

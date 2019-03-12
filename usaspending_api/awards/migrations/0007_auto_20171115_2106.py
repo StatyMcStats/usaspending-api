@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0006_auto_20171115_0410'),
-    ]
+    dependencies = [("awards", "0006_auto_20171115_0410")]
 
     operations = [
         migrations.AlterField(
-            model_name='transactionfpds',
-            name='parent_award_id',
+            model_name="transactionfpds",
+            name="parent_award_id",
             field=models.TextField(blank=True, db_index=True, null=True),
-        ),
+        )
     ]

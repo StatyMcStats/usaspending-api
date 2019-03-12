@@ -7,16 +7,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0022_update_awards_add_total_subsidy_cost'),
-    ]
+    dependencies = [("awards", "0022_update_awards_add_total_subsidy_cost")]
 
     operations = [
         migrations.AddField(
-            model_name='transactionnormalized',
-            name='original_loan_subsidy_cost',
-            field=models.DecimalField(blank=True, decimal_places=2,
-                                      help_text='The original_loan_subsidy_cost for loan type transactions',
-                                      max_digits=20, null=True),
-        ),
+            model_name="transactionnormalized",
+            name="original_loan_subsidy_cost",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="The original_loan_subsidy_cost for loan type transactions",
+                max_digits=20,
+                null=True,
+            ),
+        )
     ]

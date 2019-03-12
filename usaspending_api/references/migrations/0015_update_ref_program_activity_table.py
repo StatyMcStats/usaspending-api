@@ -7,14 +7,20 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0014_auto_20180425_2033'),
-    ]
+    dependencies = [("references", "0014_auto_20180425_2033")]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='refprogramactivity',
-            unique_together={('program_activity_code', 'program_activity_name', 'responsible_agency_id',
-                              'allocation_transfer_agency_id', 'main_account_code', 'budget_year')},
-        ),
+            name="refprogramactivity",
+            unique_together={
+                (
+                    "program_activity_code",
+                    "program_activity_name",
+                    "responsible_agency_id",
+                    "allocation_transfer_agency_id",
+                    "main_account_code",
+                    "budget_year",
+                )
+            },
+        )
     ]

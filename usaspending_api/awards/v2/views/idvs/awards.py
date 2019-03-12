@@ -16,19 +16,20 @@ from usaspending_api.common.validator.tinyshield import TinyShield
 
 # Columns upon which the client is allowed to sort.
 SORTABLE_COLUMNS = (
-    'award_type',
-    'description',
-    'funding_agency',
-    'last_date_to_order',
-    'obligated_amount',
-    'period_of_performance_current_end_date',
-    'period_of_performance_start_date',
-    'piid',
+    "award_type",
+    "description",
+    "funding_agency",
+    "last_date_to_order",
+    "obligated_amount",
+    "period_of_performance_current_end_date",
+    "period_of_performance_start_date",
+    "piid",
 )
 
-DEFAULT_SORT_COLUMN = 'period_of_performance_start_date'
+DEFAULT_SORT_COLUMN = "period_of_performance_start_date"
 
-GET_IDVS_SQL = SQL("""
+GET_IDVS_SQL = SQL(
+    """
     select
         ac.id                                      award_id,
         ac.type_description                        award_type,
@@ -51,9 +52,11 @@ GET_IDVS_SQL = SQL("""
     order by
         {sort_column} {sort_direction}, ac.id {sort_direction}
     limit {limit} offset {offset}
-""")
+"""
+)
 
-GET_CONTRACTS_SQL = SQL("""
+GET_CONTRACTS_SQL = SQL(
+    """
     select
         ac.id                                      award_id,
         ac.type_description                        award_type,
@@ -77,15 +80,18 @@ GET_CONTRACTS_SQL = SQL("""
     order by
         {sort_column} {sort_direction}, ac.id {sort_direction}
     limit {limit} offset {offset}
-""")
+"""
+)
 
 
 def _prepare_tiny_shield_models():
     models = customize_pagination_with_sort_columns(SORTABLE_COLUMNS, DEFAULT_SORT_COLUMN)
-    models.extend([
-        get_internal_or_generated_award_id_model(),
-        {'key': 'idv', 'name': 'idv', 'type': 'boolean', 'default': True, 'optional': True}
-    ])
+    models.extend(
+        [
+            get_internal_or_generated_award_id_model(),
+            {"key": "idv", "name": "idv", "type": "boolean", "default": True, "optional": True},
+        ]
+    )
     return models
 
 
@@ -106,17 +112,17 @@ class IDVAwardsViewSet(APIDocumentationView):
         # By this point, our award_id has been validated and cleaned up by
         # TinyShield.  We will either have an internal award id that is an
         # integer or a generated award id that is a string.
-        award_id = request_data['award_id']
-        award_id_column = 'award_id' if type(award_id) is int else 'generated_unique_award_id'
+        award_id = request_data["award_id"]
+        award_id_column = "award_id" if type(award_id) is int else "generated_unique_award_id"
 
-        sql = GET_IDVS_SQL if request_data['idv'] else GET_CONTRACTS_SQL
+        sql = GET_IDVS_SQL if request_data["idv"] else GET_CONTRACTS_SQL
         sql = sql.format(
             award_id_column=Identifier(award_id_column),
             award_id=Literal(award_id),
-            sort_column=Identifier(request_data['sort']),
-            sort_direction=SQL(request_data['order']),
-            limit=Literal(request_data['limit'] + 1),
-            offset=Literal((request_data['page'] - 1) * request_data['limit']),
+            sort_column=Identifier(request_data["sort"]),
+            sort_direction=SQL(request_data["order"]),
+            limit=Literal(request_data["limit"] + 1),
+            offset=Literal((request_data["page"] - 1) * request_data["limit"]),
         )
 
         return execute_sql_to_ordered_dictionary(sql)
@@ -125,11 +131,8 @@ class IDVAwardsViewSet(APIDocumentationView):
     def post(self, request: Request) -> Response:
         request_data = self._parse_and_validate_request(request.data)
         results = self._business_logic(request_data)
-        page_metadata = get_simple_pagination_metadata(len(results), request_data['limit'], request_data['page'])
+        page_metadata = get_simple_pagination_metadata(len(results), request_data["limit"], request_data["page"])
 
-        response = OrderedDict((
-            ('results', results[:request_data['limit']]),
-            ('page_metadata', page_metadata)
-        ))
+        response = OrderedDict((("results", results[: request_data["limit"]]), ("page_metadata", page_metadata)))
 
         return Response(response)

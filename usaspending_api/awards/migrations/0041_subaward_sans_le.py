@@ -8,108 +8,69 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('references', '0021_legalentityofficers_duns'),
-        ('awards', '0040_extra_fields_to_subaward'),
-    ]
+    dependencies = [("references", "0021_legalentityofficers_duns"), ("awards", "0040_extra_fields_to_subaward")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='subaward',
-            name='place_of_performance',
-        ),
-        migrations.RemoveField(
-            model_name='subaward',
-            name='recipient',
+        migrations.RemoveField(model_name="subaward", name="place_of_performance"),
+        migrations.RemoveField(model_name="subaward", name="recipient"),
+        migrations.AddField(
+            model_name="subaward", name="business_type_code", field=models.TextField(blank=True, null=True)
         ),
         migrations.AddField(
-            model_name='subaward',
-            name='business_type_code',
+            model_name="subaward", name="business_type_description", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_1_amount", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_1_name", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_2_amount", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_2_name", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_3_amount", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_3_name", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_4_amount", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_4_name", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_5_amount", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward", name="officer_5_name", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward",
+            name="prime_recipient",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.DO_NOTHING, to="references.LegalEntity"
+            ),
+        ),
+        migrations.AddField(
+            model_name="subaward",
+            name="recipient_location_foreign_postal_code",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='subaward',
-            name='business_type_description',
+            model_name="subaward", name="recipient_location_state_name", field=models.TextField(blank=True, null=True)
+        ),
+        migrations.AddField(
+            model_name="subaward",
+            name="recipient_location_street_address",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='subaward',
-            name='officer_1_amount',
-            field=models.TextField(blank=True, null=True),
+            model_name="subaward", name="recipient_location_zip4", field=models.TextField(blank=True, null=True)
         ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_1_name',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_2_amount',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_2_name',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_3_amount',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_3_name',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_4_amount',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_4_name',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_5_amount',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='officer_5_name',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='prime_recipient',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='references.LegalEntity'),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='recipient_location_foreign_postal_code',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='recipient_location_state_name',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='recipient_location_street_address',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='recipient_location_zip4',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='subaward',
-            name='uri',
-            field=models.TextField(blank=True, null=True),
-        ),
+        migrations.AddField(model_name="subaward", name="uri", field=models.TextField(blank=True, null=True)),
     ]

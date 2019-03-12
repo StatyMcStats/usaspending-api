@@ -7,19 +7,17 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('accounts', '0002_auto_20180219_0307'),
-    ]
+    dependencies = [("accounts", "0002_auto_20180219_0307")]
 
     operations = [
         migrations.RenameField(
-            model_name='appropriationaccountbalances',
-            old_name='budget_authority_available_amount_total_cpe',
-            new_name='total_budgetary_resources_amount_cpe',
+            model_name="appropriationaccountbalances",
+            old_name="budget_authority_available_amount_total_cpe",
+            new_name="total_budgetary_resources_amount_cpe",
         ),
         migrations.RenameField(
-            model_name='appropriationaccountbalancesquarterly',
-            old_name='budget_authority_available_amount_total_cpe',
-            new_name='total_budgetary_resources_amount_cpe',
+            model_name="appropriationaccountbalancesquarterly",
+            old_name="budget_authority_available_amount_total_cpe",
+            new_name="total_budgetary_resources_amount_cpe",
         ),
     ]

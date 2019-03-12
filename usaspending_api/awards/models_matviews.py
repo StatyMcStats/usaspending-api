@@ -84,7 +84,7 @@ class UniversalTransactionView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'universal_transaction_matview'
+        db_table = "universal_transaction_matview"
 
 
 class SummaryTransactionView(models.Model):
@@ -96,8 +96,8 @@ class SummaryTransactionView(models.Model):
     total_obl_bin = models.TextField()
     generated_pragmatic_obligation = models.DecimalField(max_digits=23, decimal_places=2, null=True, blank=True)
     federal_action_obligation = models.DecimalField(
-        max_digits=23, db_index=True, decimal_places=2, blank=True,
-        null=True)
+        max_digits=23, db_index=True, decimal_places=2, blank=True, null=True
+    )
     original_loan_subsidy_cost = models.DecimalField(max_digits=23, decimal_places=2, null=True, blank=True)
     face_value_loan_guarantee = models.DecimalField(max_digits=23, decimal_places=2, null=True, blank=True)
 
@@ -145,7 +145,7 @@ class SummaryTransactionView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_transaction_view'
+        db_table = "summary_transaction_view"
 
 
 class UniversalAwardView(models.Model):
@@ -227,7 +227,7 @@ class UniversalAwardView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'universal_award_matview'
+        db_table = "universal_award_matview"
 
 
 class SummaryAwardView(models.Model):
@@ -254,7 +254,7 @@ class SummaryAwardView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_award_view'
+        db_table = "summary_award_view"
 
 
 class SummaryView(models.Model):
@@ -282,7 +282,7 @@ class SummaryView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_view'
+        db_table = "summary_view"
 
 
 class SummaryNaicsCodesView(models.Model):
@@ -302,7 +302,7 @@ class SummaryNaicsCodesView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_view_naics_codes'
+        db_table = "summary_view_naics_codes"
 
 
 class SummaryPscCodesView(models.Model):
@@ -320,7 +320,7 @@ class SummaryPscCodesView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_view_psc_codes'
+        db_table = "summary_view_psc_codes"
 
 
 class SummaryCfdaNumbersView(models.Model):
@@ -339,7 +339,7 @@ class SummaryCfdaNumbersView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_view_cfda_number'
+        db_table = "summary_view_cfda_number"
 
 
 class SummaryTransactionMonthView(models.Model):
@@ -402,7 +402,7 @@ class SummaryTransactionMonthView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_transaction_month_view'
+        db_table = "summary_transaction_month_view"
 
 
 class SummaryTransactionGeoView(models.Model):
@@ -448,7 +448,7 @@ class SummaryTransactionGeoView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_transaction_geo_view'
+        db_table = "summary_transaction_geo_view"
 
 
 class SummaryStateView(models.Model):
@@ -470,15 +470,17 @@ class SummaryStateView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_state_view'
+        db_table = "summary_state_view"
 
 
 class AwardMatview(models.Model):
-    generated_unique_award_id = models.TextField(primary_key=True, db_column='generated_unique_award_id')
-    latest_transaction = models.ForeignKey(to='awards.TransactionMatview',
-                                           to_field='generated_unique_transaction_id',
-                                           db_column='latest_transaction_unique_id',
-                                           related_query_name='latest_transaction')
+    generated_unique_award_id = models.TextField(primary_key=True, db_column="generated_unique_award_id")
+    latest_transaction = models.ForeignKey(
+        to="awards.TransactionMatview",
+        to_field="generated_unique_transaction_id",
+        db_column="latest_transaction_unique_id",
+        related_query_name="latest_transaction",
+    )
 
     action_date = models.TextField()
     agency_id = models.TextField()
@@ -647,7 +649,7 @@ class AwardMatview(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'award_matview'
+        db_table = "award_matview"
 
 
 class AwardCategory(models.Model):
@@ -656,15 +658,17 @@ class AwardCategory(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'award_category'
+        db_table = "award_category"
 
 
 class TransactionMatview(models.Model):
-    generated_unique_transaction_id = models.TextField(primary_key=True, db_column='generated_unique_transaction_id')
-    award = models.ForeignKey(to='awards.AwardMatview',
-                              to_field='generated_unique_award_id',
-                              db_column='generated_unique_award_id',
-                              related_query_name='award')
+    generated_unique_transaction_id = models.TextField(primary_key=True, db_column="generated_unique_transaction_id")
+    award = models.ForeignKey(
+        to="awards.AwardMatview",
+        to_field="generated_unique_award_id",
+        db_column="generated_unique_award_id",
+        related_query_name="award",
+    )
 
     action_date = models.DateTimeField()
     agency_id = models.TextField()
@@ -746,7 +750,7 @@ class TransactionMatview(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'transaction_matview'
+        db_table = "transaction_matview"
 
 
 class SubawardView(models.Model):
@@ -829,7 +833,7 @@ class SubawardView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'subaward_view'
+        db_table = "subaward_view"
 
 
 class SummaryTransactionRecipientView(models.Model):
@@ -852,7 +856,7 @@ class SummaryTransactionRecipientView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_transaction_recipient_view'
+        db_table = "summary_transaction_recipient_view"
 
 
 class SummaryTransactionFedAcctView(models.Model):
@@ -882,4 +886,4 @@ class SummaryTransactionFedAcctView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'summary_transaction_fed_acct_view'
+        db_table = "summary_transaction_fed_acct_view"

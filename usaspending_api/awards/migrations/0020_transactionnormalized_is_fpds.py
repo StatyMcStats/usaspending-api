@@ -7,14 +7,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('awards', '0019_auto_20180201_1610'),
-    ]
+    dependencies = [("awards", "0019_auto_20180201_1610")]
 
     operations = [
         migrations.AddField(
-            model_name='transactionnormalized',
-            name='is_fpds',
-            field=models.BooleanField(default=False, verbose_name='Is FPDS'),
-        ),
+            model_name="transactionnormalized",
+            name="is_fpds",
+            field=models.BooleanField(default=False, verbose_name="Is FPDS"),
+        )
     ]
