@@ -44,8 +44,12 @@ engines:
   pep8:
     enabled: true
     checks:
+      E203:
+        enabled: false
       # Disable line length (> 79) check
       E501:
+        enabled: false
+      W503:
         enabled: false
   radon:
     enabled: true
