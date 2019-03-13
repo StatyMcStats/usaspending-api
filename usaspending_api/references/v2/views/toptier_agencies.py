@@ -45,7 +45,7 @@ class ToptierAgenciesViewSet(APIDocumentationView):
 
         if order not in ["asc", "desc"]:
             raise InvalidParameterException(
-                "The order value provided is not a valid option. " "Please choose from the following: ['asc', 'desc']"
+                "The order value provided is not a valid option. Please choose from the following: ['asc', 'desc']"
             )
 
         # get agency queryset, distinct toptier id to avoid duplicates, take first ordered agency id for consistency

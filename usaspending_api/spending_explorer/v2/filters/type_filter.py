@@ -113,7 +113,7 @@ def type_filter(_type, filters, limit=None):
                 fiscal_quarter = int(value)
             else:
                 raise InvalidParameterException(
-                    "Incorrect value provided for quarter parameter. Must be a string " "between 1 and 4"
+                    "Incorrect value provided for quarter parameter. Must be a string between 1 and 4"
                 )
 
     if fiscal_year:

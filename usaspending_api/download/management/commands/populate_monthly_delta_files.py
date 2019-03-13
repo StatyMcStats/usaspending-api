@@ -318,7 +318,7 @@ class Command(BaseCommand):
             nargs="+",
             default=["assistance", "contracts"],
             type=str,
-            help="Specific award types, must be 'contracts' and/or 'assistance'. " "Defaults to both.",
+            help="Specific award types, must be 'contracts' and/or 'assistance'. Defaults to both.",
         )
         parser.add_argument(
             "--last_date",

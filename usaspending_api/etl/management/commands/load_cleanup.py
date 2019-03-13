@@ -21,7 +21,7 @@ class Command(BaseCommand):
         update_model_description_fields()
 
         logger.info(
-            "SKIPPING - Done in load_base - Updating awards to reflect their latest associated transaction " "info..."
+            "SKIPPING - Done in load_base - Updating awards to reflect their latest associated transaction info..."
         )
         # update_awards()
 

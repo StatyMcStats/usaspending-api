@@ -168,7 +168,7 @@ class RecipientAutocompleteViewSet(BaseAutocompleteViewSet):
 
         if len(search_text) < 3:
             raise InvalidParameterException(
-                "search_text '{}' does not meet " "the minimum length of 3 characters".format(search_text)
+                "search_text '{}' does not meet the minimum length of 3 characters".format(search_text)
             )
 
         is_duns = False

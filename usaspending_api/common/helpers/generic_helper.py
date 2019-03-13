@@ -243,7 +243,7 @@ def generate_last_completed_fiscal_quarter(fiscal_year, fiscal_quarter=None):
             fiscal_quarter = 4
     else:
         raise InvalidParameterException(
-            "Cannot obtain data for future fiscal years or fiscal years that have not " "been active for over 45 days."
+            "Cannot obtain data for future fiscal years or fiscal years that have not been active for over 45 days."
         )
 
     # get the fiscal date
@@ -271,9 +271,9 @@ def get_pagination(results, limit, page, benchmarks=False):
     page_metadata["hasPrevious"] = page > 1 and limit * (page - 2) < len(results)
 
     if not page_metadata["hasNext"]:
-        paginated_results = results[limit * (page - 1) :]
+        paginated_results = results[limit * (page - 1):]
     else:
-        paginated_results = results[limit * (page - 1) : limit * page]
+        paginated_results = results[limit * (page - 1):limit * page]
 
     page_metadata["next"] = page + 1 if page_metadata["hasNext"] else None
     page_metadata["previous"] = page - 1 if page_metadata["hasPrevious"] else None

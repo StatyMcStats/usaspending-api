@@ -99,7 +99,7 @@ def warn(msg):  # type: (str) -> None
     Prints a warning message in red.
     """
 
-    info("\x1b[31;1m" "WARNING: " + msg + "\x1b[0m")  # Red  # Reset colors
+    info("\x1b[31;1m WARNING: {}\x1b[0m".format(msg))  # Red then Reset colors
 
 
 def setup_docker_sigterm_handler():  # type: () -> None
@@ -181,7 +181,7 @@ def execute_from_command_line(argv):  # type: (list[str]) -> None
         wait_for_db()
 
         if "PYTHONUNBUFFERED" not in os.environ:
-            warn("PYTHONUNBUFFERED is not defined. Some output may " "not be visible.")
+            warn("PYTHONUNBUFFERED is not defined. Some output may not be visible.")
 
     try:
         from django.core.management import execute_from_command_line
@@ -194,7 +194,7 @@ def execute_from_command_line(argv):  # type: (list[str]) -> None
             # itself on 127.0.0.1, which docker can't expose to the
             # host through its networking stack. It's easiest to just
             # tell the developer to use 'docker-compose up' instead.
-            warn("You should probably be using 'docker-compose up' " "to run the server.")
+            warn("You should probably be using 'docker-compose up' to run the server.")
         try:
             cmd_name = "docker-compose"
             cmd_args = [cmd_name, "run", CONTAINER_NAME, "python"] + argv

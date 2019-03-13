@@ -42,7 +42,7 @@ def update_awards(award_tuple=None):
     sql_txn_latest += "ORDER BY award_id, action_date DESC) "
 
     # common table expression for each award's earliest transaction
-    sql_txn_earliest = "txn_earliest AS (" "SELECT DISTINCT ON (award_id) * " "FROM transaction_normalized "
+    sql_txn_earliest = "txn_earliest AS (SELECT DISTINCT ON (award_id) * FROM transaction_normalized "
     if award_tuple:
         sql_txn_earliest += "WHERE award_id IN %s "
     sql_txn_earliest += "ORDER BY award_id, action_date) "

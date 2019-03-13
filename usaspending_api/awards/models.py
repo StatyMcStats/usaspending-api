@@ -217,7 +217,7 @@ class Award(DataSourceTrackedModel):
         decimal_places=2,
         null=True,
         verbose_name="Total Obligated",
-        help_text="The amount of money the government is obligated to pay for the " "award",
+        help_text="The amount of money the government is obligated to pay for the award",
     )
     total_outlay = models.DecimalField(
         max_digits=23,
@@ -231,14 +231,14 @@ class Award(DataSourceTrackedModel):
         decimal_places=2,
         null=True,
         blank=True,
-        help_text="The total of the original_loan_subsidy_cost from associated " "transactions",
+        help_text="The total of the original_loan_subsidy_cost from associated transactions",
     )
     total_loan_value = models.DecimalField(
         max_digits=23,
         decimal_places=2,
         null=True,
         blank=True,
-        help_text="The total of the face_value_loan_guarantee from associated " "transactions",
+        help_text="The total of the face_value_loan_guarantee from associated transactions",
     )
     awarding_agency = models.ForeignKey(
         Agency, related_name="+", null=True, help_text="The awarding agency for the award", db_index=True
@@ -258,7 +258,7 @@ class Award(DataSourceTrackedModel):
         null=True,
         db_index=True,
         verbose_name="End Date",
-        help_text="The current, not original, period of " "performance end date",
+        help_text="The current, not original, period of performance end date",
     )
     place_of_performance = models.ForeignKey(
         Location,
@@ -275,7 +275,7 @@ class Award(DataSourceTrackedModel):
         blank=True,
         null=True,
         verbose_name="Potential Total Value of Award",
-        help_text="The sum of the potential_value_of_award from " "associated transactions",
+        help_text="The sum of the potential_value_of_award from associated transactions",
     )
     base_and_all_options_value = models.DecimalField(
         max_digits=23,
@@ -284,7 +284,7 @@ class Award(DataSourceTrackedModel):
         blank=True,
         null=True,
         verbose_name="Base and All Options Value",
-        help_text="The sum of the base_and_all_options_value from " "associated transactions",
+        help_text="The sum of the base_and_all_options_value from associated transactions",
     )
     base_exercised_options_val = models.DecimalField(
         max_digits=23,
@@ -292,7 +292,7 @@ class Award(DataSourceTrackedModel):
         blank=True,
         null=True,
         verbose_name="Combined Base and Exercised Options",
-        help_text="The sum of the base_exercised_options_val from " "associated transactions",
+        help_text="The sum of the base_exercised_options_val from associated transactions",
     )
     last_modified_date = models.DateField(blank=True, null=True, help_text="The date this award was last modified")
     certified_date = models.DateField(blank=True, null=True, help_text="The date this record was certified")
@@ -323,7 +323,7 @@ class Award(DataSourceTrackedModel):
         decimal_places=2,
         blank=True,
         null=True,
-        help_text="A summation of this award's transactions'" " funding amount",
+        help_text="A summation of this award's transactions' funding amount",
     )
     non_federal_funding_amount = models.DecimalField(
         max_digits=23,
@@ -448,7 +448,7 @@ class TransactionNormalized(models.Model):
     period_of_performance_current_end_date = models.DateField(
         verbose_name="Period of Performance Current End Date",
         null=True,
-        help_text="The current end date of the period of " "performance",
+        help_text="The current end date of the period of performance",
     )
     action_date = models.DateField(
         verbose_name="Transaction Date", help_text="The date this transaction was actioned", db_index=True
@@ -461,21 +461,21 @@ class TransactionNormalized(models.Model):
         decimal_places=2,
         blank=True,
         null=True,
-        help_text="The obligation of the federal government for this " "transaction",
+        help_text="The obligation of the federal government for this transaction",
     )
     original_loan_subsidy_cost = models.DecimalField(
         max_digits=23,
         decimal_places=2,
         null=True,
         blank=True,
-        help_text="The original_loan_subsidy_cost for loan type " "transactions",
+        help_text="The original_loan_subsidy_cost for loan type transactions",
     )
     face_value_loan_guarantee = models.DecimalField(
         max_digits=23,
         decimal_places=2,
         null=True,
         blank=True,
-        help_text="The face_value_loan_guarantee for loan type " "transactions",
+        help_text="The face_value_loan_guarantee for loan type transactions",
     )
     modification_number = models.TextField(
         blank=True,
@@ -530,7 +530,7 @@ class TransactionNormalized(models.Model):
         decimal_places=2,
         blank=True,
         null=True,
-        help_text="Assistance data variable.  non_federal_funding_amount + " "federal_action_obligation",
+        help_text="Assistance data variable.  non_federal_funding_amount + federal_action_obligation",
     )
     non_federal_funding_amount = models.DecimalField(
         max_digits=23, decimal_places=2, blank=True, null=True, help_text="Assistance Data variable."
@@ -1032,7 +1032,7 @@ class Subaward(DataSourceTrackedModel):
         blank=False,
         null=False,
         default=0,
-        verbose_name="FSRS Award ID in the " "Broker",
+        verbose_name="FSRS Award ID in the Broker",
         help_text="The ID of the parent award in broker",
         db_index=True,
     )
