@@ -1,0 +1,23 @@
+# Basic Dockerfile for the USASpendingAPI
+
+## 1) Build:
+#        docker build . -f DockerfileScripts -t usaspending-ops
+
+## 2) Run example:
+#        docker run \
+#          --env DATABASE_URL=<postgres://user:pass@host:port/db_name> \
+#          -i --rm=true \
+#          usaspending-ops \
+#          python manage.py loadcfda https://files.usaspending.gov/reference_data/cfda.csv
+
+FROM python:3.5.6
+
+WORKDIR /usaspending-api
+
+RUN apt-get update -y
+
+ADD requirements/requirements.txt /usaspending-api/requirements/requirements.txt
+
+RUN pip install -r requirements/requirements.txt
+
+ADD . /usaspending-api
