@@ -52,7 +52,9 @@ class BaseDownloadViewSet(APIDocumentationView):
         # TODO!!! Use external_data_load_date to determine data freshness
         updated_date_timestamp = datetime.strftime(datetime.now(timezone.utc), "%Y-%m-%d")
         cached_download = (
-            DownloadJob.objects.filter(json_request=ordered_json_request, update_date__gte=updated_date_timestamp)
+            DownloadJob.objects.filter(
+                json_request=ordered_json_request, update_date__gte=updated_date_timestamp
+            )
             .exclude(job_status_id=JOB_STATUS_DICT["failed"])
             .values("download_job_id", "file_name")
             .first()
@@ -61,7 +63,9 @@ class BaseDownloadViewSet(APIDocumentationView):
         if cached_download and not settings.IS_LOCAL:
             # By returning the cached files, there should be no duplicates on a daily basis
             write_to_log(
-                message="Generating file from cached download job ID: {}".format(cached_download["download_job_id"])
+                message="Generating file from cached download job ID: {}".format(
+                    cached_download["download_job_id"]
+                )
             )
             cached_filename = cached_download["file_name"]
             return self.get_download_response(file_name=cached_filename)
@@ -69,7 +73,9 @@ class BaseDownloadViewSet(APIDocumentationView):
         request_agency = json_request.get("filters", {}).get("agency", None)
         final_output_zip_name = create_unique_filename(json_request["download_types"], request_agency)
         download_job = DownloadJob.objects.create(
-            job_status_id=JOB_STATUS_DICT["ready"], file_name=final_output_zip_name, json_request=ordered_json_request
+            job_status_id=JOB_STATUS_DICT["ready"],
+            file_name=final_output_zip_name,
+            json_request=ordered_json_request,
         )
 
         log_new_download_job(request, download_job)
@@ -135,7 +141,9 @@ class BaseDownloadViewSet(APIDocumentationView):
             if filters.get(location_filter):
                 for location_dict in filters[location_filter]:
                     if not isinstance(location_dict, dict):
-                        raise InvalidParameterException("Location is not a dictionary: {}".format(location_dict))
+                        raise InvalidParameterException(
+                            "Location is not a dictionary: {}".format(location_dict)
+                        )
                     location_error_handling(location_dict.keys())
                 json_request["filters"][location_filter] = filters[location_filter]
 
@@ -151,12 +159,16 @@ class BaseDownloadViewSet(APIDocumentationView):
         elif constraint_type == "year":
             # Validate combined total dates within one year (allow for leap years)
             if total_range_count > 366:
-                raise InvalidParameterException("Invalid Parameter: time_period total days must be within a year")
+                raise InvalidParameterException(
+                    "Invalid Parameter: time_period total days must be within a year"
+                )
 
             # Validate year-constrainted filter types and assign defaults
             check_types_and_assign_defaults(filters, json_request["filters"], YEAR_CONSTRAINT_FILTER_DEFAULTS)
         else:
-            raise InvalidParameterException('Invalid parameter: constraint_type must be "row_count" or "year"')
+            raise InvalidParameterException(
+                'Invalid parameter: constraint_type must be "row_count" or "year"'
+            )
 
         return json_request
 
@@ -175,7 +187,9 @@ class BaseDownloadViewSet(APIDocumentationView):
         # Validate account_level parameters
         valid_account_levels = ["federal_account", "treasury_account"]
         if request_data.get("account_level", None) not in valid_account_levels:
-            raise InvalidParameterException("Invalid Parameter: account_level must be {}".format(valid_account_levels))
+            raise InvalidParameterException(
+                "Invalid Parameter: account_level must be {}".format(valid_account_levels)
+            )
         json_request["account_level"] = request_data["account_level"]
 
         # Validate the filters parameter and its contents
@@ -189,12 +203,16 @@ class BaseDownloadViewSet(APIDocumentationView):
         # Validate required filters
         for required_filter in ["fy", "quarter"]:
             if required_filter not in filters:
-                raise InvalidParameterException("Missing one or more required filters: {}".format(required_filter))
+                raise InvalidParameterException(
+                    "Missing one or more required filters: {}".format(required_filter)
+                )
             else:
                 try:
                     filters[required_filter] = int(filters[required_filter])
                 except (TypeError, ValueError):
-                    raise InvalidParameterException("{} filter not provided as an integer".format(required_filter))
+                    raise InvalidParameterException(
+                        "{} filter not provided as an integer".format(required_filter)
+                    )
             json_request["filters"][required_filter] = filters[required_filter]
 
         # Validate fiscal_quarter
@@ -206,7 +224,9 @@ class BaseDownloadViewSet(APIDocumentationView):
         submission_type = filters.get("submission_type", None)
 
         if submission_type not in valid_submissions:
-            raise InvalidParameterException("Invalid Parameter: submission_type must be {}".format(valid_submissions))
+            raise InvalidParameterException(
+                "Invalid Parameter: submission_type must be {}".format(valid_submissions)
+            )
 
         json_request["download_types"] = [filters["submission_type"]]
 
@@ -223,7 +243,8 @@ class BaseDownloadViewSet(APIDocumentationView):
             # Send a SQS message that will be processed by another server which will eventually run
             # csv_generation.write_csvs(**kwargs) (see download_sqs_worker.py)
             write_to_log(
-                message="Passing download_job {} to SQS".format(download_job.download_job_id), download_job=download_job
+                message="Passing download_job {} to SQS".format(download_job.download_job_id),
+                download_job=download_job,
             )
             queue = get_sqs_queue_resource(queue_name=settings.BULK_DOWNLOAD_SQS_QUEUE_NAME)
             queue.send_message(MessageBody=str(download_job.download_job_id))
