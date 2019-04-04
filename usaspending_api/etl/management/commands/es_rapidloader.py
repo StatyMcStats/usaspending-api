@@ -136,13 +136,13 @@ class Command(BaseCommand):
             printf({'msg': 'Provided directory does not exist'})
             raise SystemExit
 
-        if does_index_exist and (not options['since'] and not options['days']):
-            print('''
-                  Bad mix of parameters! Index exists and
-                  full data load implied. Choose a different
-                  index_name or load a subset of data using --since
-                  ''')
-            raise SystemExit
+#         if does_index_exist and (not options['since'] and not options['days']):
+#             print('''
+#                   Bad mix of parameters! Index exists and
+#                   full data load implied. Choose a different
+#                   index_name or load a subset of data using --since
+#                   ''')
+#             raise SystemExit
 
         self.controller()
         printf({'msg': '---------------------------------------------------------------'})
