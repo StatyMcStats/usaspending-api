@@ -1,5 +1,6 @@
 import os
 import json
+import certifi
 
 from datetime import datetime, timedelta, timezone
 from django.core.management.base import BaseCommand
@@ -32,7 +33,7 @@ from usaspending_api.etl.es_etl_helpers import take_snapshot
 # IF RELOADING ---
 # [command] --index_name=NEWINDEX --swap --snapshot
 
-ES = Elasticsearch(settings.ES_HOSTNAME, use_ssl=True, verify_certs=True, timeout=300)
+ES = Elasticsearch(settings.ES_HOSTNAME, use_ssl=True, verify_certs=True, timeout=300, ca_certs=certifi.where())
 
 
 class Command(BaseCommand):
