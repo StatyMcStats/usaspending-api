@@ -32,7 +32,7 @@ from usaspending_api.etl.es_etl_helpers import take_snapshot
 # IF RELOADING ---
 # [command] --index_name=NEWINDEX --swap --snapshot
 
-ES = Elasticsearch(settings.ES_HOSTNAME, timeout=300)
+ES = Elasticsearch(settings.ES_HOSTNAME, use_ssl=True, verify_certs=True, timeout=300)
 
 
 class Command(BaseCommand):
